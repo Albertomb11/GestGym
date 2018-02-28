@@ -1,20 +1,18 @@
-@extends('layouts.app')
-
-@section('content')
-<div class="container">
-    <div class="row justify-content-md-center mt-5">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Register</div>
-                <div class="card-body">
-                    <form role="form" method="POST" action="{{ url('/register') }}">
+<div id="registerVista">
+    <div class="register-box">
+        <img src="http://www.tadamun.so/wp-content/uploads/2016/09/blank-avatar.png" class="avatar">
+        <h1>Registro</h1>
+        <form id="formularioRegistro" role="form" method="POST" action="{{ url('/register') }}">
                         {!! csrf_field() !!}
 
-                        <div class="form-group row">
-                            <label class="col-lg-4 col-form-label text-lg-right">Nick</label>
+                        <div class="form-group row{{ $errors->has('username') ? ' has-error' : '' }}">
+                            <label class="col-lg-4 col-form-label text-lg-right">
+                                <span style="padding-right: 20px"><img src="http://flaticons.net/icons/Application/User-Profile.png" width="30" height="30"></span>
+                                Nick
+                            </label>
 
                             <div class="col-lg-6">
-                                <input
+                                <input  id="username"
                                         type="text"
                                         class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}"
                                         name="username"
@@ -27,13 +25,18 @@
                                     </div>
                                 @endif
                             </div>
+                            @include('layouts.spinner')
                         </div>
 
-                        <div class="form-group row">
-                            <label class="col-lg-4 col-form-label text-lg-right">E-Mail</label>
+
+                        <div class="form-group row{{ $errors->has('email') ? ' has-error' : '' }}">
+                            <label class="col-lg-4 col-form-label text-lg-right">
+                            <span style="padding-right: 20px"><img src="https://daks2k3a4ib2z.cloudfront.net/555977cb8ccdb3ba5c09f4dc/558125c7bc2ba6d54f191596_Envelope_Icon_White.png" width="30" height="30"></span>
+                            E-Mail
+                            </label>
 
                             <div class="col-lg-6">
-                                <input
+                                <input  id="email"
                                         type="email"
                                         class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
                                         name="email"
@@ -47,10 +50,14 @@
                                     </div>
                                 @endif
                             </div>
+                            @include('layouts.spinner')
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-lg-4 col-form-label text-lg-right">Contraseña</label>
+                            <label class="col-lg-4 col-form-label text-lg-right">
+                                <span style="padding-right: 20px"><img src="https://www.artprovenance.net/GetImage.aspx?image_src=B995D1A5A1DCB5AD8DBDB0B5B9BD8DA4BDCD959D85B5A59DB9C01A" width="30" height="30"></span>
+                                Contraseña
+                            </label>
 
                             <div class="col-lg-6">
                                 <input
@@ -68,11 +75,13 @@
                         </div>
 
                         <div class="form-group row">
-                            <label class="col-lg-4 col-form-label text-lg-right">Confirmar Contraseña</label>
+                            <label class="col-lg-4 col-form-label text-lg-right">
+                                <span style="padding-right: 20px"><img src="https://www.artprovenance.net/GetImage.aspx?image_src=B995D1A5A1DCB5AD8DBDB0B5B9BD8DA4BDCD959D85B5A59DB9C01A" width="30" height="30"></span>
+                                Confirmar Contraseña
+                            </label>
 
                             <div class="col-lg-6">
-                                <input
-                                        type="password"
+                                <input type="password"
                                         class="form-control{{ $errors->has('password_confirmation') ? ' is-invalid' : '' }}"
                                         name="password_confirmation"
                                         required
@@ -87,15 +96,11 @@
 
                         <div class="form-group row">
                             <div class="col-lg-6 offset-lg-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Register
+                                <button type="submit" id="botonFormularioRegistro" class="btn btn-primary">
+                                    Registrar
                                 </button>
                             </div>
                         </div>
                     </form>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
-@endsection

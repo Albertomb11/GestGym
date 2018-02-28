@@ -1,0 +1,3 @@
+$( "#draggable" ).draggable({
+    revert: true
+});

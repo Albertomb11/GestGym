@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddGimnasioIdToActividadesTable extends Migration
+class CreateSalasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,14 @@ class AddGimnasioIdToActividadesTable extends Migration
      */
     public function up()
     {
-        Schema::table('actividades', function (Blueprint $table) {
-            $table->integer('gimnasio_id')->unsigned()->after('id');
+        Schema::create('salas', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('gimnasio_id')->unsigned();
+            $table->string('nombre');
+            $table->string('equipamiento');
+
             $table->foreign('gimnasio_id')->references('id')->on('gimnasios');
+            $table->timestamps();
         });
     }
 
@@ -26,9 +31,6 @@ class AddGimnasioIdToActividadesTable extends Migration
      */
     public function down()
     {
-        Schema::table('actividades', function (Blueprint $table) {
-            $table->dropForeign('actividades_gimnasio_id_foreign');
-            $table->dropColumn('gimnasio_id');
-        });
+        Schema::dropIfExists('salas');
     }
 }

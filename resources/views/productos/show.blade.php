@@ -3,37 +3,7 @@
 @section('content')
 <div class="row">
     <div class="col-md-2">
-        <nav class="nav flex-column navbar-dark bg-dark pr-5 pb-5 pl-4 position-relative h-100">
-
-            <div class="text-center" style="padding-top: 2%">
-                <button class="btn-lg w-100" type="button">
-                    <a class="nav-link disabled" href="/">
-                        <span class="button-group-addon" ><img src="http://simpleicon.com/wp-content/uploads/home-7.png" width="30" height="30" alt=""></span>
-                        Home
-                    </a>
-                </button>
-            </div>
-
-            <div class="text-center" style="padding-top: 2%">
-                <button class="btn-lg w-100" type="button">
-                    <a class="nav-link disabled" href="{{route('user.perfil', array('user' => Auth::user()->username))}}">
-                        <span class="button-group-addon" ><img src="http://simpleicon.com/wp-content/uploads/account.svg" width="30" height="30" alt=""></span>
-                        Perfil
-                    </a>
-                </button>
-            </div>
-
-            <div class="text-center" style="padding-top: 2%">
-                <button class="btn-lg w-100" type="button">
-                    <a class="nav-link disabled" href="{{route('gimnasios.show', array('user' => Auth::user()->username))}}">
-                        <span class="button-group-addon" ><img src="https://image.flaticon.com/icons/svg/34/34907.svg" width="30" height="30" alt=""></span>
-                        Gimnasios
-                    </a>
-                </button>
-            </div>
-            <div class="dropdown-divider"></div>
-            <a class="nav-link" href="#">Salir</a>
-        </nav>
+        @include('navbar')
     </div>
 
     <div class="col-md-8">
@@ -69,6 +39,13 @@
                 @endforelse
                 </tbody>
         </table>
+
+        <div style="width: 50%; background-color: #fff">
+
+            <canvas id="myChart" width="600" height="350"></canvas>
+
+        </div>
+
     </div>
 
     <div class="col-md-2 text-center">
@@ -89,3 +66,45 @@
 
 </div>
 @endsection
+
+@push('scripts')
+
+    <script>
+        let ctx = document.getElementById("myChart").getContext('2d');
+
+        let myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: [
+                    "Suplemento",
+                    "Barritas",
+                    "Agua",
+                    "Proteinas ",
+                    "BCCA",
+                    "Avena"
+                ],
+                datasets: [{
+                    label: 'Precio',
+                    data: [
+                        30,
+                        2,
+                        1.5,
+                        35,
+                        27,
+                        15
+                    ],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                }]
+            },
+
+        });
+
+    </script>
+@endpush

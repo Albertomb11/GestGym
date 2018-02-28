@@ -3,84 +3,47 @@
 @section('content')
 <div class="row">
     <div class="col-md-2">
-        <nav class="nav flex-column navbar-dark bg-dark pr-5 pb-5 pl-4 position-relative h-100">
-
-            <div class="text-center" style="padding-top: 2%">
-                <button class="btn-lg w-100" type="button">
-                    <a class="nav-link disabled" href="/">
-                        <span class="button-group-addon" ><img src="http://simpleicon.com/wp-content/uploads/home-7.png" width="30" height="30" alt=""></span>
-                        Home
-                    </a>
-                </button>
-            </div>
-
-            <div class="text-center" style="padding-top: 2%">
-                <button class="btn-lg w-100" type="button">
-                    <a class="nav-link disabled" href="{{route('user.perfil', array('user' => Auth::user()->username))}}">
-                        <span class="button-group-addon" ><img src="http://simpleicon.com/wp-content/uploads/account.svg" width="30" height="30" alt=""></span>
-                        Perfil
-                    </a>
-                </button>
-            </div>
-
-            <div class="text-center" style="padding-top: 2%">
-                <button class="btn-lg w-100" type="button">
-                    <a class="nav-link disabled" href="{{route('gimnasios.show', array('user' => Auth::user()->username))}}">
-                        <span class="button-group-addon" ><img src="https://image.flaticon.com/icons/svg/34/34907.svg" width="30" height="30" alt=""></span>
-                        Gimnasios
-                    </a>
-                </button>
-            </div>
-            <div class="dropdown-divider"></div>
-            <a class="nav-link" href="#">Salir</a>
-        </nav>
+        @include('navbar')
     </div>
 
     <div class="col-md-8">
 
-        <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">
-                <h1 class="page-header title text-center">Monitores</h1>
+            @forelse($monitores->chunk(2) as $chunk)
+            <div class="row course-set courses__row event d-flex justify-content-around">
+                @foreach($chunk as $monitor)
+            <div class="card" style="width: 25rem; margin-top: 20px">
+                <img class="card-img-top" src="https://image.freepik.com/vector-gratis/frase-en-un-fondo-de-hombre-musculado_23-2147533706.jpg" height="300px" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title"><strong>{{$monitor['nombre']}} {{$monitor['apellidos']}}</strong></h5>
+
+                    <strong>Email: </strong>{{$monitor['email']}}
+                    <hr>
+                    <strong>Fecha de nacimiento: </strong>{{$monitor['fecha_nacimiento']}}
+                    <hr>
+                    <strong>Estudios: </strong>{{$monitor['estudios']}}
+                    <hr>
+                    <strong>Direccion: </strong>{{$monitor['direccion']}}
+                    <hr>
+                    <strong><a class="btn btn-secondary" href="#">Puntuacion</a></strong>
+                    <hr>
+
+                    <div class="container">
+                        <a href="#" class="btn btn-primary">Editar</a>
+                    </div>
+                </div>
             </div>
-        </div>
-
-
-        <table class="table">
-            <thead class="thead-dark">
-            <tr>
-                <th>Nombre</th>
-                <th>Apellidos</th>
-                <th>Email</th>
-                <th>Fecha de nacimiento</th>
-                <th>Estudios</th>
-                <th>Direccion</th>
-                <th>Puntuacion</th>
-            </tr>
-            </thead>
-
-            <tbody class="table-info">
-            @forelse($monitores as $monitor)
-            <tr>
-                <td>{{$monitor['nombre']}}</td>
-                <td>{{$monitor['apellidos']}}</td>
-                <td>{{$monitor['email']}}</td>
-                <td>{{$monitor['fecha_nacimiento']}}</td>
-                <td>{{$monitor['estudios']}}</td>
-                <td>{{$monitor['direccion']}}</td>
-                <td><a href="#">Puntuacion</a></td>
-            </tr>
+                @endforeach
+            </div>
             @empty
-                <h1 class="text-center">No hay Monitores añadidos todavia</h1>
+                <h1 class="text-center" style="color: #fff; margin-top: 50px">No hay Monitores añadidos todavia</h1>
             @endforelse
-            </tbody>
-        </table>
     </div>
 
     <div class="col-md-2 text-center">
 
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
-                <h1 class="page-header title text-center">{{ $gimnasio->nombre }}</h1>
+                <h1 class="page-header title text-center" style="color: #fff;">{{ $gimnasio->nombre }}</h1>
             </div>
         </div>
 
@@ -91,5 +54,6 @@
             </a>
         </button>
     </div>
+
 </div>
 @endsection

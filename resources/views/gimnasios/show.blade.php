@@ -3,70 +3,50 @@
 @section('content')
 <div class="row">
     <div class="col-md-2">
-        <nav class="nav flex-column navbar-dark bg-dark pr-5 pb-5 pl-4 position-relative h-100">
-
-            <div class="text-center" style="padding-top: 2%">
-                <button class="btn-lg w-100" type="button">
-                    <a class="nav-link disabled" href="/">
-                        <span class="button-group-addon" ><img src="http://simpleicon.com/wp-content/uploads/home-7.png" width="30" height="30" alt=""></span>
-                        Home
-                    </a>
-                </button>
-            </div>
-
-            <div class="text-center" style="padding-top: 2%">
-                <button class="btn-lg w-100" type="button">
-                    <a class="nav-link disabled" href="{{route('user.perfil', array('user' => Auth::user()->username))}}">
-                        <span class="button-group-addon" ><img src="http://simpleicon.com/wp-content/uploads/account.svg" width="30" height="30" alt=""></span>
-                        Perfil
-                    </a>
-                </button>
-            </div>
-
-            <div class="text-center" style="padding-top: 2%">
-                <button class="btn-lg w-100" type="button">
-                    <a class="nav-link disabled" href="{{route('gimnasios.show', array('user' => Auth::user()->username))}}">
-                        <span class="button-group-addon" ><img src="https://image.flaticon.com/icons/svg/34/34907.svg" width="30" height="30" alt=""></span>
-                        Gimnasios
-                    </a>
-                </button>
-            </div>
-            <div class="dropdown-divider"></div>
-            <a class="nav-link" href="#">Salir</a>
-        </nav>
+        @include('navbar')
     </div>
 
     <div class="col-md-8">
 
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
-                <h1 class="page-header title text-center">Gimnasios</h1>
+                <h1 class="page-header title text-center" style="color: #fff">Gimnasios</h1>
             </div>
         </div>
 
-        @forelse($gimnasios as $gimnasio)
-        <div class="card-base">
-            <div class="card-icon"><a href="#" title="Widgets" id="widgetCardIcon" class="imagecard"><span class="glyphicon glyphicon-user"></span></a>
-                <div class="card-data widgetCardData">
-                    <h1 class="box-title" style="color: #bb7824;">{{$gimnasio['nombre']}}</h1>
-                    <p class="card-block text-center">Dirección: {{$gimnasio['direccion']}}</p>
-                    <p class="card-block text-center">Horario: {{$gimnasio['horario']}}</p>
-                    <p class="card-block text-center">Cuota: {{$gimnasio['cuotas']}}€/mes</p>
-                    <a href="/{{ $user->username }}/gimnasios/{{ $gimnasio->nombre }}" title="Style Builder" class="anchor btn btn-default" style="background: #bb7824; border: #bb7824; color: black"><i class="fa fa-paper-plane" aria-hidden="true"></i>Gestionar</a>
-                </div>
-            </div>
-            <div class="space"></div>
+        @forelse($gimnasios->chunk(3) as $chunk)
+            <div class="row course-set courses__row event d-flex justify-content-around">
+            @foreach($chunk as $gimnasio)
+        <div id="draggable" class="contenedor">
+        <div class="contenedor_tarjeta">
+            <a href="/{{ $user->username }}/gimnasios/{{ $gimnasio->nombre }}">
+                <figure>
+                    <img src="https://image.freepik.com/vector-gratis/frase-en-un-fondo-de-hombre-musculado_23-2147533706.jpg" class="frontal" alt="imagen de {{$gimnasio['nombre']}}">
+                    <figcaption class="trasera">
+                        <h2 class="titulo">{{$gimnasio['nombre']}}</h2>
+                        <hr>
+                        <p class="card-block text-center">Dirección: {{$gimnasio['direccion']}}</p>
+                        <p class="card-block text-center">Horario Apertura: {{$gimnasio['horario_apertura']}}</p>
+                        <p class="card-block text-center">Horario Cierre: {{$gimnasio['horario_cierre']}}</p>
+                        <p class="card-block text-center">Cuota: {{$gimnasio['cuotas']}}€/mes</p>
+                    </figcaption>
+                </figure>
+            </a>
         </div>
+        </div>
+            @endforeach
+            </div>
         @empty
-            <h1 class="text-center">No hay Gimnasios creados todavia</h1>
-            @endforelse
+            <h1 class="text-center" style="color: #fff">No hay Gimnasios creados todavia</h1>
+        @endforelse
+
     </div>
 
     <div class="col-md-2 text-center">
 
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
-                <h1 class="page-header title text-center">{{ Auth::user()->username }}</h1>
+                <h1 class="page-header title text-center" style="color: #fff">{{ Auth::user()->username }}</h1>
             </div>
         </div>
 
@@ -80,3 +60,7 @@
 
 </div>
 @endsection
+
+@push('scripts')
+    <script src="{{ asset('js/draggable.js') }}"></script>
+@endpush

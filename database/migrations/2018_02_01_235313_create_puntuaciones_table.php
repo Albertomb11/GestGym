@@ -15,8 +15,11 @@ class CreatePuntuacionesTable extends Migration
     {
         Schema::create('puntuaciones', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('monitores_id')->unsigned();
             $table->integer('estrellas');
             $table->string('comentario');
+
+            $table->foreign('monitores_id')->references('id')->on('monitores');
             $table->timestamps();
         });
     }

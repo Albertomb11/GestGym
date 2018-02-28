@@ -1,0 +1,109 @@
+.login-box{
+    width: 460px;
+    height: 620px;
+    background: rgba(192,192,192,0.3);
+    color: #fff;
+    top:50%;
+    left:50%;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    box-sizing: border-box;
+    padding: 70px 30px;
+    border-radius: 20%;
+}
+
+.avatar{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    position: static;
+    top:-50%;
+    left:calc(50% - 50%);
+}
+
+h1{
+    margin:0;
+    padding:0 0 20px;
+    text-align: center;
+    font-size: 25px;
+}
+
+.login-box label{
+    margin:0;
+    padding:0;
+    font-weight: bold;
+}
+
+.login-box input{
+    width:100%;
+    margin-bottom:20px;
+}
+
+.login-box input[type="email"]{
+    border:none;
+    border-bottom:2px solid #fff;
+    background: transparent;
+    outline:none;
+    height: 40px;
+    color: #fff;
+    font-size: 16px;
+}
+
+.login-box input[type="password"]{
+    border:none;
+    border-bottom:2px solid #fff;
+    background: transparent;
+    outline:none;
+    height: 40px;
+    color: #fff;
+    font-size: 16px;
+}
+
+.login-box button[type="submit"]{
+    border:none;
+    outline:none;
+    height:40px;
+    background: #1c8adb;
+    color: #fff;
+    font-size:18px;
+    border-radius: 20px;
+}
+
+.login-box button[type="submit"]:hover{
+    cursor: pointer;
+    background: #39dc79;
+    color: #000;
+}
+
+#formularioRegistroBoton{
+    margin-left: 32.5%;
+    border:none;
+    outline:none;
+    height:40px;
+    background: #1c8adb;
+    color: #fff;
+    font-size:18px;
+    border-radius: 20px;
+}
+
+#formularioRegistroBoton:hover{
+    cursor: pointer;
+    background: #39dc79;
+    color: #000;
+}
+
+h5{
+    margin:0;
+    padding:0 0 20px;
+    text-align: center;
+}
+
+.login-box a{
+    text-decoration: none;
+    font-size: 14px;
+    color: #fff;
+}
+
+.login-box a:hover{
+    color: #39dc79;
+}

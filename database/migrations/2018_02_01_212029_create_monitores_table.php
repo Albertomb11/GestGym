@@ -15,12 +15,15 @@ class CreateMonitoresTable extends Migration
     {
         Schema::create('monitores', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('gimnasio_id')->unsigned();
             $table->string('nombre');
             $table->string('apellidos');
             $table->date('fecha_nacimiento');
             $table->string('estudios');
             $table->string('direccion');
             $table->string('email')->unique();
+
+            $table->foreign('gimnasio_id')->references('id')->on('gimnasios');
             $table->timestamps();
         });
     }

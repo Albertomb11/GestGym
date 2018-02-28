@@ -1,4 +1,14 @@
 {
     "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css"
+    "/css/app.css": "/css/app.css",
+    "/js/paginacionAsincrona.js": "/js/paginacionAsincrona.js",
+    "/js/formularioRegisterAsincrona.js": "/js/formularioRegisterAsincrona.js",
+    "/js/formularioEditarPerfilAsincrono.js": "/js/formularioEditarPerfilAsincrono.js",
+    "/js/formularioCrearGimnasioAsincrono.js": "/js/formularioCrearGimnasioAsincrono.js",
+    "/css/spinner.css": "/css/spinner.css",
+    "/css/login.css": "/css/login.css",
+    "/css/register.css": "/css/register.css",
+    "/css/perfil.css": "/css/perfil.css",
+    "/css/cartasGimnasios.css": "/css/cartasGimnasios.css",
+    "/css/updatePerfil.css": "/css/updatePerfil.css"
 }

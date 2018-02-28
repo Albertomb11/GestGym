@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddGimnasioIdToMonitoresTable extends Migration
+class CreateMaquinasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,16 @@ class AddGimnasioIdToMonitoresTable extends Migration
      */
     public function up()
     {
-        Schema::table('monitores', function (Blueprint $table) {
-            $table->integer('gimnasio_id')->unsigned()->after('id');
+        Schema::create('maquinas', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('gimnasio_id')->unsigned();
+            $table->string('nombre');
+            $table->string('zona_trabajada');
+            $table->string('descripcion');
+            $table->integer('unidades');
+
             $table->foreign('gimnasio_id')->references('id')->on('gimnasios');
+            $table->timestamps();
         });
     }
 
@@ -26,9 +33,6 @@ class AddGimnasioIdToMonitoresTable extends Migration
      */
     public function down()
     {
-        Schema::table('monitores', function (Blueprint $table) {
-            $table->dropForeign('monitores_gimnasio_id_foreign');
-            $table->dropColumn('gimnasio_id');
-        });
+        Schema::dropIfExists('maquinas');
     }
 }

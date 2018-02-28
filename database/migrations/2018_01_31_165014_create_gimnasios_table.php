@@ -15,11 +15,16 @@ class CreateGimnasiosTable extends Migration
     {
         Schema::create('gimnasios', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id')->unsigned();
+            $table->string('imagen')->nullable();
             $table->string('nombre');
             $table->string('direccion')->unique();
-            $table->date('horario');
+            $table->integer('horario_apertura');
+            $table->integer('horario_cierre');
             $table->integer('cuotas');
             $table->string('descripcion')->nullable();
+
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

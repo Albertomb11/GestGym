@@ -12,6 +12,14 @@ let mix = require('laravel-mix');
  */
 
 mix.js('resources/assets/js/app.js', 'public/js')
-    .sass('resources/assets/sass/app.scss', 'public/css');
-
-drag.js('');
+    .sass('resources/assets/sass/app.scss', 'public/css')
+    .js('resources/assets/js/formularioRegisterAsincrona.js', 'public/js')
+    .js('resources/assets/js/paginacionAsincrona.js', 'public/js')
+    .js('resources/assets/js/formularioEditarPerfilAsincrono.js', 'public/js')
+    .js('resources/assets/js/formularioCrearGimnasioAsincrono.js', 'public/js')
+    .styles(['resources/assets/css/spinner.css'], 'public/css/spinner.css')
+    .styles(['resources/assets/css/login.css'], 'public/css/login.css')
+    .styles(['resources/assets/css/register.css'], 'public/css/register.css')
+    .styles(['resources/assets/css/perfil.css'], 'public/css/perfil.css')
+    .styles(['resources/assets/css/cartasGimnasios.css'], 'public/css/cartasGimnasios.css')
+    .styles(['resources/assets/css/updatePerfil.css'], 'public/css/updatePerfil.css');

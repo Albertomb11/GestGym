@@ -21,4 +21,11 @@ class Gimnasio extends Model
         return $this->hasMany(Productos::class)->latest();
     }
 
+    public function maquinas(){
+        return $this->hasMany(Maquinas::class)->latest();
+    }
+
+    public function salas(){
+        return $this->hasMany(Salas::class)->latest();
+    }
 }

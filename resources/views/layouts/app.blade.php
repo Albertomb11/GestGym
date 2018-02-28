@@ -12,6 +12,14 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/spinner.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/login.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/register.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/cartasGimnasios.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/perfil.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/updatePerfil.css') }}" rel="stylesheet">
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
 </head>
 <body>
@@ -29,8 +37,6 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                 <ul class="navbar-nav">
                     @if (Auth::guest())
-                        {{--<li class="nav-item"><a href="{{ route('login') }}" class="nav-link">Login</a></li>--}}
-                        {{--<li class="nav-item"><a href="{{ route('register') }}" class="nav-link">Register</a></li>--}}
                         <li class="nav-item"><a href="{{ route('gimnasios') }}" class="nav-link">Mostrar Gimnasios</a></li>
                     @else
                         <li class="nav-item dropdown">
@@ -56,11 +62,21 @@
 
         </div>
     </nav>
-
-    @yield('content')
+    <div class="contenido">
+        @yield('content')
+    </div>
 </div>
 
 <!-- Scripts -->
+
 <script src="{{ asset('js/app.js') }}"></script>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/
+2.7.1/Chart.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+@stack('scripts')
 </body>
 </html>

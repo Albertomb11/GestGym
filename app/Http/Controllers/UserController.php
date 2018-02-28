@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateUserRequest;
+use App\Http\Requests\UpdatePerfilAjaxFormRequest;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -10,9 +11,10 @@ class UserController extends Controller
 {
 
     public function perfil($username){
-        $username = User::where('username',$username)->first();
+        $user = User::where('username',$username)->first();
 
         return view('user.perfil',[
+            'user' => $user,
             'username' => $username
         ]);
     }
@@ -42,4 +44,10 @@ class UserController extends Controller
 
         return redirect("$user->username");
     }
+
+    // Validacion Ajax
+    protected function validacionUpdatePerfilAjax(UpdatePerfilAjaxFormRequest $request){
+        return array();
+    }
+
 }

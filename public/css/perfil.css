@@ -1,0 +1,89 @@
+.center{
+    height: 600px;
+    background: linear-gradient(to top right, #3366ff 0%, #ccccff 100%);
+    width:700px;
+    margin-top: 100px;
+    margin-left: 200px;
+    border-radius: 10%;
+}
+
+.pic_base{
+    height: 30%;
+    background-color: #34495e;
+    background: url("http://images.nationalgeographic.com.es/medio/2015/12/21/bf63ef82rio_narcea_tineo_720x480.jpg");
+    background-size: cover;
+    border-top-left-radius: 10% 20%;
+    border-top-right-radius: 10% 20%;
+}
+
+.icon_base{
+    height: 20px;
+    width: 20px;
+    padding: 20px;
+    position: absolute;
+    margin-left: 630px;
+    margin-top: 150px;
+    align-items:center;
+    border-radius: 100%;
+}
+
+#formularioEditarPerfilBoton{
+    margin-left: -35px;
+}
+
+#profile_pic{
+    border-radius: 100%;
+    border: 2px solid #34495e;
+    box-shadow: 0 2px 2px black;
+    box-sizing: border-box;
+    position: absolute;
+    margin-top: 40px;
+    margin-left: 20px;
+    background-color: white;
+}
+
+#nombre_usuario{
+    position: absolute;
+    font-family: Verdana, sans-serif;
+    margin-left: 320px;
+    margin-top: 60px;
+    font-family: 'Merriweather', Serif;
+}
+
+#nick{
+    position: absolute;
+    margin-left: 320px;
+    font-family: 'Bitter', Serif;
+}
+
+#parrafo{
+    padding-top: 120px;
+    padding-left: 10px;
+    font-family: sans-serif;
+    margin-left: 40px;
+}
+
+.social{
+    list-style: none;
+    display: block;
+    position: absolute;
+    bottom: 50px;
+    align-items: center;
+    margin-left: 30px;
+}
+
+.social li{
+    display: inline;
+    padding: 20px;
+    margin-left: -30px;
+    padding-left: 130px;
+    align-items: center;
+}
+
+#user_icon{
+    margin-left: 20px;
+}
+
+strong{
+    margin-left: 20px;
+}
