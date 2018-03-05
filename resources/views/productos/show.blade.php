@@ -8,43 +8,31 @@
 
     <div class="col-md-8">
 
-        <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">
-                <h1 class="page-header title text-center">Monitores</h1>
+        @forelse($productos->chunk(4) as $chunk)
+            <div class="row course-set courses__row event d-flex justify-content-around">
+                @foreach($chunk as $producto)
+                    <div class="card" style="width: 20rem; margin-top: 20px">
+                        <img class="card-img-top" src="https://static.sscontent.com/products/162/xcore_xtreme-mass-gainer-ss-2722g_1.png" height="200px" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title"><strong>{{$producto['nombre']}}</strong></h5>
+
+                            <strong>Sabor: </strong>{{$producto['sabor']}}
+                            <hr>
+
+                            <div class="container">
+                                <a href="#" class="btn btn-primary">Editar</a>
+                                <a href="#" class="btn btn-danger">Borrar</a>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">{{$producto['precio']}} €</small>
+                        </div>
+                    </div>
+                @endforeach
             </div>
-        </div>
-
-        <table class="table">
-            <thead class="thead-dark">
-            <tr>
-                <th>Nombre</th>
-                <th>Precio</th>
-                <th>Stock</th>
-                <th>Sabor</th>
-                <th>Caracteristicas</th>
-            </tr>
-            </thead>
-
-                <tbody class="table-info">
-                @forelse($productos as $producto)
-                <tr>
-                    <td>{{$producto['nombre']}}</td>
-                    <td>{{$producto['precio']}}€</td>
-                    <td>{{$producto['stock']}} Und</td>
-                    <td>{{$producto['sabor']}}</td>
-                    <td>{{$producto['caracteristicas']}}</td>
-                </tr>
-                @empty
-                <h1 class="text-center">No hay Productos Añadidos todavia</h1>
-                @endforelse
-                </tbody>
-        </table>
-
-        <div style="width: 50%; background-color: #fff">
-
-            <canvas id="myChart" width="600" height="350"></canvas>
-
-        </div>
+        @empty
+            <h1 class="text-center" style="color: #fff; margin-top: 50px">No hay Productos añadidos todavia</h1>
+        @endforelse
 
     </div>
 
@@ -52,16 +40,28 @@
 
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
-                <h1 class="page-header title text-center">{{ $gimnasio->nombre }}</h1>
+                <h1 class="page-header title text-center" style="color: #fff;">{{ $gimnasio->nombre }}</h1>
             </div>
         </div>
 
-        <button class="btn btn-success" type="button">
+        <button class="btn btn-success w-75" type="button">
             <a class="nav-link disabled" href="/{{ $user->username }}/gimnasios/{{ $gimnasio->nombre }}/productos/create">
                 <span class="button-group-addon" ><img src="http://simpleicon.com/wp-content/uploads/account.svg" width="30" height="30" alt=""></span>
                 Añadir Producto
             </a>
         </button>
+        <hr>
+        <button class="btn-lg btn-success w-75" type="button">
+            <a class="nav-link disabled" href="/{{ $user->username }}/gimnasios/{{ $gimnasio->nombre }}">
+                Volver a {{ $gimnasio->nombre }}
+            </a>
+        </button>
+        <hr>
+        <div style="background-color: #fff">
+
+            <canvas id="myChart" width="600" height="350"></canvas>
+
+        </div>
     </div>
 
 </div>

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePuntuacionesTable extends Migration
+class CreateHorarioTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreatePuntuacionesTable extends Migration
      */
     public function up()
     {
-        Schema::create('puntuaciones', function (Blueprint $table) {
+        Schema::create('horario', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('monitores_id')->unsigned();
-            $table->integer('estrellas');
-            $table->string('comentario');
+            $table->integer('gimnasios_id')->unsigned();
+            $table->time('hora');
 
-            $table->foreign('monitores_id')->references('id')->on('monitores')->onDelete('cascade');
+            $table->foreign('gimnasios_id')->references('id')->on('gimnasios')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ class CreatePuntuacionesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('puntuaciones');
+        Schema::dropIfExists('horario');
     }
 }

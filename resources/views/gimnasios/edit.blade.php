@@ -122,5 +122,5 @@
 @endsection
 
 @push('scripts')
-    <script src="{{ asset('js/formularioCrearGimnasioAsincrono.js') }}"></script>
+    {{--<script src="{{ asset('js/formularioCrearGimnasioAsincrono.js') }}"></script>--}}
 @endpush

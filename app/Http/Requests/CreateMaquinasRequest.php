@@ -25,9 +25,9 @@ class CreateMaquinasRequest extends FormRequest
     {
         return [
             'nombre' => 'required|string|max:100',
-            'zona_trabajada' => 'required|string|max:255',
+            'zona_trabajada' => 'required|string|max:100',
             'unidades' => 'required|int|max:1000',
-            'descripcion' => 'required|string|max:'
+            'descripcion' => 'required|string|max:255'
         ];
     }
 }

@@ -17,9 +17,9 @@ class CreateSalasTable extends Migration
             $table->increments('id');
             $table->integer('gimnasio_id')->unsigned();
             $table->string('nombre');
-            $table->string('equipamiento');
+            $table->string('equipamiento')->nullable();
 
-            $table->foreign('gimnasio_id')->references('id')->on('gimnasios');
+            $table->foreign('gimnasio_id')->references('id')->on('gimnasios')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -10,7 +10,7 @@
     </div>
 
     <div id="mostrarGimnasiosPublico">
-        @include('gimnasios.gimnasiosPublico')
+        @include('gimnasios.gimnasios')
     </div>
 
 </div>

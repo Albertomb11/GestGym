@@ -69,16 +69,6 @@ h1{
     font-size: 16px;
 }
 
-.register-box input[type="text"]{
-    border:none;
-    border-bottom:2px solid #fff;
-    background: transparent;
-    outline:none;
-    height: 40px;
-    color: #fff;
-    font-size: 16px;
-}
-
 .register-box button[type="submit"]{
     border:none;
     outline:none;

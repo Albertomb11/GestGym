@@ -3,14 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Gimnasio;
+use App\Http\Requests\CreateMaquinasRequest;
 use App\Maquinas;
-use App\Productos;
 use App\User;
 use Illuminate\Http\Request;
 
 class MaquinasController extends Controller
 {
-
     /**
      * Display the specified resource.
      *
@@ -23,7 +22,7 @@ class MaquinasController extends Controller
 
         $gimnasio = Gimnasio::where('nombre', $nombre)->first();
 
-        $maquinas = $gimnasio->maquinas()->get;
+        $maquinas = $gimnasio->maquinas()->get();
 
         return view('maquinas.show',[
             'maquinas' => $maquinas,

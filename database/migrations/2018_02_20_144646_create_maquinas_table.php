@@ -15,13 +15,11 @@ class CreateMaquinasTable extends Migration
     {
         Schema::create('maquinas', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('gimnasio_id')->unsigned();
             $table->string('nombre');
             $table->string('zona_trabajada');
-            $table->string('descripcion');
-            $table->integer('unidades');
+            $table->string('descripcion')->nullable();
+            $table->integer('unidades')->nullable();
 
-            $table->foreign('gimnasio_id')->references('id')->on('gimnasios');
             $table->timestamps();
         });
     }

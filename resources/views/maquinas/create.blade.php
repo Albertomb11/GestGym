@@ -9,7 +9,7 @@
     <div class="col-md-8">
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
-                <h1 class="page-header title text-center" style="color: #fff">Crear Monitor</h1>
+                <h1 class="page-header title text-center" style="color: #fff">Crear Maquina</h1>
             </div>
         </div>
 
@@ -34,14 +34,14 @@
                     </div>
 
                     <div class="col-md-6">
-                        <div class="form-group{{ $errors->has('precio') ? ' has-error' : '' }}">
-                            <label for="precio" class="col-md-4 control-label"><h2>Precio</h2></label>
+                        <div class="form-group{{ $errors->has('unidades') ? ' has-error' : '' }}">
+                            <label for="unidades" class="col-md-4 control-label"><h2>Unidades</h2></label>
 
-                            <input id="precio" type="number" class="form-control" name="precio" value="{{ old('precio') }}">
+                            <input id="unidades" type="number" class="form-control" name="unidades" value="{{ old('unidades') }}">
 
-                            @if ($errors->has('precio'))
+                            @if ($errors->has('unidades'))
                                 <span class="help-block alert-danger">
-                                    <strong>{{ $errors->first('precio') }}</strong>
+                                    <strong>{{ $errors->first('unidades') }}</strong>
                                 </span>
                             @endif
                         </div>
@@ -50,45 +50,33 @@
 
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="form-group{{ $errors->has('stock') ? ' has-error' : '' }}">
-                            <label for="stock" class="col-md-4 control-label"><h2>Stock</h2></label>
+                        <div class="form-group{{ $errors->has('zona_trabajada') ? ' has-error' : '' }}">
+                            <label for="zona_trabajada" class="col-md-4 control-label"><h2>Zona trabajada</h2></label>
 
-                            <input id="stock" type="number" class="form-control" name="stock" value="{{ old('stock') }}">
+                            <input id="zona_trabajada" type="text" class="form-control" name="zona_trabajada" value="{{ old('zona_trabajada') }}">
 
-                            @if ($errors->has('stock'))
+                            @if ($errors->has('zona_trabajada'))
                                 <span class="help-block alert-danger">
-                                    <strong>{{ $errors->first('stock') }}</strong>
+                                    <strong>{{ $errors->first('zona_trabajada') }}</strong>
                                 </span>
                             @endif
                         </div>
                     </div>
 
                     <div class="col-md-6">
-                        <div class="form-group{{ $errors->has('sabor') ? ' has-error' : '' }}">
-                            <label for="sabor" class="col-md-4 control-label"><h2>Sabor</h2></label>
+                        <div class="form-group{{ $errors->has('descripcion') ? ' has-error' : '' }}">
+                            <label for="descripcion" class="col-md-4 control-label"><h2>Descripcion</h2></label>
 
-                            <input id="sabor" type="text" class="form-control" name="sabor" value="{{ old('sabor') }}">
+                            <input id="descripcion" type="text" class="form-control" name="descripcion" value="{{ old('descripcion') }}">
 
-                            @if ($errors->has('sabor'))
+                            @if ($errors->has('descripcion'))
                                 <span class="help-block alert-danger">
-                                    <strong>{{ $errors->first('sabor') }}</strong>
+                                    <strong>{{ $errors->first('descripcion') }}</strong>
                                 </span>
                             @endif
                         </div>
                     </div>
 
-                </div>
-
-                <div class="form-group{{ $errors->has('caracteristicas') ? ' has-error' : '' }}">
-                    <label for="caracteristicas" class="col-md-4 control-label"><h2>Caracteristicas</h2></label>
-
-                    <input id="caracteristicas" type="text" class="form-control" name="caracteristicas" value="{{ old('caracteristicas') }}">
-
-                    @if ($errors->has('caracteristicas'))
-                        <span class="help-block alert-danger">
-                                    <strong>{{ $errors->first('caracteristicas') }}</strong>
-                                </span>
-                    @endif
                 </div>
 
                 <button type="submit" class="btn btn-primary btn-lg btn-block">Añadir</button>

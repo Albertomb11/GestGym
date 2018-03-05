@@ -85,7 +85,7 @@ function asociarvalidaciones(){
                 }
 
                 if (enviarFormulario === true){
-                    $("#formularioRegistro").submit();
+                    $("#formRegistro").submit();
                 }
             });
     });

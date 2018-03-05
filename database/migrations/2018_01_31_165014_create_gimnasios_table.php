@@ -19,12 +19,12 @@ class CreateGimnasiosTable extends Migration
             $table->string('imagen')->nullable();
             $table->string('nombre');
             $table->string('direccion')->unique();
-            $table->integer('horario_apertura');
-            $table->integer('horario_cierre');
+            $table->time('horario_apertura');
+            $table->time('horario_cierre');
             $table->integer('cuotas');
             $table->string('descripcion')->nullable();
 
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

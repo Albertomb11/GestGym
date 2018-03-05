@@ -10,7 +10,7 @@
         <div class="col-md-10" style="color: #fff">
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
-                <h1 class="page-header title text-center">Añadir Un Gimnasio</h1>
+                <h1 class="page-header title text-center" style="color: #fff">Añadir Gimnasio</h1>
             </div>
         </div>
 
@@ -51,7 +51,7 @@
                 <label for="horario_apertura" class="col-lg-4 col-form-label text-lg-right"><h2>Horario de Apertura</h2></label>
 
                 <div class="col-lg-6">
-                    <input id="horario_apertura" type="time" class="form-control{{ $errors->has('horario_apertura') ? ' is-invalid' : '' }}" name="horario_apertura" >
+                    <input id="horario_apertura" type="time" class="form-control{{ $errors->has('horario_apertura') ? ' is-invalid' : '' }}" name="horario_apertura" value="{{ old('horario_apertura') }}">
 
                     @if ($errors->has('horario_apertura'))
                         <div class="invalid-feedback">
@@ -66,7 +66,7 @@
                 <label for="horario_cierre" class="col-lg-4 col-form-label text-lg-right"><h2>Horario de cierre</h2></label>
 
                 <div class="col-lg-6">
-                    <input id="horario_cierre" type="time" class="form-control{{ $errors->has('horario_cierre') ? ' is-invalid' : '' }}" name="horario_cierre" >
+                    <input id="horario_cierre" type="time" class="form-control{{ $errors->has('horario_cierre') ? ' is-invalid' : '' }}" name="horario_cierre" value="{{ old('horario_cierre') }}">
 
                     @if ($errors->has('horario_cierre'))
                         <div class="invalid-feedback">
@@ -81,7 +81,7 @@
         <label for="cuotas" class="col-lg-4 col-form-label text-lg-right"><h2>Cuotas</h2></label>
 
             <div class="col-lg-6">
-            <input id="cuotas" type="number" class="form-control{{ $errors->has('cuotas') ? ' is-invalid' : '' }}" name="cuotas" >
+            <input id="cuotas" type="number" class="form-control{{ $errors->has('cuotas') ? ' is-invalid' : '' }}" name="cuotas" value="{{ old('cuotas') }}">
 
             @if ($errors->has('cuotas'))
                 <div class="invalid-feedback">
@@ -96,7 +96,7 @@
         <label for="descripcion" class="col-lg-4 col-form-label text-lg-right"><h2>Descripcion</h2></label>
 
         <div class="col-lg-6">
-            <input id="descripcion" type="text" class="form-control{{ $errors->has('descripcion') ? ' is-invalid' : '' }}" name="descripcion" >
+            <input id="descripcion" type="text" class="form-control{{ $errors->has('descripcion') ? ' is-invalid' : '' }}" name="descripcion" value="{{ old('descripcion') }}">
 
             @if ($errors->has('descripcion'))
                 <div class="invalid-feedback">

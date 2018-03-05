@@ -10,7 +10,7 @@
 
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
-                <h1 class="page-header title text-center">Crear Actividad</h1>
+                <h1 class="page-header title text-center" style="color: #fff">Crear Actividad</h1>
             </div>
         </div>
 
@@ -94,7 +94,7 @@
                         <div class="form-group{{ $errors->has('horario') ? ' has-error' : '' }}">
                             <label for="horario" class="col-md-4 control-label"><h2>Horario</h2></label>
 
-                            <input id="horario" type="date" class="form-control" name="horario" >
+                            <input id="horario" type="time" class="form-control" name="horario" >
 
                             @if ($errors->has('horario'))
                                 <span class="help-block alert-danger">

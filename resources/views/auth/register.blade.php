@@ -2,7 +2,7 @@
     <div class="register-box">
         <img src="http://www.tadamun.so/wp-content/uploads/2016/09/blank-avatar.png" class="avatar">
         <h1>Registro</h1>
-        <form id="formularioRegistro" role="form" method="POST" action="{{ url('/register') }}">
+        <form id="formRegistro" role="form" method="POST" action="{{ url('/register') }}">
                         {!! csrf_field() !!}
 
                         <div class="form-group row{{ $errors->has('username') ? ' has-error' : '' }}">

@@ -66,6 +66,7 @@ Route::group(['prefix' => '/{user}/gimnasios/{gimnasio}/actividades'], function 
     Route::post('/create', 'ActividadesController@store')->name('actividades.create')->middleware();
 //    Route::get('/{actividad}/edit', 'ActividadesController@edit')->name('actividades.edit')->middleware();
 //    Route::put('/{actividad}/edit', 'ActividadesController@update')->name('actividades.update')->middleware();
+    Route::delete('', 'ActividadesController@destroy')->name('actividades.delete')->middleware('auth');
 });
 
 // Rutas de la entidad Productos

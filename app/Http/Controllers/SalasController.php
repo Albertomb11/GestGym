@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Gimnasio;
+use App\Http\Requests\CreateSalasRequest;
 use App\Salas;
 use App\User;
 use Illuminate\Http\Request;
@@ -56,13 +57,11 @@ class SalasController extends Controller
         Salas::create([
             'nombre' => $request->input('nombre'),
             'gimnasio_id' => $gimnasio->id,
-            'equipamiento' => $request->input('equimamiento')
+            'equipamiento' => $request->input('equipamiento')
         ]);
 
         return redirect("$user->username/gimnasios/$gimnasio->nombre/salas");
     }
-
-
 
     /**
      * Show the form for editing the specified resource.

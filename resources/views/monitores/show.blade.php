@@ -8,10 +8,10 @@
 
     <div class="col-md-8">
 
-            @forelse($monitores->chunk(2) as $chunk)
+            @forelse($monitores->chunk(3) as $chunk)
             <div class="row course-set courses__row event d-flex justify-content-around">
                 @foreach($chunk as $monitor)
-            <div class="card" style="width: 25rem; margin-top: 20px">
+            <div class="card" style="width: 20rem; margin-top: 20px">
                 <img class="card-img-top" src="https://image.freepik.com/vector-gratis/frase-en-un-fondo-de-hombre-musculado_23-2147533706.jpg" height="300px" alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title"><strong>{{$monitor['nombre']}} {{$monitor['apellidos']}}</strong></h5>
@@ -29,6 +29,7 @@
 
                     <div class="container">
                         <a href="#" class="btn btn-primary">Editar</a>
+                        <a href="#" class="btn btn-danger">Borrar</a>
                     </div>
                 </div>
             </div>
@@ -47,12 +48,19 @@
             </div>
         </div>
 
-        <button class="btn btn-success" type="button">
+        <button class="btn btn-success w-75" type="button">
             <a class="nav-link disabled" href="/{{ $user->username }}/gimnasios/{{ $gimnasio->nombre }}/monitores/create">
                 <span class="button-group-addon" ><img src="http://simpleicon.com/wp-content/uploads/account.svg" width="30" height="30" alt=""></span>
                 Añadir Monitor
             </a>
         </button>
+        <hr>
+        <button class="btn-lg btn-success w-75" type="button">
+            <a class="nav-link disabled" href="/{{ $user->username }}/gimnasios/{{ $gimnasio->nombre }}">
+                Volver a {{ $gimnasio->nombre }}
+            </a>
+        </button>
+
     </div>
 
 </div>

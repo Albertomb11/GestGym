@@ -9,12 +9,16 @@ class Gimnasio extends Model
     //Con $guarded se indican los elementos que no queremos que se modifiquen
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
+    public function users(){
+        return $this->belongsTo(User::class)->latest();
+    }
+
     public function actividades(){
-        return $this->hasMany(Actividades::class)->latest();
+        return $this->belongsToMany(Actividades::class)->latest();
     }
 
     public function monitores(){
-        return $this->hasMany(Monitores::class)->latest();
+        return $this->belongsToMany(Monitores::class)->latest();
     }
 
     public function productos(){
@@ -22,10 +26,14 @@ class Gimnasio extends Model
     }
 
     public function maquinas(){
-        return $this->hasMany(Maquinas::class)->latest();
+        return $this->belongsToMany(Maquinas::class)->latest();
     }
 
     public function salas(){
         return $this->hasMany(Salas::class)->latest();
+    }
+
+    public function horario(){
+        return $this->hasMany(Horario::class)->latest();
     }
 }

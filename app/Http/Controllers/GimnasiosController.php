@@ -69,7 +69,7 @@ class GimnasiosController extends Controller
     public function mostrarGimnasios(){
         if (request()->ajax()){
             $gimnasios = Gimnasio::orderBy('created_at', 'desc')->paginate(3);
-            return View::make('gimnasios.gimnasiosPublico', array('gimnasios' => $gimnasios))->render();
+            return View::make('gimnasios.gimnasios', array('gimnasios' => $gimnasios))->render();
         }else{
             return redirect('/');
         }
@@ -79,16 +79,14 @@ class GimnasiosController extends Controller
         return array();
     }
 
-    public function edit(Gimnasio $gimnasio, $username){
-
-        $gimnasio = Gimnasio::where('nombre', $nombre)->first();
-
-        $user = User::where('username', $username)->first();
-
-        dd($gimnasio);
-        return view('gimnasios.edit',[
-            'gimnasio' => $gimnasio,
-            'user' => $user
-        ]);
-    }
+//    public function edit($id, $user){
+//        $user = User::where('user', $user)->first();
+//
+//        $gimnasio = Gimnasio::where('id', $id)->first();
+//
+//        return view('gimnasios.edit',[
+//            'user' => $user,
+//            'gimnasio' => $gimnasio
+//        ]);
+//    }
 }
