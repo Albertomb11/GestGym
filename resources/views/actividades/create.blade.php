@@ -31,7 +31,6 @@
                                     <strong>{{ $errors->first('nombre') }}</strong>
                                             </span>
                             @endif
-                            <p class="help-text">Introduce el nombre de la actividad.</p>
                         </div>
                     </div>
 
@@ -46,7 +45,6 @@
                                     <strong>{{ $errors->first('duracion') }}</strong>
                                 </span>
                             @endif
-                            <p class="help-text">Introduce la duración de la actividad.</p>
                         </div>
                     </div>
                 </div>
@@ -67,7 +65,6 @@
                                     <strong>{{ $errors->first('intensidad') }}</strong>
                                 </span>
                             @endif
-                            <p class="help-text">Introduce la intensidad del ejercicio.</p>
                         </div>
                     </div>
 
@@ -82,28 +79,12 @@
                                     <strong>{{ $errors->first('objetivos') }}</strong>
                                 </span>
                             @endif
-                            <p class="help-text">Introduce el objetivo de la actividad.</p>
                         </div>
                     </div>
 
                 </div>
 
                 <div class="row">
-
-                    <div class="col-md-6">
-                        <div class="form-group{{ $errors->has('horario') ? ' has-error' : '' }}">
-                            <label for="horario" class="col-md-4 control-label"><h2>Horario</h2></label>
-
-                            <input id="horario" type="time" class="form-control" name="horario" >
-
-                            @if ($errors->has('horario'))
-                                <span class="help-block alert-danger">
-                                    <strong>{{ $errors->first('horario') }}</strong>
-                                </span>
-                            @endif
-                            <p class="help-text">Introduce el horario que se realiza la actividad.</p>
-                        </div>
-                    </div>
 
                     <div class="col-md-6">
                         <div class="form-group{{ $errors->has('descripcion') ? ' has-error' : '' }}">
@@ -116,7 +97,6 @@
                                     <strong>{{ $errors->first('descripcion') }}</strong>
                                 </span>
                             @endif
-                            <p class="help-text">Introduce la descripción de la actividad.</p>
                         </div>
                     </div>
 

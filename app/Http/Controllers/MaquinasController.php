@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Gimnasio;
 use App\Http\Requests\CreateMaquinasRequest;
-use App\Maquinas;
+use App\Maquina;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -13,7 +13,7 @@ class MaquinasController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Maquinas  $maquinas
+     * @param  \App\Maquina  $maquinas
      * @return \Illuminate\Http\Response
      */
     public function show($username, $nombre)
@@ -54,13 +54,14 @@ class MaquinasController extends Controller
         $user = User::where('username', $username)->first();
         $gimnasio = Gimnasio::where('nombre', $nombre)->first();
 
-        Maquinas::create([
+        $maquina = Maquina::create([
             'nombre' => $request->input('nombre'),
-            'gimnasio_id' => $gimnasio->id,
             'zona_trabajada' => $request->input('zona_trabajada'),
             'unidades' => $request->input('unidades'),
             'descripcion' => $request->input('descripcion')
         ]);
+
+        $gimnasio->maquinas()->sync($maquina);
 
         return redirect("$user->username/gimnasios/$gimnasio->nombre/maquinas");
     }
@@ -68,10 +69,10 @@ class MaquinasController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Maquinas  $maquinas
+     * @param  \App\Maquina  $maquinas
      * @return \Illuminate\Http\Response
      */
-    public function edit(Maquinas $maquinas)
+    public function edit(Maquina $maquinas)
     {
         //
     }
@@ -80,10 +81,10 @@ class MaquinasController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Maquinas  $maquinas
+     * @param  \App\Maquina  $maquinas
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Maquinas $maquinas)
+    public function update(Request $request, Maquina $maquinas)
     {
         //
     }
@@ -91,10 +92,10 @@ class MaquinasController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Maquinas  $maquinas
+     * @param  \App\Maquina  $maquinas
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Maquinas $maquinas)
+    public function destroy(Maquina $maquinas)
     {
         //
     }

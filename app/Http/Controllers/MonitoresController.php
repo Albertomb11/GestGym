@@ -17,7 +17,7 @@ class MonitoresController extends Controller
         $gimnasio = Gimnasio::where('nombre', $nombre)->first();
 
         $monitores = $gimnasio->monitores()->get();
-
+        //dd($monitores);
         return view('monitores.show', [
             'monitores' => $monitores,
             'gimnasio' => $gimnasio,
@@ -36,15 +36,16 @@ class MonitoresController extends Controller
         $user = User::where('username', $username)->first();
         $gimnasio = Gimnasio::where('nombre', $nombre)->first();
 
-        Monitores::create([
+        $monitor = Monitores::create([
             'nombre' => $request->input('nombre'),
-            'gimnasio_id' => $gimnasio->id,
             'apellidos' => $request->input('apellidos'),
             'fecha_nacimiento' => $request->input('fecha_nacimiento'),
             'estudios' => $request->input('estudios'),
             'direccion' => $request->input('direccion'),
             'email' => $request->input('email')
         ]);
+
+        $gimnasio->monitores()->sync($monitor);
 
         return redirect("$user->username/gimnasios/$gimnasio->nombre/monitores");
     }

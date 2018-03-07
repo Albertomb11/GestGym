@@ -13,7 +13,7 @@ class Actividades extends Model
         return $this->belongsToMany(Gimnasio::class)->latest();
     }
 
-    public function horario(){
-        return $this->belongsToMany(Horario::class)->latest();
-    }
+//    public function horario(){
+//        return $this->belongsToMany(Horario::class)->latest();
+//    }
 }

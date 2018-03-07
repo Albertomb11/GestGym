@@ -78,7 +78,7 @@ Route::group(['prefix' => '/{user}/gimnasios/{gimnasio}/productos'], function ()
 //    Route::put('/{actividad}/edit', 'ProductosController@update')->name('productos.update')->middleware();
 });
 
-// Rutas de la entidad Maquinas
+// Rutas de la entidad Maquina
 Route::group(['prefix' => '/{user}/gimnasios/{gimnasio}/maquinas'], function (){
     Route::get('/', 'MaquinasController@show')->name('maquinas.show')->middleware();
     Route::get('/create', 'MaquinasController@create')->name('maquinas.form')->middleware();
@@ -94,4 +94,13 @@ Route::group(['prefix' => '/{user}/gimnasios/{gimnasio}/salas'], function (){
     Route::post('/create', 'SalasController@store')->name('salas.create')->middleware();
 //    Route::get('/{sala}/edit', 'SalasController@edit')->name('salas.edit')->middleware();
 //    Route::put('/{sala}/edit', 'SalasController@update')->name('salas.update')->middleware();
+});
+
+// Rutas de la entidad Puntuaciones
+Route::group(['prefix' => '/monitor/{monitor}/puntuaciones'], function (){
+    Route::get('/', 'PuntuacionesController@show')->name('puntuaciones.show')->middleware();
+    Route::get('/create', 'PuntuacionesController@create')->name('puntuaciones.form')->middleware();
+    Route::post('/create', 'PuntuacionesController@store')->name('puntuaciones.create')->middleware();
+//    Route::get('/{puntuaciones}/edit', 'PuntuacionesController@edit')->name('puntuaciones.edit')->middleware();
+//    Route::put('/{puntuaciones}/edit', 'PuntuacionesController@update')->name('puntuaciones.update')->middleware();
 });

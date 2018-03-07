@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProductosTable extends Migration
+class CreateGimnasioMaquinaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,17 @@ class CreateProductosTable extends Migration
      */
     public function up()
     {
-        Schema::create('productos', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('gimnasio_maquina', function (Blueprint $table) {
+            // Definimos los campos
             $table->integer('gimnasio_id')->unsigned();
-            $table->string('nombre');
-            $table->integer('precio');
-            $table->integer('stock')->nullable();
-            $table->string('sabor')->nullable();
-            $table->string('caracteristicas')->nullable();
+            $table->integer('maquina_id')->unsigned();
 
+            // Definimos la clave principal
+            $table->primary(['gimnasio_id', 'maquina_id']);
+
+            // Definimos las claves foráneas
             $table->foreign('gimnasio_id')->references('id')->on('gimnasios')->onDelete('cascade');
-            $table->timestamps();
+            $table->foreign('maquina_id')->references('id')->on('maquinas')->onDelete('cascade');
         });
     }
 
@@ -34,6 +34,6 @@ class CreateProductosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('productos');
+        Schema::dropIfExists('gimnasio_maquina');
     }
 }

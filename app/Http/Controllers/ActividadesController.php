@@ -35,23 +35,23 @@ class ActividadesController extends Controller
         $user = User::where('username', $username)->first();
         $gimnasio = Gimnasio::where('nombre', $nombre)->first();
 
-        Actividades::create([
+        $actividad = Actividades::create([
             'nombre' => $request->input('nombre'),
-            'gimnasio_id' => $gimnasio->id,
             'objetivos' => $request->input('objetivos'),
             'intensidad' => $request->input('intensidad'),
             'duracion' => $request->input('duracion'),
-            'horario' => $request->input('horario'),
             'descripcion' => $request->input('descripcion')
         ]);
+
+        $gimnasio->actividades()->sync($actividad);
 
         return redirect("$user->username/gimnasios/$gimnasio->nombre/actividades");
     }
 
-    public function destroy($id){
-
-        Actividades::where('id', $id)->delete();
-
-        return redirect('/');
-    }
+//    public function destroy($id){
+//
+//        Actividades::where('id', $id)->delete();
+//
+//        return redirect('/');
+//    }
 }

@@ -29,7 +29,6 @@ class CreateActividadesRequest extends FormRequest
             'objetivos' => 'required|string|max:100',
             'intensidad' => 'required|string|max:100',
             'duracion' => 'required|int|max:200',
-            'horario' => 'required|string|max:250',
             'descripcion' => 'required|string|max:250'
         ];
     }
@@ -50,9 +49,6 @@ class CreateActividadesRequest extends FormRequest
             'duracion.required' => 'Este campo es obligatorio.',
             'duracion.int' => 'La duracion debe de ser un numero.',
             'duracion.max' => 'El maximo de caracteres es 200',
-            'horario.required' => 'Este campo es obligatorio.',
-            'horario.string' => 'El horario debe de ser en formato "hora:minutos".',
-            'horario.max' => 'El maximo de caracteres es 250',
             'descripcion.required' => 'Este campo es obligatorio.',
             'descripcion.string' => 'La descripcion debe de ser una cadena de caracteres.',
             'descripcion.max' => 'El maximo de caracteres es 250'

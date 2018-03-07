@@ -26,7 +26,7 @@ class Gimnasio extends Model
     }
 
     public function maquinas(){
-        return $this->belongsToMany(Maquinas::class)->latest();
+        return $this->belongsToMany(Maquina::class)->latest();
     }
 
     public function salas(){

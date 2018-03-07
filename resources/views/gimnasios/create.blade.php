@@ -6,7 +6,7 @@
         @include('navbar')
     </div>
 
-    <div class="container" style="background: linear-gradient(to top right, #3366ff 0%, #ccccff 100%);border-radius: 10%; margin-top: 30px">
+    <div class="col-md-10 container" style="background: linear-gradient(to top right, #3366ff 0%, #ccccff 100%);border-radius: 10%; margin-top: 30px">
         <div class="col-md-10" style="color: #fff">
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
