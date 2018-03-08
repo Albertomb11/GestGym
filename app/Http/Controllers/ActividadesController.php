@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Actividades;
+use App\Actividade;
 use App\Gimnasio;
 use App\Http\Requests\CreateActividadesRequest;
 use App\User;
@@ -35,7 +35,7 @@ class ActividadesController extends Controller
         $user = User::where('username', $username)->first();
         $gimnasio = Gimnasio::where('nombre', $nombre)->first();
 
-        $actividad = Actividades::create([
+        $actividad = Actividade::create([
             'nombre' => $request->input('nombre'),
             'objetivos' => $request->input('objetivos'),
             'intensidad' => $request->input('intensidad'),
@@ -43,14 +43,46 @@ class ActividadesController extends Controller
             'descripcion' => $request->input('descripcion')
         ]);
 
-        $gimnasio->actividades()->sync($actividad);
+        $gimnasio->actividades()->attach($actividad);
+
+        return redirect("$user->username/gimnasios/$gimnasio->nombre/actividades");
+    }
+
+    public function edit($username, $nombre, $id){
+        $user = User::where('username', $username)->first();
+
+        $gimnasio = Gimnasio::where('nombre', $nombre)->first();
+
+        $actividad = Actividade::where('id', $id)->first();
+
+        return view('actividades.edit',[
+           'user' => $user,
+           'gimnasio' => $gimnasio,
+           'actividad' => $actividad
+        ]);
+    }
+
+    public function update(CreateActividadesRequest $request, $username, $nombre, $id){
+        $user = User::where('username', $username)->first();
+
+        $gimnasio = Gimnasio::where('nombre', $nombre)->first();
+
+        $actividad = Actividade::find($id);
+
+        $actividad->update([
+            'nombre' => $request->input('nombre'),
+            'objetivos' => $request->input('objetivos'),
+            'intensidad' => $request->input('intensidad'),
+            'duracion' => $request->input('duracion'),
+            'descripcion' => $request->input('descripcion')
+        ]);
 
         return redirect("$user->username/gimnasios/$gimnasio->nombre/actividades");
     }
 
 //    public function destroy($id){
 //
-//        Actividades::where('id', $id)->delete();
+//        Actividade::where('id', $id)->delete();
 //
 //        return redirect('/');
 //    }

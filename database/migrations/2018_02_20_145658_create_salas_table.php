@@ -15,6 +15,7 @@ class CreateSalasTable extends Migration
     {
         Schema::create('salas', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('imagen')->nullable();
             $table->integer('gimnasio_id')->unsigned();
             $table->string('nombre');
             $table->string('equipamiento')->nullable();

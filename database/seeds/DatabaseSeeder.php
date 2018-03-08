@@ -11,18 +11,38 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\User::class, 20)->create()->each(function (App\User $user){
+        $user = factory(App\User::class, 20)->create();
+        $monitore = factory(App\Monitore::class, 20)->create();
+        $actividade = factory(App\Actividade::class, 20)->create();
+        $maquina = factory(App\Maquina::class, 20)->create();
 
-            factory(\App\Gimnasio::class, 10)->create(['user_id' => $user->id]);
+        $gimnasio = factory(App\Gimnasio::class, 30)->create([
+           'user_id' => $user->id
+        ]);
+
+        $gimnasio->each(function (App\Gimnasio $gimnasio) use ($monitore, $actividade, $maquina){
+            $gimnasio->monitores()->sync(
+              $monitore->random(mt_rand(2,30))
+            );
+            $gimnasio->actividades()->sync(
+                $actividade->random(mt_rand(2,30))
+            );
+            $gimnasio->maquinas()->sync(
+                $maquina->random(mt_rand(2,30))
+            );
         });
 
-        factory(App\Gimnasio::class, 10)->create()->each(function (App\Gimnasio $gimnasio){
+        $producto = factory(App\Producto::class, 30)->create([
+            'gimnasio_id' => $gimnasio->id
+        ]);
 
-            factory(\App\Productos::class, 10)->create(['gimnasio_is' => $gimnasio->id]);
-            factory(\App\Monitores::class, 10)->create(['gimnasio_id' => $gimnasio->id]);
-            factory(\App\Actividades::class, 10)->create(['gimnasio_id' => $gimnasio->id]);
-        });
+        $sala = factory(App\Sala::class, 30)->create([
+            'gimnasio_id' => $gimnasio->id
+        ]);
 
+        $puntuacione = factory(App\Puntuacione::class, 30)->create([
+            'monitore_id' => $monitore->id
+        ]);
     }
 }
 

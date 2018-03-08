@@ -61,7 +61,7 @@ class MaquinasController extends Controller
             'descripcion' => $request->input('descripcion')
         ]);
 
-        $gimnasio->maquinas()->sync($maquina);
+        $gimnasio->maquinas()->attach($maquina);
 
         return redirect("$user->username/gimnasios/$gimnasio->nombre/maquinas");
     }
@@ -72,9 +72,19 @@ class MaquinasController extends Controller
      * @param  \App\Maquina  $maquinas
      * @return \Illuminate\Http\Response
      */
-    public function edit(Maquina $maquinas)
+    public function edit($username, $nombre, $id)
     {
-        //
+        $user = User::where('username', $username)->first();
+
+        $gimnasio = Gimnasio::where('nombre', $nombre)->first();
+
+        $maquina = Maquina::where('id', $id)->first();
+
+        return view('maquinas.edit',[
+            'user' => $user,
+            'gimnasio' => $gimnasio,
+            'maquina' => $maquina
+        ]);
     }
 
     /**
@@ -84,9 +94,21 @@ class MaquinasController extends Controller
      * @param  \App\Maquina  $maquinas
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Maquina $maquinas)
-    {
-        //
+    public function update(CreateMaquinasRequest $request, $username, $nombre, $id){
+        $user = User::where('username', $username)->first();
+
+        $gimnasio = Gimnasio::where('nombre', $nombre)->first();
+
+        $maquina = Maquina::find($id);
+
+        $maquina->update([
+            'nombre' => $request->input('nombre'),
+            'unidades' => $request->input('unidades'),
+            'zona_trabajada' => $request->input('zona_trabajada'),
+            'descripcion' => $request->input('descripcion'),
+        ]);
+
+        return redirect("$user->username/gimnasios/$gimnasio->nombre/maquinas");
     }
 
     /**

@@ -17,7 +17,7 @@
                             <h5 class="card-title"><strong>{{$sala['nombre']}}</strong></h5>
 
                             <div class="container">
-                                <a href="#" class="btn btn-primary">Editar</a>
+                                <a href="/{{ $user->username }}/gimnasios/{{ $gimnasio->nombre }}/salas/{{ $sala->id }}/edit" class="btn btn-primary">Editar</a>
                                 <a href="#" class="btn btn-danger">Borrar</a>
                             </div>
                         </div>

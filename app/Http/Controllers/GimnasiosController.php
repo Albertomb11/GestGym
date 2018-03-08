@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Actividades;
+use App\Actividade;
 use App\Gimnasio;
 use App\Http\Requests\CreateGimnasioAjaxFormRequest;
 use App\Http\Requests\CreateGimnasioRequest;
-use App\Monitores;
+use App\Http\Requests\UpdateGimnasioRequest;
+use App\Monitore;
 use App\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 
 class GimnasiosController extends Controller
@@ -31,8 +33,8 @@ class GimnasiosController extends Controller
         ]);
     }
 
-    public function store(CreateGimnasioRequest $request, $username){
-        $user = User::where('username', $username)->first();
+    public function store(CreateGimnasioRequest $request){
+        $user = Auth::user();
 
         Gimnasio::create([
             'nombre' => $request->input('nombre'),
@@ -79,14 +81,32 @@ class GimnasiosController extends Controller
         return array();
     }
 
-//    public function edit($id, $user){
-//        $user = User::where('user', $user)->first();
-//
-//        $gimnasio = Gimnasio::where('id', $id)->first();
-//
-//        return view('gimnasios.edit',[
-//            'user' => $user,
-//            'gimnasio' => $gimnasio
-//        ]);
-//    }
+    public function edit($username, $nombre){
+        $user = User::where('username', $username)->first();
+
+        $gimnasio = Gimnasio::where('nombre', $nombre)->first();
+
+        return view('gimnasios.edit',[
+            'user' => $user,
+            'gimnasio' => $gimnasio
+        ]);
+    }
+
+    public function update(CreateGimnasioRequest $request,$username, $id){
+        $user = User::where('username', $username)->first();
+        //dd($user);
+        $gimnasio = Gimnasio::find($id);
+        //dd($gimnasio);
+        $gimnasio->update([
+            'imagen' => $request->input('imagen'),
+            'nombre' => $request->input('nombre'),
+            'direccion' => $request->input('direccion'),
+            'horario_apertura' => $request->input('horario_apertura'),
+            'horario_cierre' => $request->input('horario_cierre'),
+            'cuotas' => $request->input('cuotas'),
+            'descripcion' => $request->input('descripcion')
+        ]);
+
+        return redirect("$user->username/gimnasios/$gimnasio->nombre");
+    }
 }

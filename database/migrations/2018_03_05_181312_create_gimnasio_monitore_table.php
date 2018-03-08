@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateGimnasioMonitoresTable extends Migration
+class CreateGimnasioMonitoreTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,17 @@ class CreateGimnasioMonitoresTable extends Migration
      */
     public function up()
     {
-        Schema::create('gimnasio_monitores', function (Blueprint $table) {
+        Schema::create('gimnasio_monitore', function (Blueprint $table) {
             // Definimos los campos
             $table->integer('gimnasio_id')->unsigned();
-            $table->integer('monitores_id')->unsigned();
+            $table->integer('monitore_id')->unsigned();
 
             // Definimos la clave principal
-            $table->primary(['gimnasio_id', 'monitores_id']);
+            $table->primary(['gimnasio_id', 'monitore_id']);
 
             // Definimos las claves foráneas
             $table->foreign('gimnasio_id')->references('id')->on('gimnasios')->onDelete('cascade');
-            $table->foreign('monitores_id')->references('id')->on('monitores')->onDelete('cascade');
+            $table->foreign('monitore_id')->references('id')->on('monitores')->onDelete('cascade');
         });
     }
 
@@ -34,6 +34,6 @@ class CreateGimnasioMonitoresTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('gimnasio_monitor');
+        Schema::dropIfExists('gimnasio_monitore');
     }
 }

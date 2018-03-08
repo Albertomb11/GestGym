@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Gimnasio;
 use App\Http\Requests\CreateMonitoresRequest;
-use App\Monitores;
-use App\Puntuaciones;
+use App\Monitore;
+use App\Puntuacione;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -17,7 +17,7 @@ class MonitoresController extends Controller
         $gimnasio = Gimnasio::where('nombre', $nombre)->first();
 
         $monitores = $gimnasio->monitores()->get();
-        //dd($monitores);
+
         return view('monitores.show', [
             'monitores' => $monitores,
             'gimnasio' => $gimnasio,
@@ -36,7 +36,7 @@ class MonitoresController extends Controller
         $user = User::where('username', $username)->first();
         $gimnasio = Gimnasio::where('nombre', $nombre)->first();
 
-        $monitor = Monitores::create([
+        $monitor = Monitore::create([
             'nombre' => $request->input('nombre'),
             'apellidos' => $request->input('apellidos'),
             'fecha_nacimiento' => $request->input('fecha_nacimiento'),
@@ -45,7 +45,39 @@ class MonitoresController extends Controller
             'email' => $request->input('email')
         ]);
 
-        $gimnasio->monitores()->sync($monitor);
+        $gimnasio->monitores()->attach($monitor);
+
+        return redirect("$user->username/gimnasios/$gimnasio->nombre/monitores");
+    }
+
+    public function edit($username, $nombre, $id){
+        $user = User::where('username', $username)->first();
+
+        $gimnasio = Gimnasio::where('nombre', $nombre)->first();
+
+        $monitor = Monitore::where('id', $id)->first();
+
+        return view('monitores.edit',[
+            'user' => $user,
+            'gimnasio' => $gimnasio,
+            'monitor' => $monitor
+        ]);
+    }
+
+    public function update(CreateMonitoresRequest $request, $username, $nombre, $id){
+        $user = User::where('username', $username)->first();
+
+        $gimnasio = Gimnasio::where('nombre', $nombre)->first();
+
+        $monitor = Monitore::find($id);
+
+        $monitor->update([
+            'nombre' => $request->input('nombre'),
+            'apellidos' => $request->input('apellidos'),
+            'fecha_nacimiento' => $request->input('fecha_nacimiento'),
+            'estudios' => $request->input('estudios'),
+            'direccion' => $request->input('direccion')
+        ]);
 
         return redirect("$user->username/gimnasios/$gimnasio->nombre/monitores");
     }

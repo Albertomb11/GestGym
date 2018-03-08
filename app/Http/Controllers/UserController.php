@@ -42,7 +42,7 @@ class UserController extends Controller
 
         $user->save();
 
-        return redirect("$user->username");
+        return redirect()->back();
     }
 
     // Validacion Ajax

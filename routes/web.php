@@ -50,32 +50,32 @@ Route::group(['prefix' => '/{user}/gimnasios'], function(){
     Route::get('/{gimnasio}', 'GimnasiosController@gestion')->name('gimnasios.gestion')->middleware();
 });
 
-// Rutas de la entidad Monitores
+// Rutas de la entidad Monitore
 Route::group(['prefix' => '/{user}/gimnasios/{gimnasio}/monitores'], function (){
     Route::get('/', 'MonitoresController@show')->name('monitores.show')->middleware();
     Route::get('/create', 'MonitoresController@create')->name('monitores.form')->middleware();
     Route::post('create', 'MonitoresController@store')->name('monitores.create')->middleware();
-//    Route::get('/{monitor}/edit', 'MonitoresController@edit')->name('monitores.edit')->middleware();
-//    Route::put('/{monitor}/edit', 'MonitoresController@update')->name('monitores.update')->middleware();
+    Route::get('/{monitor}/edit', 'MonitoresController@edit')->name('monitores.edit')->middleware();
+    Route::put('/{monitor}/edit', 'MonitoresController@update')->name('monitores.update')->middleware();
 });
 
-// Rutas de la entidad Actividades
+// Rutas de la entidad Actividade
 Route::group(['prefix' => '/{user}/gimnasios/{gimnasio}/actividades'], function (){
     Route::get('/', 'ActividadesController@show')->name('actividades.show')->middleware();
     Route::get('/create', 'ActividadesController@create')->name('actividades.form')->middleware();
     Route::post('/create', 'ActividadesController@store')->name('actividades.create')->middleware();
-//    Route::get('/{actividad}/edit', 'ActividadesController@edit')->name('actividades.edit')->middleware();
-//    Route::put('/{actividad}/edit', 'ActividadesController@update')->name('actividades.update')->middleware();
+    Route::get('/{actividad}/edit', 'ActividadesController@edit')->name('actividades.edit')->middleware();
+    Route::put('/{actividad}/edit', 'ActividadesController@update')->name('actividades.update')->middleware();
     Route::delete('', 'ActividadesController@destroy')->name('actividades.delete')->middleware('auth');
 });
 
-// Rutas de la entidad Productos
+// Rutas de la entidad Producto
 Route::group(['prefix' => '/{user}/gimnasios/{gimnasio}/productos'], function (){
     Route::get('/', 'ProductosController@show')->name('productos.show')->middleware();
     Route::get('/create', 'ProductosController@create')->name('productos.form')->middleware();
     Route::post('/create', 'ProductosController@store')->name('productos.create')->middleware();
-//    Route::get('/{actividad}/edit', 'ProductosController@edit')->name('productos.edit')->middleware();
-//    Route::put('/{actividad}/edit', 'ProductosController@update')->name('productos.update')->middleware();
+    Route::get('/{producto}/edit', 'ProductosController@edit')->name('productos.edit')->middleware();
+    Route::put('/{producto}/edit', 'ProductosController@update')->name('productos.update')->middleware();
 });
 
 // Rutas de la entidad Maquina
@@ -83,20 +83,20 @@ Route::group(['prefix' => '/{user}/gimnasios/{gimnasio}/maquinas'], function (){
     Route::get('/', 'MaquinasController@show')->name('maquinas.show')->middleware();
     Route::get('/create', 'MaquinasController@create')->name('maquinas.form')->middleware();
     Route::post('/create', 'MaquinasController@store')->name('maquinas.create')->middleware();
-//    Route::get('/{maquina}/edit', 'MaquinasController@edit')->name('maquinas.edit')->middleware();
-//    Route::put('/{maquina}/edit', 'MaquinasController@update')->name('maquinas.update')->middleware();
+    Route::get('/{maquina}/edit', 'MaquinasController@edit')->name('maquinas.edit')->middleware();
+    Route::put('/{maquina}/edit', 'MaquinasController@update')->name('maquinas.update')->middleware();
 });
 
-// Rutas de la entidad Salas
+// Rutas de la entidad Sala
 Route::group(['prefix' => '/{user}/gimnasios/{gimnasio}/salas'], function (){
     Route::get('/', 'SalasController@show')->name('salas.show')->middleware();
     Route::get('/create', 'SalasController@create')->name('salas.form')->middleware();
     Route::post('/create', 'SalasController@store')->name('salas.create')->middleware();
-//    Route::get('/{sala}/edit', 'SalasController@edit')->name('salas.edit')->middleware();
-//    Route::put('/{sala}/edit', 'SalasController@update')->name('salas.update')->middleware();
+    Route::get('/{sala}/edit', 'SalasController@edit')->name('salas.edit')->middleware();
+    Route::put('/{sala}/edit', 'SalasController@update')->name('salas.update')->middleware();
 });
 
-// Rutas de la entidad Puntuaciones
+// Rutas de la entidad Puntuacione
 Route::group(['prefix' => '/monitor/{monitor}/puntuaciones'], function (){
     Route::get('/', 'PuntuacionesController@show')->name('puntuaciones.show')->middleware();
     Route::get('/create', 'PuntuacionesController@create')->name('puntuaciones.form')->middleware();

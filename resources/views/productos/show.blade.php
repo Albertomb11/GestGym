@@ -14,18 +14,19 @@
                     <div class="card" style="width: 20rem; margin-top: 20px">
                         <img class="card-img-top" src="https://static.sscontent.com/products/162/xcore_xtreme-mass-gainer-ss-2722g_1.png" height="200px" alt="Card image cap">
                         <div class="card-body">
-                            <h5 class="card-title"><strong>{{$producto['nombre']}}</strong></h5>
+                            <h5 class="card-title"><strong>{{$producto['nombre']}}-{{ $producto->precio }}€</strong></h5>
 
-                            <strong>Sabor: </strong>{{$producto['sabor']}}
+                            <strong>Sabor: </strong>{{$producto['sabor']}}<br>
+                            <strong>Caracteristicas: </strong>{{$producto['caracteristicas']}}
                             <hr>
 
                             <div class="container">
-                                <a href="#" class="btn btn-primary">Editar</a>
+                                <a href="/{{ $user->username }}/gimnasios/{{ $gimnasio->nombre }}/productos/{{ $producto->id }}/edit" class="btn btn-primary">Editar</a>
                                 <a href="#" class="btn btn-danger">Borrar</a>
                             </div>
                         </div>
                         <div class="card-footer">
-                            <small class="text-muted">{{$producto['precio']}} €</small>
+                            <small class="text-muted">{{$producto['stock']}}</small>
                         </div>
                     </div>
                 @endforeach

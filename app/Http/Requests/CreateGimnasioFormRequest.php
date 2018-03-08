@@ -99,11 +99,10 @@ class CreateGimnasioFormRequest extends FormRequest
         return $mensajes;
     }
     protected function validarDescripcion(){
-        return 'required|string';
+        return 'string';
     }
     protected function mensajesDescripcion(){
         $mensajes = array();
-        $mensajes['descripcion.required'] = 'Es obligatorio introducir la descripcion';
         $mensajes['descripcion.string'] = 'Es obligatorio introducir la descripcion';
         return $mensajes;
     }

@@ -25,7 +25,7 @@
                     <hr>
                     <div class="container">
                         {{--<a href="#" class="btn btn-info" data-toggle="modal" data-target="#exampleModalCenter">Información</a>--}}
-                        <a href="#" class="btn btn-primary">Editar</a>
+                        <a href="/{{ $user->username }}/gimnasios/{{ $gimnasio->nombre }}/actividades/{{ $actividad->id }}/edit" class="btn btn-primary">Editar</a>
                         {{--<form action="{{route('actividades.delete',array('id', $actividad['id']))}}" method="post">--}}
                             {{--{{ csrf_field() }}--}}
                             {{--{{ method_field('DELETE') }}--}}

@@ -6,12 +6,13 @@ use Carbon\Carbon;
 
 $factory->define(App\Gimnasio::class, function (Faker $faker) {
 
+    $imagen = 'https://picsum.photos/150/150/?random';
     $nombre = $faker->name;
     $direccion = $faker->address;
-    $time = $faker->time;
+    $time = $faker->time($format = 'H:i', $max = 'now');
     $horario_apertura = $time;
     $horario_cierre = $time;
-    $cuotas = $faker->numberBetween(20,100)."€";
+    $cuotas = $faker->numberBetween(20,100);
     $descripcion = $faker->realText(255);
     $time1 = Carbon::createFromTimestamp($faker->dateTimeThisDecade()->getTimestamp());
     $time2 = Carbon::createFromTimestamp($faker->dateTimeThisDecade()->getTimestamp());
@@ -19,6 +20,7 @@ $factory->define(App\Gimnasio::class, function (Faker $faker) {
     $updated_at = ($time1 > $time2) ? $time1 : $time2;
 
     return [
+        'imagen' => $imagen,
         'nombre' => $nombre,
         'direccion' => $direccion,
         'horario_apertura' => $horario_apertura,

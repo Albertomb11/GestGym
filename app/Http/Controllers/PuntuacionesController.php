@@ -4,17 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Gimnasio;
 use App\Http\Requests\CreatePuntuacionesRequest;
-use App\Monitores;
-use App\Puntuaciones;
+use App\Monitore;
+use App\Puntuacione;
 use Illuminate\Http\Request;
 
 class PuntuacionesController extends Controller
 {
     public function show($id){
 
-        $monitores = Monitores::where('id', $id)->first();
-
-        $puntuaciones = $monitores->puntuacion()->get();
+        $monitores = Monitore::where('nombre', $id)->first();
+        //dd($monitores);
+        $puntuaciones = $monitores->puntuaciones()->get();
         //dd($puntuaciones);
         return view('puntuaciones.show', [
             'puntuaciones' => $puntuaciones,
@@ -22,7 +22,7 @@ class PuntuacionesController extends Controller
         ]);
     }
 
-    public function create(Monitores $monitores, Gimnasio $gimnasio){
+    public function create(Monitore $monitores, Gimnasio $gimnasio){
 
         return view('puntuaciones.create', [
             'monitores' => $monitores,
@@ -30,14 +30,15 @@ class PuntuacionesController extends Controller
         ]);
     }
 
-    public function store(CreatePuntuacionesRequest $request, Monitores $monitores){
+    public function store(CreatePuntuacionesRequest $request, $nombre){
+        $monitore = Monitore::where('nombre', $nombre)->first();
 
-        Puntuaciones::create([
-            'monitores_id' => $monitores->id,
+        Puntuacione::create([
+            'monitore_id' => $monitore->id,
             'estrellas' => $request->input('estrellas'),
             'comentario' => $request->input('comentario')
         ]);
 
-        return redirect("monitor/$monitores->nombre/puntuaciones");
+        return redirect("monitor/$monitore->nombre/puntuaciones");
     }
 }

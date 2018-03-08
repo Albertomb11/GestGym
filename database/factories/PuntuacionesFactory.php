@@ -3,7 +3,7 @@
 use Carbon\Carbon;
 use Faker\Generator as Faker;
 
-$factory->define(App\Puntuaciones::class, function (Faker $faker) {
+$factory->define(App\Puntuacione::class, function (Faker $faker) {
 
     $estrellas = $faker->numberBetween(0, 6);
     $comentario = $faker->realText(255);

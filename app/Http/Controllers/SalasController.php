@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Gimnasio;
 use App\Http\Requests\CreateSalasRequest;
-use App\Salas;
+use App\Sala;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -13,7 +13,7 @@ class SalasController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Salas  $salas
+     * @param  \App\Sala  $salas
      * @return \Illuminate\Http\Response
      */
     public function show($username, $nombre)
@@ -54,7 +54,7 @@ class SalasController extends Controller
         $user = User::where('username', $username)->first();
         $gimnasio = Gimnasio::where('nombre', $nombre)->first();
 
-        Salas::create([
+        Sala::create([
             'nombre' => $request->input('nombre'),
             'gimnasio_id' => $gimnasio->id,
             'equipamiento' => $request->input('equipamiento')
@@ -66,33 +66,52 @@ class SalasController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Salas  $salas
+     * @param  \App\Sala  $salas
      * @return \Illuminate\Http\Response
      */
-    public function edit(Salas $salas)
-    {
-        //
+    public function edit($username, $nombre, $id){
+        $user = User::where('username', $username)->first();
+
+        $gimnasio = Gimnasio::where('nombre', $nombre)->first();
+
+        $sala = Sala::where('id', $id)->first();
+
+        return view('salas.edit',[
+            'user' => $user,
+            'gimnasio' => $gimnasio,
+            'sala' => $sala
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Salas  $salas
+     * @param  \App\Sala  $salas
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Salas $salas)
-    {
-        //
+    public function update(CreateSalasRequest $request, $username, $nombre, $id){
+        $user = User::where('username', $username)->first();
+
+        $gimnasio = Gimnasio::where('nombre', $nombre)->first();
+
+        $sala = Sala::find($id);
+
+        $sala->update([
+            'nombre' => $request->input('nombre'),
+            'equipamiento' => $request->input('equipamiento'),
+        ]);
+
+        return redirect("$user->username/gimnasios/$gimnasio->nombre/salas");
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Salas  $salas
+     * @param  \App\Sala  $salas
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Salas $salas)
+    public function destroy(Sala $salas)
     {
         //
     }

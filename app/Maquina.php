@@ -10,6 +10,6 @@ class Maquina extends Model
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
     public function gimnasios(){
-        return $this->belongsToMany(Gimnasio::class)->latest();
+        return $this->belongsToMany(Gimnasio::class);
     }
 }

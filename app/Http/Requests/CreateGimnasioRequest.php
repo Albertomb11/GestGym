@@ -17,7 +17,7 @@ class CreateGimnasioRequest extends FormRequest
         // Aquí se especifican las reglas de validación para este Requests
         return [
             'nombre' => 'required|string|max:100',
-            'direccion' => 'required|string|max:250|unique:gimnasios',
+            'direccion' => 'required|string|max:250',
             'horario_apertura' => 'required',
             'horario_cierre' => 'required',
             'cuotas' => 'required|string|max:250',
@@ -36,7 +36,6 @@ class CreateGimnasioRequest extends FormRequest
             'direccion.required' => 'Este campo es obligatorio.',
             'direccion.string' => 'La direccion debe de ser una cadena de caracteres.',
             'direccion.max' => 'El maximo de caracteres es 250',
-            'direccion.unique' => 'La dirección no esta disponible',
             'horario_apertura.required' => 'Este campo es obligatorio.',
             'horario_cierre.required' => 'Este campo es obligatorio.',
             'cuotas.required' => 'Este campo es obligatorio.',

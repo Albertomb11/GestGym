@@ -15,6 +15,7 @@ class CreateMonitoresTable extends Migration
     {
         Schema::create('monitores', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('imagen')->nullable();
             $table->string('nombre');
             $table->string('apellidos');
             $table->date('fecha_nacimiento');

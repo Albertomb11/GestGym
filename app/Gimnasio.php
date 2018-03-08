@@ -10,30 +10,30 @@ class Gimnasio extends Model
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
     public function users(){
-        return $this->belongsTo(User::class)->latest();
+        return $this->belongsTo(User::class);
     }
 
     public function actividades(){
-        return $this->belongsToMany(Actividades::class)->latest();
+        return $this->belongsToMany(Actividade::class);
     }
 
     public function monitores(){
-        return $this->belongsToMany(Monitores::class)->latest();
+        return $this->belongsToMany(Monitore::class);
     }
 
     public function productos(){
-        return $this->hasMany(Productos::class)->latest();
+        return $this->hasMany(Producto::class);
     }
 
     public function maquinas(){
-        return $this->belongsToMany(Maquina::class)->latest();
+        return $this->belongsToMany(Maquina::class);
     }
 
     public function salas(){
-        return $this->hasMany(Salas::class)->latest();
+        return $this->hasMany(Sala::class);
     }
 
     public function horario(){
-        return $this->hasMany(Horario::class)->latest();
+        return $this->hasMany(Horario::class);
     }
 }

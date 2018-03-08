@@ -40,7 +40,7 @@ class CreateUserFormRequest extends FormRequest
         return $mensajes;
     }
     protected function validarUsername(){
-        return 'required|string|regex:/^[A-Za-z0-9]*$/|max:15|unique:users';
+        return 'required|string|regex:/^[A-Za-z0-9]*$/|max:100|unique:users';
     }
     protected function mensajesUsername(){
         $mensajes = array();

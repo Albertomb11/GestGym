@@ -52,24 +52,24 @@ class UpdatePerfilFormRequest extends FormRequest
         return $mensajes;
     }
     protected function validarName(){
-        return 'string|regex:/^[A-Za-z]*$/|max:15';
+        return 'string|regex:/^[A-Za-z]*$/|max:100  ';
     }
     protected function mensajesName(){
         $mensajes = array();
         $mensajes["name.string"] = 'Introduzca el nombre.';
         $mensajes["name.regex"] = 'El nombre sólo acepta letras.';
-        $mensajes["name.max"] = 'Has superado el límite de 15 caracteres.';
+        $mensajes["name.max"] = 'Has superado el límite de 100   caracteres.';
         return $mensajes;
     }
 
     protected function validarSurname(){
-        return 'string|regex:/^[A-Za-z]*$/|max:15';
+        return 'string|regex:/^[A-Za-z]*$/|max:100';
     }
     protected function mensajesSurname(){
         $mensajes = array();
         $mensajes["surname.string"] = 'Introduzca el apellido.';
         $mensajes["surname.regex"] = 'El apellido sólo acepta letras.';
-        $mensajes["surname.max"] = 'Has superado el límite de 15 caracteres.';
+        $mensajes["surname.max"] = 'Has superado el límite de 100 caracteres.';
         return $mensajes;
     }
 
@@ -87,34 +87,34 @@ class UpdatePerfilFormRequest extends FormRequest
     }
 
     protected function validarMovil(){
-        return 'int|regex:/^[0-9]*$/|max:9|min:9';
+        return 'int|regex:/^[0-9]*$/|max:20|min:9';
     }
     protected function mensajesMovil(){
         $mensajes = array();
         $mensajes["movil.int"] = 'Introduzca el movil.';
         $mensajes["movil.regex"] = 'El movil sólo acepta numeros.';
-        $mensajes["movil.max"] = 'Has superado el límite de 9 caracteres.';
+        $mensajes["movil.max"] = 'Has superado el límite de 20 caracteres.';
         $mensajes["movil.min"] = 'El minimo son 9 caracteres.';
         return $mensajes;
     }
 
     protected function validarWebsite(){
-        return 'string|max:30';
+        return 'string|max:255';
     }
     protected function mensajesWebsite(){
         $mensajes = array();
         $mensajes["website.string"] = 'Introduzca la página web.';
-        $mensajes["website.max"] = 'Has superado el límite de 30 caracteres.';
+        $mensajes["website.max"] = 'Has superado el límite de 255 caracteres.';
         return $mensajes;
     }
 
     protected function validarAbout(){
-        return 'string|max:50';
+        return 'string|max:255';
     }
     protected function mensajesAbout(){
         $mensajes = array();
         $mensajes["about.string"] = 'Introduzca la descripcion.';
-        $mensajes["about.max"] = 'Has superado el límite de 50 caracteres.';
+        $mensajes["about.max"] = 'Has superado el límite de 255 caracteres.';
         return $mensajes;
     }
 

@@ -3,8 +3,9 @@
 use Carbon\Carbon;
 use Faker\Generator as Faker;
 
-$factory->define(App\Productos::class, function (Faker $faker) {
+$factory->define(App\Producto::class, function (Faker $faker) {
 
+    $imagen = 'https://picsum.photos/150/150/?random';
     $nombre = $faker->name;
     $precio = $faker->numberBetween(1, 10000)."€";
     $stock = $faker->numberBetween(1, 10000)."Und";
@@ -17,6 +18,7 @@ $factory->define(App\Productos::class, function (Faker $faker) {
 
 
     return [
+        'imagen' => $imagen,
         'nombre' => $nombre,
         'precio' => $precio,
         'stock' => $stock,

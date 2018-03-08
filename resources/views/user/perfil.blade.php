@@ -12,9 +12,9 @@
 <div class="container">
     <div class="center">
         <div class="pic_base">
-            <img src="https://vignette.wikia.nocookie.net/padventures/images/5/55/Admin1.png/revision/latest?cb=20110521160628" width="200" id="profile_pic" alt="">
+            <img src="{{ $user->image }}" width="200" id="profile_pic" alt="">
             <div class="icon_base">
-                <a id="formularioEditarPerfilBoton" href="{{route('user.edit', array('username' => Auth::user()->username))}}" id="edit"><span><img src="https://cdn3.iconfinder.com/data/icons/3d-printing-icon-set/512/Edit.png" width="50" height="50"></span></a>
+                <a id="formularioEditarPerfilBoton" href="{{route('user.edit', array('username' => Auth::user()->username))}}"><span><img src="https://cdn3.iconfinder.com/data/icons/3d-printing-icon-set/512/Edit.png" width="50" height="50"></span></a>
             </div>
         </div>
         <div class="content_base">
