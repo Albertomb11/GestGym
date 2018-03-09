@@ -22,7 +22,6 @@ Auth::routes();
 // Rutas publicas
 Route::get('/gimnasios', 'GimnasiosController@publico')->name('gimnasios');
 
-
 // Rutas Llamadas Asincrona
 Route::get('/registro', 'AsincronoController@formularioRegistro');
 Route::get('/editarPerfil', 'AsincronoController@formularioEditarPerfil');
@@ -66,7 +65,6 @@ Route::group(['prefix' => '/{user}/gimnasios/{gimnasio}/actividades'], function 
     Route::post('/create', 'ActividadesController@store')->name('actividades.create')->middleware();
     Route::get('/{actividad}/edit', 'ActividadesController@edit')->name('actividades.edit')->middleware();
     Route::put('/{actividad}/edit', 'ActividadesController@update')->name('actividades.update')->middleware();
-    Route::delete('', 'ActividadesController@destroy')->name('actividades.delete')->middleware('auth');
 });
 
 // Rutas de la entidad Producto
@@ -101,6 +99,17 @@ Route::group(['prefix' => '/monitor/{monitor}/puntuaciones'], function (){
     Route::get('/', 'PuntuacionesController@show')->name('puntuaciones.show')->middleware();
     Route::get('/create', 'PuntuacionesController@create')->name('puntuaciones.form')->middleware();
     Route::post('/create', 'PuntuacionesController@store')->name('puntuaciones.create')->middleware();
-//    Route::get('/{puntuaciones}/edit', 'PuntuacionesController@edit')->name('puntuaciones.edit')->middleware();
-//    Route::put('/{puntuaciones}/edit', 'PuntuacionesController@update')->name('puntuaciones.update')->middleware();
+});
+
+/**
+ * Rutas autenticadas para borrar de cada entidad con SoftDelete.
+ */
+Route::group(['middleware' => 'auth'], function(){
+    Route::delete('/user/delete/{user}', 'UserController@destroy')->name('user.delete');
+    Route::delete('/gimnasio/delete/{gimnasio}', 'GimnasiosController@destroy')->name('gimnasio.delete');
+    Route::delete('/monitor/delete/{monitor}', 'MonitoresController@destroy')->name('monitor.delete');
+    Route::delete('/actividad/delete/{actividad}', 'ActividadesController@destroy')->name('actividad.delete');
+    Route::delete('/maquina/delete/{maquina}', 'MaquinasController@destroy')->name('maquina.delete');
+    Route::delete('/producto/delete/{producto}', 'ProductosController@destroy')->name('producto.delete');
+    Route::delete('/sala/delete/{sala}', 'SalasController@destroy')->name('sala.delete');
 });

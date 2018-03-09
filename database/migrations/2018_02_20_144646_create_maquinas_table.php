@@ -22,6 +22,7 @@ class CreateMaquinasTable extends Migration
             $table->integer('unidades')->nullable();
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

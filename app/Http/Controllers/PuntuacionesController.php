@@ -11,11 +11,10 @@ use Illuminate\Http\Request;
 class PuntuacionesController extends Controller
 {
     public function show($id){
-
         $monitores = Monitore::where('nombre', $id)->first();
-        //dd($monitores);
+
         $puntuaciones = $monitores->puntuaciones()->get();
-        //dd($puntuaciones);
+
         return view('puntuaciones.show', [
             'puntuaciones' => $puntuaciones,
             'monitores' => $monitores
@@ -32,7 +31,7 @@ class PuntuacionesController extends Controller
 
     public function store(CreatePuntuacionesRequest $request, $nombre){
         $monitore = Monitore::where('nombre', $nombre)->first();
-
+        
         Puntuacione::create([
             'monitore_id' => $monitore->id,
             'estrellas' => $request->input('estrellas'),

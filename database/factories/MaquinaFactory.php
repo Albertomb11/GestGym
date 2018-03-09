@@ -3,8 +3,9 @@
 use Carbon\Carbon;
 use Faker\Generator as Faker;
 
-$factory->define(Model::class, function (Faker $faker) {
+$factory->define(App\Maquina::class, function (Faker $faker) {
 
+    $imagen = 'https://picsum.photos/150/150/?random';
     $nombre = $faker->name;
     $zona_trabajada = $faker->sentence($nbWords = 6, $variableNbWords = true);
     $descripcion = $faker->sentence($nbWords = 6, $variableNbWords = true);
@@ -13,6 +14,7 @@ $factory->define(Model::class, function (Faker $faker) {
     $time2 = Carbon::createFromTimestamp($faker->dateTimeThisDecade()->getTimestamp());
 
     return [
+        'imagen' => $imagen,
         'nombre' => $nombre,
         'zona_trabajada' => $zona_trabajada,
         'descripcion' => $descripcion,

@@ -11,7 +11,7 @@
     <div class="row course-set courses__row event d-flex justify-content-around">
         @foreach($chunk as $actividad)
             <div class="card" style="width: 20rem; margin-top: 20px">
-                <img class="card-img-top" src="https://img.grouponcdn.com/seocms/2bYMuLTPPwQFcHpbgpMaG7TLNShr/people-enjoying-spinning-class-1_jpg-600x390" height="300px" alt="Card image cap">
+                <img class="card-img-top" src="{{ $actividad->imagen }}" height="300px" alt="Card image cap">
                 <div class="card-body">
                     <h1 class="card-title"><strong>{{$actividad['nombre']}} {{ $actividad['horario'] }}</strong></h1>
 
@@ -24,14 +24,12 @@
                     <strong>Descripción: </strong>{{$actividad['descripcion']}}
                     <hr>
                     <div class="container">
-                        {{--<a href="#" class="btn btn-info" data-toggle="modal" data-target="#exampleModalCenter">Información</a>--}}
                         <a href="/{{ $user->username }}/gimnasios/{{ $gimnasio->nombre }}/actividades/{{ $actividad->id }}/edit" class="btn btn-primary">Editar</a>
-                        {{--<form action="{{route('actividades.delete',array('id', $actividad['id']))}}" method="post">--}}
-                            {{--{{ csrf_field() }}--}}
-                            {{--{{ method_field('DELETE') }}--}}
-                            {{--<button type="submit" class="btn btn-danger">Borrar</button>--}}
-                        {{--</form>--}}
-                        <a href="#" class="btn btn-danger">Borrar</a>
+                        <form action="{{route('actividad.delete',array('id' => $actividad['id']))}}" method="post">
+                            {{ csrf_field() }}
+                            {{ method_field('DELETE') }}
+                            <button type="submit" class="btn btn-danger">Borrar</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -65,31 +63,4 @@
 </div>
 
 </div>
-
-<!-- Modal -->
-{{--<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">--}}
-    {{--<div class="modal-dialog modal-dialog-centered" role="document">--}}
-        {{--<div class="modal-content">--}}
-            {{--<div class="modal-header">--}}
-                {{--<h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>--}}
-                {{--<button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
-                    {{--<span aria-hidden="true">&times;</span>--}}
-                {{--</button>--}}
-            {{--</div>--}}
-            {{--<div class="modal-body">--}}
-                {{--<strong>Duracion: </strong>{{$actividades['duracion']}}--}}
-                {{--<hr>--}}
-                {{--<strong>Objetivos: </strong>{{$actividades['objetivos']}}--}}
-                {{--<hr>--}}
-                {{--<strong>Intensidad: </strong>{{$actividades['intensidad']}}--}}
-                {{--<hr>--}}
-                {{--<strong>Descripción: </strong>{{$actividades['descripcion']}}--}}
-            {{--</div>--}}
-            {{--<div class="modal-footer">--}}
-                {{--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>--}}
-                {{--<button type="button" class="btn btn-primary">Save changes</button>--}}
-            {{--</div>--}}
-        {{--</div>--}}
-    {{--</div>--}}
-{{--</div>--}}
 @endsection

@@ -12,13 +12,17 @@
             <div class="row course-set courses__row event d-flex justify-content-around">
                 @foreach($chunk as $sala)
                     <div class="card" style="width: 20rem; margin-top: 20px">
-                        <img class="card-img-top" src="https://well.org/wp-content/uploads/2017/03/When-You-Shouldnu2019t-Take-A-Sauna.jpg" height="200px" alt="Card image cap">
+                        <img class="card-img-top" src="{{ $sala->imagen }}" height="200px" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title"><strong>{{$sala['nombre']}}</strong></h5>
 
                             <div class="container">
                                 <a href="/{{ $user->username }}/gimnasios/{{ $gimnasio->nombre }}/salas/{{ $sala->id }}/edit" class="btn btn-primary">Editar</a>
-                                <a href="#" class="btn btn-danger">Borrar</a>
+                                <form action="{{route('$sala.delete',array('id' => $sala['id']))}}" method="post">
+                                    {{ csrf_field() }}
+                                    {{ method_field('DELETE') }}
+                                    <button type="submit" class="btn btn-danger">Borrar</button>
+                                </form>
                             </div>
                         </div>
                         <div class="card-footer">

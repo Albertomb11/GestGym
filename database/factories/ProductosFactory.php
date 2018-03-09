@@ -7,8 +7,8 @@ $factory->define(App\Producto::class, function (Faker $faker) {
 
     $imagen = 'https://picsum.photos/150/150/?random';
     $nombre = $faker->name;
-    $precio = $faker->numberBetween(1, 10000)."€";
-    $stock = $faker->numberBetween(1, 10000)."Und";
+    $precio = $faker->numberBetween(1, 10000);
+    $stock = $faker->numberBetween(1, 10000);
     $sabor = $faker->word;
     $caracteristicas = $faker->realText(255);
     $time1 = Carbon::createFromTimestamp($faker->dateTimeThisDecade()->getTimestamp());

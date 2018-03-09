@@ -105,14 +105,9 @@ class SalasController extends Controller
         return redirect("$user->username/gimnasios/$gimnasio->nombre/salas");
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Sala  $salas
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Sala $salas)
-    {
-        //
+    public function destroy($id){
+        Sala::where('id', $id)->delete();
+
+        return redirect('/');
     }
 }

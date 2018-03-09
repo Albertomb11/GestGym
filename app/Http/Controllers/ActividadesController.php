@@ -80,10 +80,9 @@ class ActividadesController extends Controller
         return redirect("$user->username/gimnasios/$gimnasio->nombre/actividades");
     }
 
-//    public function destroy($id){
-//
-//        Actividade::where('id', $id)->delete();
-//
-//        return redirect('/');
-//    }
+    public function destroy($id){
+        Actividade::where('id', $id)->delete();
+
+        return redirect('/');
+    }
 }

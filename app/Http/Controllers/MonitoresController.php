@@ -81,4 +81,10 @@ class MonitoresController extends Controller
 
         return redirect("$user->username/gimnasios/$gimnasio->nombre/monitores");
     }
+
+    public function destroy($id){
+        Monitore::where('id', $id)->delete();
+
+        return redirect('/');
+    }
 }

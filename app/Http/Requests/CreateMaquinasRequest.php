@@ -24,10 +24,10 @@ class CreateMaquinasRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre' => 'required|string|max:100',
-            'zona_trabajada' => 'required|string|max:100',
-            'unidades' => 'required|int|max:1000',
-            'descripcion' => 'required|string|max:255'
+            'nombre' => 'required|string|max:99999999999',
+            'zona_trabajada' => 'required|string|max:99999999999',
+            'unidades' => 'required|int|max:99999999999',
+            'descripcion' => 'required|string|max:99999999999'
         ];
     }
 }

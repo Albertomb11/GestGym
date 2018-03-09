@@ -25,11 +25,11 @@ class CreateActividadesRequest extends FormRequest
     {
          // Aqui se especifican las reglas de validación para este Request
         return [
-            'nombre' => 'required|string|max:100',
-            'objetivos' => 'required|string|max:100',
-            'intensidad' => 'required|string|max:100',
-            'duracion' => 'required|int|max:200',
-            'descripcion' => 'required|string|max:250'
+            'nombre' => 'required|string|max:99999999999',
+            'objetivos' => 'required|string|max:99999999999',
+            'intensidad' => 'required|string|max:99999999999',
+            'duracion' => 'required|int|max:99999999999',
+            'descripcion' => 'required|string|max:99999999999'
         ];
     }
 
@@ -39,19 +39,19 @@ class CreateActividadesRequest extends FormRequest
         return [
             'nombre.required' => 'Este campo es obligatorio.',
             'nombre.string' => 'El nombre debe de ser una cadena de caracteres.',
-            'nombre.max' => 'El maximo de caracteres es 100',
+            'nombre.max' => 'El maximo de caracteres es 99999999999',
             'objetivos.required' => 'Este campo es obligatorio.',
             'objetivos.string' => 'El objetivo debe de ser una cadena de caracteres.',
-            'objetivos.max' => 'El maximo de caracteres es 100',
+            'objetivos.max' => 'El maximo de caracteres es 99999999999',
             'intensidad.required' => 'Este campo es obligatorio.',
             'intensidad.string' => 'La intensidad debe de ser una cadena de caracteres.',
-            'intensidad.max' => 'El maximo de caracteres es 100',
+            'intensidad.max' => 'El maximo de caracteres es 99999999999',
             'duracion.required' => 'Este campo es obligatorio.',
             'duracion.int' => 'La duracion debe de ser un numero.',
-            'duracion.max' => 'El maximo de caracteres es 200',
+            'duracion.max' => 'El maximo de caracteres es 99999999999',
             'descripcion.required' => 'Este campo es obligatorio.',
             'descripcion.string' => 'La descripcion debe de ser una cadena de caracteres.',
-            'descripcion.max' => 'El maximo de caracteres es 250'
+            'descripcion.max' => 'El maximo de caracteres es 99999999999'
         ];
     }
 }

@@ -78,4 +78,10 @@ class ProductosController extends Controller
 
         return redirect("$user->username/gimnasios/$gimnasio->nombre/productos");
     }
+
+    public function destroy($id){
+        Producto::where('id', $id)->delete();
+
+        return redirect('/');
+    }
 }

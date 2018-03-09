@@ -3,14 +3,16 @@
 use Carbon\Carbon;
 use Faker\Generator as Faker;
 
-$factory->define(Model::class, function (Faker $faker) {
+$factory->define(App\Sala::class, function (Faker $faker) {
 
+    $imagen = 'https://picsum.photos/150/150/?random';
     $nombre = $faker->name;
     $equipamiento = $faker->sentence($nbWords = 6, $variableNbWords = true);
     $time1 = Carbon::createFromTimestamp($faker->dateTimeThisDecade()->getTimestamp());
     $time2 = Carbon::createFromTimestamp($faker->dateTimeThisDecade()->getTimestamp());
 
     return [
+        'imagen' => $imagen,
         'nombre' => $nombre,
         'equipamiento' => $equipamiento,
         'created_at' => ($time1 < $time2) ? $time1 : $time2,

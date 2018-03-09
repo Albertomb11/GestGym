@@ -22,6 +22,7 @@ class CreateSalasTable extends Migration
 
             $table->foreign('gimnasio_id')->references('id')->on('gimnasios')->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

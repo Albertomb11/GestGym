@@ -10,7 +10,7 @@
 
         <div class="row justify-content-md-center mt-3">
         <div class="card card-cascade" style="width: 30rem;">
-            <img class="card-img-top" src="https://image.freepik.com/vector-gratis/frase-en-un-fondo-de-hombre-musculado_23-2147533706.jpg" height="300px" alt="Card image cap">
+            <img class="card-img-top" src="{{ $gimnasios->imagen }}" height="300px" alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title"><strong>{{$gimnasios['nombre']}}</strong></h5>
 
@@ -35,7 +35,11 @@
 
                 <div class="container">
                     <a href="/{{ $user->username }}/gimnasios/{{ $gimnasios->nombre }}/edit" class="btn btn-primary">Editar</a>
-                    <a href="#" class="btn btn-danger">Borrar</a>
+                    <form action="{{route('gimnasio.delete',array('id' => $gimnasios['id']))}}" method="post">
+                        {{ csrf_field() }}
+                        {{ method_field('DELETE') }}
+                        <button type="submit" class="btn btn-danger">Borrar</button>
+                    </form>
                 </div>
             </div>
         </div>

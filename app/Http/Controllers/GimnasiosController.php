@@ -109,4 +109,10 @@ class GimnasiosController extends Controller
 
         return redirect("$user->username/gimnasios/$gimnasio->nombre");
     }
+
+    public function destroy($id){
+        Gimnasio::where('id', $id)->delete();
+
+        return redirect('/');
+    }
 }

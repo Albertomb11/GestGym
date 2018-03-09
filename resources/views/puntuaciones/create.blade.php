@@ -14,7 +14,8 @@
             <label for="estrellas" class="col-md-4 control-label"><h2>Estrellas</h2></label>
 
             <select id="estrellas" type="text" class="form-control" name="estrellas">
-                <option selected>1</option>
+                <option>0</option>
+                <option>1</option>
                 <option>2</option>
                 <option>3</option>
                 <option>4</option>

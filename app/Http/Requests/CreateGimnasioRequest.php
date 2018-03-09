@@ -16,12 +16,12 @@ class CreateGimnasioRequest extends FormRequest
     {
         // Aquí se especifican las reglas de validación para este Requests
         return [
-            'nombre' => 'required|string|max:100',
-            'direccion' => 'required|string|max:250',
+            'nombre' => 'required|string|max:99999999999',
+            'direccion' => 'required|string|max:99999999999',
             'horario_apertura' => 'required',
             'horario_cierre' => 'required',
-            'cuotas' => 'required|string|max:250',
-            'descripcion' => 'required|string|max:250',
+            'cuotas' => 'required|string|max:99999999999',
+            'descripcion' => 'required|string|max:99999999999',
         ];
     }
 
@@ -32,18 +32,18 @@ class CreateGimnasioRequest extends FormRequest
         return [
             'nombre.required' => 'Este campo es obligatorio.',
             'nombre.string' => 'El nombre debe de ser una cadena de caracteres.',
-            'nombre.max' => 'El maximo de caracteres es 100',
+            'nombre.max' => 'El maximo de caracteres es 99999999999',
             'direccion.required' => 'Este campo es obligatorio.',
             'direccion.string' => 'La direccion debe de ser una cadena de caracteres.',
-            'direccion.max' => 'El maximo de caracteres es 250',
+            'direccion.max' => 'El maximo de caracteres es 99999999999',
             'horario_apertura.required' => 'Este campo es obligatorio.',
             'horario_cierre.required' => 'Este campo es obligatorio.',
             'cuotas.required' => 'Este campo es obligatorio.',
             'cuotas.string' => 'Las cuotas deben de ser una cadena de caracteres.',
-            'cuotas.max' => 'El maximo de caracteres es 250',
+            'cuotas.max' => 'El maximo de caracteres es 99999999999',
             'descripcion.required' => 'Este campo es obligatorio.',
             'descripcion.string' => 'La descripcion debe de ser una cadena de caracteres.',
-            'descripcion.max' => 'El maximo de caracteres es 500'
+            'descripcion.max' => 'El maximo de caracteres es 99999999999'
         ];
     }
 }

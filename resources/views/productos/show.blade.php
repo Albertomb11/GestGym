@@ -12,7 +12,7 @@
             <div class="row course-set courses__row event d-flex justify-content-around">
                 @foreach($chunk as $producto)
                     <div class="card" style="width: 20rem; margin-top: 20px">
-                        <img class="card-img-top" src="https://static.sscontent.com/products/162/xcore_xtreme-mass-gainer-ss-2722g_1.png" height="200px" alt="Card image cap">
+                        <img class="card-img-top" src="{{ $producto->imagen }}" height="200px" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title"><strong>{{$producto['nombre']}}-{{ $producto->precio }}€</strong></h5>
 
@@ -22,7 +22,11 @@
 
                             <div class="container">
                                 <a href="/{{ $user->username }}/gimnasios/{{ $gimnasio->nombre }}/productos/{{ $producto->id }}/edit" class="btn btn-primary">Editar</a>
-                                <a href="#" class="btn btn-danger">Borrar</a>
+                                <form action="{{route('$producto.delete',array('id' => $producto['id']))}}" method="post">
+                                    {{ csrf_field() }}
+                                    {{ method_field('DELETE') }}
+                                    <button type="submit" class="btn btn-danger">Borrar</button>
+                                </form>
                             </div>
                         </div>
                         <div class="card-footer">

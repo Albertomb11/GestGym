@@ -23,6 +23,7 @@ class CreateActividadesTable extends Migration
             $table->string('descripcion')->nullable();
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

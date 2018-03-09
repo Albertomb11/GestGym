@@ -111,14 +111,9 @@ class MaquinasController extends Controller
         return redirect("$user->username/gimnasios/$gimnasio->nombre/maquinas");
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Maquina  $maquinas
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Maquina $maquinas)
-    {
-        //
+    public function destroy($id){
+        Maquina::where('id', $id)->delete();
+
+        return redirect('/');
     }
 }

@@ -25,8 +25,8 @@ class CreatePuntuacionesRequest extends FormRequest
     {
         // Aquí se especifican las reglas de validación para este Requests
         return [
-            'estrellas' => 'required|int|max:5',
-            'comentario' => 'required|string|max:250'
+            'estrellas' => 'required|int|max:99999999999',
+            'comentario' => 'required|string|max:99999999999'
         ];
     }
 
@@ -36,10 +36,10 @@ class CreatePuntuacionesRequest extends FormRequest
         return [
             'estrellas.required' => 'Este campo es obligatorio.',
             'estrellas.int' => 'La estrellas debe de ser un numero.',
-            'estrellas.max' => 'El maximo de caracteres es 5',
+            'estrellas.max' => 'El maximo de caracteres es 99999999999',
             'comentario.required' => 'Este campo es obligatorio',
             'comentario.string' => 'Los comentario debe de ser una cadena de caracteres',
-            'comentario.max' => 'El maximo de caracteres es 250'
+            'comentario.max' => 'El maximo de caracteres es 99999999999'
         ];
     }
 }

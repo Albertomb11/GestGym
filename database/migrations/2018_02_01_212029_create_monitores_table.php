@@ -24,6 +24,7 @@ class CreateMonitoresTable extends Migration
             $table->string('email')->unique();
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

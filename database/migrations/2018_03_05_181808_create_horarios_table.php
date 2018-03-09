@@ -22,6 +22,7 @@ class CreateHorariosTable extends Migration
 
             $table->foreign('gimnasios_id')->references('id')->on('gimnasios')->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

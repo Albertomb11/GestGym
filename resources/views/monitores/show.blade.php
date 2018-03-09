@@ -12,7 +12,7 @@
             <div class="row course-set courses__row event d-flex justify-content-around">
                 @foreach($chunk as $monitor)
             <div class="card" style="width: 20rem; margin-top: 20px">
-                <img class="card-img-top" src="https://image.freepik.com/vector-gratis/frase-en-un-fondo-de-hombre-musculado_23-2147533706.jpg" height="300px" alt="Card image cap">
+                <img class="card-img-top" src="{{ $monitor->imagen }}" height="300px" alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title"><strong>{{$monitor['nombre']}} {{$monitor['apellidos']}}</strong></h5>
 
@@ -29,7 +29,11 @@
 
                     <div class="container">
                         <a href="/{{ $user->username }}/gimnasios/{{ $gimnasio->nombre }}/monitores/{{ $monitor->id }}/edit" class="btn btn-primary">Editar</a>
-                        <a href="#" class="btn btn-danger">Borrar</a>
+                        <form action="{{route('$monitor.delete',array('id' => $monitor['id']))}}" method="post">
+                            {{ csrf_field() }}
+                            {{ method_field('DELETE') }}
+                            <button type="submit" class="btn btn-danger">Borrar</button>
+                        </form>
                     </div>
                 </div>
             </div>
