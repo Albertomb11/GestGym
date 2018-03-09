@@ -9,7 +9,7 @@ class AsincronoController extends Controller
 {
     public function formularioRegistro(){
         if (request()->ajax()){
-            return View::make('auth.register')->render();
+            return View::make('auth.vistaRegister')->render();
         }else{
             return redirect('/');
         }

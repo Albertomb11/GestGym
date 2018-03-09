@@ -15,6 +15,7 @@
 Route::get('/', function () {
     return view('home');
 });
+Route::get('/contacto', 'PagesController@contacto');
 
 // Rutas de autenticación
 Auth::routes();

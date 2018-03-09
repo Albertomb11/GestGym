@@ -31,7 +31,11 @@
                 </button>
             </div>
             <div class="dropdown-divider"></div>
-            <a class="nav-link" href="#">Salir</a>
+                <a class="nav-link" href="/contacto">Contacto</a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                {{ csrf_field() }}
+                <button class="btn btn-link" type="submit">Salir</button>
+            </form>
         </nav>
     </div>
 </div>
