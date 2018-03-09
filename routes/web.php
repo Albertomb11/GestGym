@@ -34,7 +34,7 @@ Route::post('/createGimnasios/validate', 'GimnasiosController@validacionCreateGi
 
 // Rutas de la entidad Users
 Route::group(['prefix' => '/{user}'], function (){
-    Route::get('/', 'UserController@perfil')->name('user.perfil')->middleware('auth');
+    Route::get('/', 'UserController@perfil')->name('user.perfil');
     Route::get('/edit', 'UserController@edit')->name('user.edit')->middleware('auth');
     Route::put('/edit', 'UserController@update')->name('user.update')->middleware('auth');
 });
