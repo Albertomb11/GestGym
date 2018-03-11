@@ -15,6 +15,7 @@
 Route::get('/', function () {
     return view('home');
 });
+
 Route::get('/contacto', 'PagesController@contacto');
 
 // Rutas de autenticación
@@ -100,6 +101,13 @@ Route::group(['prefix' => '/monitor/{monitor}/puntuaciones'], function (){
     Route::get('/', 'PuntuacionesController@show')->name('puntuaciones.show')->middleware();
     Route::get('/create', 'PuntuacionesController@create')->name('puntuaciones.form')->middleware();
     Route::post('/create', 'PuntuacionesController@store')->name('puntuaciones.create')->middleware();
+});
+
+// Rutas de la entidad Horario
+Route::group(['prefix' => '/{user}/gimnasios/{gimnasio}/horarios'], function (){
+    Route::get('/', 'HorariosController@show')->name('horarios.show')->middleware();
+    Route::get('/create', 'HorariosController@create')->name('horarios.form')->middleware();
+    Route::post('/create', 'HorariosController@store')->name('horarios.create')->middleware();
 });
 
 /**

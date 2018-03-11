@@ -12,7 +12,7 @@
             <div class="row course-set courses__row event d-flex justify-content-around">
                 @foreach($chunk as $producto)
                     <div class="card" style="width: 20rem; margin-top: 20px">
-                        <img class="card-img-top" src="{{ $producto->imagen }}" height="200px" alt="Card image cap">
+                        <img class="card-img-top" src="{{ $producto['imagen'] }}" height="200px" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title"><strong>{{$producto['nombre']}}-{{ $producto->precio }}€</strong></h5>
 

@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Storage;
 
 class Gimnasio extends Model
 {
@@ -14,30 +15,39 @@ class Gimnasio extends Model
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
     public function users(){
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class)->latest();
     }
 
     public function actividades(){
-        return $this->belongsToMany(Actividade::class);
+        return $this->belongsToMany(Actividade::class)->latest();
     }
 
     public function monitores(){
-        return $this->belongsToMany(Monitore::class);
+        return $this->belongsToMany(Monitore::class)->latest();
     }
 
     public function productos(){
-        return $this->hasMany(Producto::class);
+        return $this->hasMany(Producto::class)->latest();
     }
 
     public function maquinas(){
-        return $this->belongsToMany(Maquina::class);
+        return $this->belongsToMany(Maquina::class)->latest();
     }
 
     public function salas(){
-        return $this->hasMany(Sala::class);
+        return $this->hasMany(Sala::class)->latest();
     }
 
     public function horario(){
-        return $this->hasMany(Horario::class);
+        return $this->hasMany(Horario::class)->latest();
+    }
+
+    public function getImageAttribute($imagen)
+    {
+        if( starts_with($imagen, "https://")){
+            return $imagen;
+        }
+
+        return  Storage::disk('public')->url($imagen);
     }
 }

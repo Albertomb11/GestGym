@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Storage;
 
 class Monitore extends Model
 {
@@ -14,14 +15,23 @@ class Monitore extends Model
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
     public function gimnasios(){
-        return $this->belongsToMany(Gimnasio::class);
+        return $this->belongsToMany(Gimnasio::class)->latest();
     }
 
     public function puntuaciones(){
-        return $this->hasMany(Puntuacione::class);
+        return $this->hasMany(Puntuacione::class)->latest();
     }
 
     public function horario(){
-        return $this->belongsToMany(Horario::class);
+        return $this->belongsToMany(Horario::class)->latest();
+    }
+
+    public function getImageAttribute($imagen)
+    {
+        if( starts_with($imagen, "https://")){
+            return $imagen;
+        }
+
+        return  Storage::disk('public')->url($imagen);
     }
 }

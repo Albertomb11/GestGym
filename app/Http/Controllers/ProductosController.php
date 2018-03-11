@@ -7,6 +7,7 @@ use App\Http\Requests\CreateProductosRequest;
 use App\Producto;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductosController extends Controller
 {
@@ -35,9 +36,16 @@ class ProductosController extends Controller
         $user = User::where('username', $username)->first();
         $gimnasio = Gimnasio::where('nombre', $nombre)->first();
 
+        if( $imagen = $request->file('imagen') ){
+            $url = $imagen->store('imagen','public');
+        }else{
+            $url = "https://picsum.photos/150/150/?random";
+        }
+
         Producto::create([
             'nombre' => $request->input('nombre'),
             'gimnasio_id' => $gimnasio->id,
+            'imagen' => $url,
             'precio' => $request->input('precio'),
             'stock' => $request->input('stock'),
             'sabor' => $request->input('sabor'),
@@ -68,13 +76,27 @@ class ProductosController extends Controller
 
         $producto = Producto::find($id);
 
-        $producto->update([
+        if( $imagen = $request->file('imagen') ){
+            if( !strpos($producto->imagen, "http") ) {
+                $routeParts = explode('/', $producto->imagen);
+                Storage::disk('public')->delete('producto/'.end($routeParts));
+            }
+
+            $url = $imagen->store('user','public');
+        }else{
+            $url = $producto->imagen;
+        }
+
+        $producto->fill([
+            'imagen' => $url,
             'nombre' => $request->input('nombre'),
             'precio' => $request->input('precio'),
             'stock' => $request->input('stock'),
             'sabor' => $request->input('sabor'),
             'caracteristicas' => $request->input('caracteristicas')
         ]);
+
+        $producto->update();
 
         return redirect("$user->username/gimnasios/$gimnasio->nombre/productos");
     }

@@ -1,6 +1,3 @@
-{{--@extends('layouts.app')--}}
-
-{{--@section('content')--}}
 <div id="registerVista">
     <div class="register-box">
         <img src="http://www.tadamun.so/wp-content/uploads/2016/09/blank-avatar.png" class="avatar">
@@ -107,4 +104,3 @@
                     </form>
     </div>
 </div>
-{{--@endsection--}}

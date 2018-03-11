@@ -27,9 +27,9 @@ class CreateProductosRequest extends FormRequest
         return [
             'nombre' => 'required|string|max:99999999999',
             'precio' => 'required|int|max:99999999999',
-            'stock' => 'required|int|max:99999999999',
-            'sabor' => 'required|string|max:99999999999',
-            'caracteristicas' => 'required|string|max:99999999999'
+            'stock' => 'int|max:99999999999',
+            'sabor' => 'string|max:99999999999',
+            'caracteristicas' => 'string|max:99999999999'
         ];
     }
 
@@ -43,13 +43,10 @@ class CreateProductosRequest extends FormRequest
             'precio.required' => 'Este campo es obligatorio.',
             'precio.int' => 'El precio debe de ser un numero.',
             'precio.max' => 'El maximo de caracteres es 99999999999',
-            'stock.required' => 'Este campo es obligatorio.',
             'stock.int' => 'El stock debe de ser un numero.',
             'stock.max' => 'El maximo de caracteres es 99999999999',
-            'sabor.required' => 'Este campo es obligatorio.',
             'sabor.string' => 'El sabor debe de ser una cadena de caracteres.',
             'sabor.max' => 'El maximo de caracteres es 99999999999',
-            'caracteristicas.required' => 'Este campo es obligatorio.',
             'caracteristicas.string' => 'La caracteristicas debe de ser una cadena de caracteres.',
             'caracteristicas.max' => 'El maximo de caracteres es 99999999999',
         ];

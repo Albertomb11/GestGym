@@ -8,6 +8,7 @@ use App\Monitore;
 use App\Puntuacione;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class MonitoresController extends Controller
 {
@@ -36,8 +37,15 @@ class MonitoresController extends Controller
         $user = User::where('username', $username)->first();
         $gimnasio = Gimnasio::where('nombre', $nombre)->first();
 
+        if( $imagen = $request->file('imagen') ){
+            $url = $imagen->store('imagen','public');
+        }else{
+            $url = "https://picsum.photos/150/150/?random";
+        }
+
         $monitor = Monitore::create([
             'nombre' => $request->input('nombre'),
+            'imagen' => $url,
             'apellidos' => $request->input('apellidos'),
             'fecha_nacimiento' => $request->input('fecha_nacimiento'),
             'estudios' => $request->input('estudios'),
@@ -71,13 +79,27 @@ class MonitoresController extends Controller
 
         $monitor = Monitore::find($id);
 
-        $monitor->update([
+        if( $imagen = $request->file('imagen') ){
+            if( !strpos($monitor->imagen, "http") ) {
+                $routeParts = explode('/', $monitor->imagen);
+                Storage::disk('public')->delete('monitor/'.end($routeParts));
+            }
+
+            $url = $imagen->store('monitor','public');
+        }else{
+            $url = $monitor->imagen;
+        }
+
+        $monitor->fill([
+            'imagen' => $url,
             'nombre' => $request->input('nombre'),
             'apellidos' => $request->input('apellidos'),
             'fecha_nacimiento' => $request->input('fecha_nacimiento'),
             'estudios' => $request->input('estudios'),
             'direccion' => $request->input('direccion')
         ]);
+
+        $monitor->update();
 
         return redirect("$user->username/gimnasios/$gimnasio->nombre/monitores");
     }

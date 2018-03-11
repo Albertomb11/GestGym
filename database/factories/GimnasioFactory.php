@@ -7,7 +7,7 @@ use Carbon\Carbon;
 $factory->define(App\Gimnasio::class, function (Faker $faker) {
 
     $imagen = 'https://picsum.photos/150/150/?random';
-    $nombre = $faker->name;
+    $nombre = str_replace(" ", "-", $faker->name);
     $direccion = $faker->address;
     $time = $faker->time($format = 'H:i', $max = 'now');
     $horario_apertura = $time;

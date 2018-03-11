@@ -6,7 +6,7 @@ use Faker\Generator as Faker;
 $factory->define(App\Sala::class, function (Faker $faker) {
 
     $imagen = 'https://picsum.photos/150/150/?random';
-    $nombre = $faker->name;
+    $nombre = str_replace(" ", "-", $faker->name);
     $equipamiento = $faker->sentence($nbWords = 6, $variableNbWords = true);
     $time1 = Carbon::createFromTimestamp($faker->dateTimeThisDecade()->getTimestamp());
     $time2 = Carbon::createFromTimestamp($faker->dateTimeThisDecade()->getTimestamp());

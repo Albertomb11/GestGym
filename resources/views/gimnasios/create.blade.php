@@ -14,7 +14,7 @@
             </div>
         </div>
 
-        <form id="formularioCrearGimnasio" role="form" action="{{ route('gimnasios.create', array('user' => Auth::user()->username)) }}" method="post">
+        <form id="formularioCrearGimnasio" role="form" action="{{ route('gimnasios.create', array('user' => Auth::user()->username)) }}" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
 
             <div class="form-group row{{ $errors->has('nombre') ? ' has-error' : '' }}">
@@ -105,6 +105,11 @@
             @endif
         </div>
         @include('layouts.spinner')
+        </div>
+
+        <div class="form-group row">
+            <label for="image" class="button col-lg-4 col-form-label text-lg-right">Añadir Imagen</label>
+            <input type="file" id="image" name="image" class="show-for-sr">
         </div>
 
             <div class="form-group row">

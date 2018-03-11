@@ -7,7 +7,7 @@
                         <a href="/{{ $user->username }}/gimnasios/{{ $gimnasio->nombre }}">
                             @endif
                             <figure>
-                                <img src="{{ $gimnasio->imagen }}" class="frontal" alt="imagen de {{$gimnasio['nombre']}}">
+                                <img src="{{ $gimnasio['imagen'] }}" class="frontal" alt="imagen de {{$gimnasio['nombre']}}">
                                 <figcaption class="trasera">
                                     <h2 class="titulo">{{$gimnasio['nombre']}}</h2>
                                     <hr>

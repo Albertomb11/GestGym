@@ -11,7 +11,7 @@
     <div class="row course-set courses__row event d-flex justify-content-around">
         @foreach($chunk as $actividad)
             <div class="card" style="width: 20rem; margin-top: 20px">
-                <img class="card-img-top" src="{{ $actividad->imagen }}" height="300px" alt="Card image cap">
+                <img class="card-img-top" src="{{ $actividad['imagen'] }}" height="300px" alt="Card image cap">
                 <div class="card-body">
                     <h1 class="card-title"><strong>{{$actividad['nombre']}} {{ $actividad['horario'] }}</strong></h1>
 

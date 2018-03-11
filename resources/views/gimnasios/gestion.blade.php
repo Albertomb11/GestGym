@@ -10,7 +10,7 @@
 
         <div class="row justify-content-md-center mt-3">
         <div class="card card-cascade" style="width: 30rem;">
-            <img class="card-img-top" src="{{ $gimnasios->imagen }}" height="300px" alt="Card image cap">
+            <img class="card-img-top" src="{{ $gimnasios['imagen'] }}" height="300px" alt="Card image cap">
             <div class="card-body">
                 <h5 class="card-title"><strong>{{$gimnasios['nombre']}}</strong></h5>
 
@@ -22,7 +22,7 @@
                 <hr>
                 <strong><a class="btn btn-secondary" href="/{{ $user->username }}/gimnasios/{{ $gimnasios->nombre }}/monitores">Monitores</a></strong>
                 <strong><a class="btn btn-secondary" href="/{{ $user->username }}/gimnasios/{{ $gimnasios->nombre }}/actividades">Actividades</a></strong>
-                <strong><a class="btn btn-secondary" href="#">Horarios Clases</a></strong>
+                <strong><a class="btn btn-secondary" href="/{{ $user->username }}/gimnasios/{{ $gimnasios->nombre }}/horarios">Horarios Clases</a></strong>
                 <hr>
                 <strong>Cuotas: </strong>{{$gimnasios['cuotas']}}€/mes
                 <hr>

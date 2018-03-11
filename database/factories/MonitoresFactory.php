@@ -6,7 +6,7 @@ use Carbon\Carbon;
 $factory->define(App\Monitore::class, function (Faker $faker) {
 
     $imagen = 'https://picsum.photos/150/150/?random';
-    $nombre = $faker->name;
+    $nombre = str_replace(" ", "-", $faker->name);
     $apellidos = $faker->lastName;
     $fecha_nacimiento = Carbon::createFromTimestamp($faker->dateTimeInInterval('-10 years', '+20 years')->getTimestamp());
     $estudios = $faker->sentence($nbWords = 6, $variableNbWords = true);

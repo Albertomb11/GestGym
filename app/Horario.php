@@ -13,14 +13,14 @@ class Horario extends Model
     protected $guarded = ['id', 'hora', 'created_at', 'updated_at'];
 
     public function gimnasios(){
-        return $this->belongsTo(Gimnasio::class);
+        return $this->belongsTo(Gimnasio::class)->latest();
     }
 
     public function actividades(){
-        return $this->belongsToMany(Actividade::class);
+        return $this->belongsToMany(Actividade::class)->latest();
     }
 
     public function monitores(){
-        return $this->belongsToMany(Monitore::class);
+        return $this->belongsToMany(Monitore::class)->latest();
     }
 }

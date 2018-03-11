@@ -1,6 +1,6 @@
 <div class="perfil-box">
 
-<form id="formEditarPerfil" role="form" action="{{ route('user.update', array('id' => Auth::user()->id))}}" method="post">
+<form id="formEditarPerfil" role="form" action="{{ route('user.update', array('id' => Auth::user()->id))}}" method="post" enctype="multipart/form-data">
         {{ csrf_field() }}
         {{ method_field('PUT') }}
 
@@ -122,6 +122,11 @@
             </div>
             @include('layouts.spinner')
         </div>
+
+    <div class="form-group row">
+        <label for="image" class="button col-lg-4 col-form-label text-lg-right">Añadir Imagen</label>
+        <input type="file" id="image" name="image" class="show-for-sr">
+    </div>
 
     <div class="form-group row">
         <div class="col-lg-6 offset-lg-4">

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable
 {
@@ -32,6 +33,15 @@ class User extends Authenticatable
     ];
 
     public function gimnasios(){
-        return $this->hasMany(Gimnasio::class);
+        return $this->hasMany(Gimnasio::class)->latest();
+    }
+
+    public function getImageAttribute($imagen)
+    {
+        if( starts_with($imagen, "https://")){
+            return $imagen;
+        }
+
+        return  Storage::disk('public')->url($imagen);
     }
 }

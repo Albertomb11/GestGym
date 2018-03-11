@@ -15,7 +15,7 @@
         </div>
 
         <div class="panel-body">
-            <form class="form-control" action="/{{ $user->username }}/gimnasios/{{ $gimnasio->nombre }}/actividades/{{ $actividad->id }}/edit" method="post">
+            <form class="form-control" action="/{{ $user->username }}/gimnasios/{{ $gimnasio->nombre }}/actividades/{{ $actividad->id }}/edit" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 {{ method_field('PUT') }}
 
@@ -101,6 +101,11 @@
                         </div>
                     </div>
 
+                </div>
+
+                <div class="form-group row">
+                    <label for="image" class="button col-lg-4 col-form-label text-lg-right">Añadir Imagen</label>
+                    <input type="file" id="image" name="image" class="show-for-sr">
                 </div>
 
                 <button type="submit" class="btn btn-primary btn-lg btn-block">Actualizar</button>

@@ -7,6 +7,7 @@ use App\Gimnasio;
 use App\Http\Requests\CreateActividadesRequest;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ActividadesController extends Controller
 {
@@ -35,8 +36,15 @@ class ActividadesController extends Controller
         $user = User::where('username', $username)->first();
         $gimnasio = Gimnasio::where('nombre', $nombre)->first();
 
+        if( $imagen = $request->file('imagen') ){
+            $url = $imagen->store('imagen','public');
+        }else{
+            $url = "https://picsum.photos/150/150/?random";
+        }
+
         $actividad = Actividade::create([
             'nombre' => $request->input('nombre'),
+            'imagen' => $url,
             'objetivos' => $request->input('objetivos'),
             'intensidad' => $request->input('intensidad'),
             'duracion' => $request->input('duracion'),
@@ -69,13 +77,27 @@ class ActividadesController extends Controller
 
         $actividad = Actividade::find($id);
 
-        $actividad->update([
+        if( $imagen = $request->file('image') ){
+            if( !strpos($actividad->imagen, "http") ) {
+                $routeParts = explode('/', $actividad->imagen);
+                Storage::disk('public')->delete('actividad/'.end($routeParts));
+            }
+
+            $url = $imagen->store('actividad','public');
+        }else{
+            $url = $actividad->imagen;
+        }
+
+        $actividad->fill([
             'nombre' => $request->input('nombre'),
+            'imagen' => $url,
             'objetivos' => $request->input('objetivos'),
             'intensidad' => $request->input('intensidad'),
             'duracion' => $request->input('duracion'),
             'descripcion' => $request->input('descripcion')
         ]);
+
+        $actividad->update();
 
         return redirect("$user->username/gimnasios/$gimnasio->nombre/actividades");
     }

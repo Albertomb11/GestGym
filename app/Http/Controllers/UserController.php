@@ -6,6 +6,7 @@ use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\UpdatePerfilAjaxFormRequest;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -33,14 +34,29 @@ class UserController extends Controller
 
     public function update(CreateUserRequest $request, $id){
         $user = User::find($id);
-        $user->name = $_POST['name'] ? $_POST['name']:null;
-        $user->surname = $_POST['surname'] ? $_POST['surname']:null;
-        $user->email = $request->input('email');
-        $user->movil = $_POST['movil'] ? $_POST['movil']:null;
-        $user->website = $_POST['website'] ? $_POST['website']:null;
-        $user->about = $_POST['about'] ? $_POST['about']:null;
 
-        $user->save();
+        if( $image = $request->file('image') ){
+            if( !strpos($user->image, "http") ) {
+                $routeParts = explode('/', $user->image);
+                Storage::disk('public')->delete('user/'.end($routeParts));
+            }
+
+            $url = $image->store('user','public');
+        }else{
+            $url = $user->image;
+        }
+
+        $user->fill([
+            'image' => $url,
+            'name' => $request->input('name'),
+            'surname' => $request->input('surname'),
+            'email' => $request->input('email'),
+            'movil' => $request->input('movil'),
+            'website' => $request->input('website'),
+            'about' => $request->input('about')
+        ]);
+
+        $user->update();
 
         return redirect()->back();
     }

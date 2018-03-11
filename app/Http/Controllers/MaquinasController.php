@@ -7,6 +7,7 @@ use App\Http\Requests\CreateMaquinasRequest;
 use App\Maquina;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class MaquinasController extends Controller
 {
@@ -54,8 +55,15 @@ class MaquinasController extends Controller
         $user = User::where('username', $username)->first();
         $gimnasio = Gimnasio::where('nombre', $nombre)->first();
 
+        if( $imagen = $request->file('imagen') ){
+            $url = $imagen->store('imagen','public');
+        }else{
+            $url = "https://picsum.photos/150/150/?random";
+        }
+
         $maquina = Maquina::create([
             'nombre' => $request->input('nombre'),
+            'imagen' => $url,
             'zona_trabajada' => $request->input('zona_trabajada'),
             'unidades' => $request->input('unidades'),
             'descripcion' => $request->input('descripcion')
@@ -101,12 +109,26 @@ class MaquinasController extends Controller
 
         $maquina = Maquina::find($id);
 
-        $maquina->update([
+        if( $imagen = $request->file('imagen') ){
+            if( !strpos($maquina->imagen, "http") ) {
+                $routeParts = explode('/', $maquina->imagen);
+                Storage::disk('public')->delete('maquina/'.end($routeParts));
+            }
+
+            $url = $imagen->store('maquina','public');
+        }else{
+            $url = $maquina->imagen;
+        }
+
+        $maquina->fill([
+            'imagen' => $url,
             'nombre' => $request->input('nombre'),
             'unidades' => $request->input('unidades'),
             'zona_trabajada' => $request->input('zona_trabajada'),
             'descripcion' => $request->input('descripcion'),
         ]);
+
+        $maquina->update();
 
         return redirect("$user->username/gimnasios/$gimnasio->nombre/maquinas");
     }

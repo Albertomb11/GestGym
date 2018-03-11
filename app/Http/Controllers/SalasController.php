@@ -7,6 +7,7 @@ use App\Http\Requests\CreateSalasRequest;
 use App\Sala;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class SalasController extends Controller
 {
@@ -54,9 +55,16 @@ class SalasController extends Controller
         $user = User::where('username', $username)->first();
         $gimnasio = Gimnasio::where('nombre', $nombre)->first();
 
+        if( $imagen = $request->file('imagen') ){
+            $url = $imagen->store('imagen','public');
+        }else{
+            $url = "https://picsum.photos/150/150/?random";
+        }
+
         Sala::create([
             'nombre' => $request->input('nombre'),
             'gimnasio_id' => $gimnasio->id,
+            'imagen' => $url,
             'equipamiento' => $request->input('equipamiento')
         ]);
 
@@ -97,10 +105,24 @@ class SalasController extends Controller
 
         $sala = Sala::find($id);
 
-        $sala->update([
+        if( $imagen = $request->file('imagen') ){
+            if( !strpos($sala->imagen, "http") ) {
+                $routeParts = explode('/', $sala->imagen);
+                Storage::disk('public')->delete('sala/'.end($routeParts));
+            }
+
+            $url = $imagen->store('sala','public');
+        }else{
+            $url = $sala->imagen;
+        }
+
+        $sala->fill([
+            'imagen' => $url,
             'nombre' => $request->input('nombre'),
             'equipamiento' => $request->input('equipamiento'),
         ]);
+
+        $sala->update();
 
         return redirect("$user->username/gimnasios/$gimnasio->nombre/salas");
     }

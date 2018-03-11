@@ -10,6 +10,7 @@ use App\Http\Requests\UpdateGimnasioRequest;
 use App\Monitore;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\View;
 
 class GimnasiosController extends Controller
@@ -36,9 +37,16 @@ class GimnasiosController extends Controller
     public function store(CreateGimnasioRequest $request){
         $user = Auth::user();
 
+        if( $imagen = $request->file('imagen') ){
+            $url = $imagen->store('imagen','public');
+        }else{
+            $url = "https://picsum.photos/150/150/?random";
+        }
+
         Gimnasio::create([
             'nombre' => $request->input('nombre'),
             'user_id' => $user->id,
+            'imagen' => $url,
             'direccion' => $request->input('direccion'),
             'horario_apertura' => $request->input('horario_apertura'),
             'horario_cierre' => $request->input('horario_cierre'),
@@ -94,11 +102,22 @@ class GimnasiosController extends Controller
 
     public function update(CreateGimnasioRequest $request,$username, $id){
         $user = User::where('username', $username)->first();
-        //dd($user);
+
         $gimnasio = Gimnasio::find($id);
-        //dd($gimnasio);
-        $gimnasio->update([
-            'imagen' => $request->input('imagen'),
+
+        if( $imagen = $request->file('imagen') ){
+            if( !strpos($gimnasio->imagen, "http") ) {
+                $routeParts = explode('/', $gimnasio->imagen);
+                Storage::disk('public')->delete('gimnasio/'.end($routeParts));
+            }
+
+            $url = $imagen->store('gimnasio','public');
+        }else{
+            $url = $gimnasio->imagen;
+        }
+
+        $gimnasio->fill([
+            'imagen' => $url,
             'nombre' => $request->input('nombre'),
             'direccion' => $request->input('direccion'),
             'horario_apertura' => $request->input('horario_apertura'),
@@ -106,6 +125,8 @@ class GimnasiosController extends Controller
             'cuotas' => $request->input('cuotas'),
             'descripcion' => $request->input('descripcion')
         ]);
+
+        $gimnasio->update();
 
         return redirect("$user->username/gimnasios/$gimnasio->nombre");
     }
