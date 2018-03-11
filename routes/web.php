@@ -11,11 +11,12 @@
 |
 */
 
-
+// Ruta de la pagina home
 Route::get('/', function () {
     return view('home');
 });
 
+// Ruta de la pagina de contacto
 Route::get('/contacto', 'PagesController@contacto');
 
 // Rutas de autenticación
@@ -34,14 +35,22 @@ Route::post('/register/validate', 'Auth\RegisterController@validacionRegisterAja
 Route::post('/updatePerfil/validate', 'UserController@validacionUpdatePerfilAjax');
 Route::post('/createGimnasios/validate', 'GimnasiosController@validacionCreateGimnasiosAjax');
 
-// Rutas de la entidad Users
+/*
+|--------------------------------------------------------------------------
+| Rutas de la entidad User
+|--------------------------------------------------------------------------
+*/
 Route::group(['prefix' => '/{user}'], function (){
     Route::get('/', 'UserController@perfil')->name('user.perfil');
     Route::get('/edit', 'UserController@edit')->name('user.edit')->middleware('auth');
     Route::put('/edit', 'UserController@update')->name('user.update')->middleware('auth');
 });
 
-// Rutas de la entidad Gimnasios
+/*
+|--------------------------------------------------------------------------
+| Rutas de la entidad Gimnasio
+|--------------------------------------------------------------------------
+*/
 Route::group(['prefix' => '/{user}/gimnasios'], function(){
     Route::get('/', 'GimnasiosController@show')->name('gimnasios.show');
     Route::get('/create', 'GimnasiosController@create')->name('gimnasios.form')->middleware();
@@ -51,7 +60,11 @@ Route::group(['prefix' => '/{user}/gimnasios'], function(){
     Route::get('/{gimnasio}', 'GimnasiosController@gestion')->name('gimnasios.gestion')->middleware();
 });
 
-// Rutas de la entidad Monitore
+/*
+|--------------------------------------------------------------------------
+| Rutas de la entidad Monitor
+|--------------------------------------------------------------------------
+*/
 Route::group(['prefix' => '/{user}/gimnasios/{gimnasio}/monitores'], function (){
     Route::get('/', 'MonitoresController@show')->name('monitores.show')->middleware();
     Route::get('/create', 'MonitoresController@create')->name('monitores.form')->middleware();
@@ -60,7 +73,11 @@ Route::group(['prefix' => '/{user}/gimnasios/{gimnasio}/monitores'], function ()
     Route::put('/{monitor}/edit', 'MonitoresController@update')->name('monitores.update')->middleware();
 });
 
-// Rutas de la entidad Actividade
+/*
+|--------------------------------------------------------------------------
+| Rutas de la entidad Actividad
+|--------------------------------------------------------------------------
+*/
 Route::group(['prefix' => '/{user}/gimnasios/{gimnasio}/actividades'], function (){
     Route::get('/', 'ActividadesController@show')->name('actividades.show')->middleware();
     Route::get('/create', 'ActividadesController@create')->name('actividades.form')->middleware();
@@ -69,7 +86,11 @@ Route::group(['prefix' => '/{user}/gimnasios/{gimnasio}/actividades'], function 
     Route::put('/{actividad}/edit', 'ActividadesController@update')->name('actividades.update')->middleware();
 });
 
-// Rutas de la entidad Producto
+/*
+|--------------------------------------------------------------------------
+| Rutas de la entidad Producto
+|--------------------------------------------------------------------------
+*/
 Route::group(['prefix' => '/{user}/gimnasios/{gimnasio}/productos'], function (){
     Route::get('/', 'ProductosController@show')->name('productos.show')->middleware();
     Route::get('/create', 'ProductosController@create')->name('productos.form')->middleware();
@@ -78,7 +99,11 @@ Route::group(['prefix' => '/{user}/gimnasios/{gimnasio}/productos'], function ()
     Route::put('/{producto}/edit', 'ProductosController@update')->name('productos.update')->middleware();
 });
 
-// Rutas de la entidad Maquina
+/*
+|--------------------------------------------------------------------------
+| Rutas de la entidad Maquina
+|--------------------------------------------------------------------------
+*/
 Route::group(['prefix' => '/{user}/gimnasios/{gimnasio}/maquinas'], function (){
     Route::get('/', 'MaquinasController@show')->name('maquinas.show')->middleware();
     Route::get('/create', 'MaquinasController@create')->name('maquinas.form')->middleware();
@@ -87,7 +112,11 @@ Route::group(['prefix' => '/{user}/gimnasios/{gimnasio}/maquinas'], function (){
     Route::put('/{maquina}/edit', 'MaquinasController@update')->name('maquinas.update')->middleware();
 });
 
-// Rutas de la entidad Sala
+/*
+|--------------------------------------------------------------------------
+| Rutas de la entidad Sala
+|--------------------------------------------------------------------------
+*/
 Route::group(['prefix' => '/{user}/gimnasios/{gimnasio}/salas'], function (){
     Route::get('/', 'SalasController@show')->name('salas.show')->middleware();
     Route::get('/create', 'SalasController@create')->name('salas.form')->middleware();
@@ -96,23 +125,33 @@ Route::group(['prefix' => '/{user}/gimnasios/{gimnasio}/salas'], function (){
     Route::put('/{sala}/edit', 'SalasController@update')->name('salas.update')->middleware();
 });
 
-// Rutas de la entidad Puntuacione
+/*
+|--------------------------------------------------------------------------
+| Rutas de la entidad Puntuacion
+|--------------------------------------------------------------------------
+*/
 Route::group(['prefix' => '/monitor/{monitor}/puntuaciones'], function (){
     Route::get('/', 'PuntuacionesController@show')->name('puntuaciones.show')->middleware();
     Route::get('/create', 'PuntuacionesController@create')->name('puntuaciones.form')->middleware();
     Route::post('/create', 'PuntuacionesController@store')->name('puntuaciones.create')->middleware();
 });
 
-// Rutas de la entidad Horario
+/*
+|--------------------------------------------------------------------------
+| Rutas de la entidad Horario
+|--------------------------------------------------------------------------
+*/
 Route::group(['prefix' => '/{user}/gimnasios/{gimnasio}/horarios'], function (){
     Route::get('/', 'HorariosController@show')->name('horarios.show')->middleware();
     Route::get('/create', 'HorariosController@create')->name('horarios.form')->middleware();
     Route::post('/create', 'HorariosController@store')->name('horarios.create')->middleware();
 });
 
-/**
- * Rutas autenticadas para borrar de cada entidad con SoftDelete.
- */
+/*
+|--------------------------------------------------------------------------
+| Rutas para borrar las entidades con softDelete.
+|--------------------------------------------------------------------------
+*/
 Route::group(['middleware' => 'auth'], function(){
     Route::delete('/user/delete/{user}', 'UserController@destroy')->name('user.delete');
     Route::delete('/gimnasio/delete/{gimnasio}', 'GimnasiosController@destroy')->name('gimnasio.delete');

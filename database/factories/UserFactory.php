@@ -14,6 +14,9 @@ use Faker\Generator as Faker;
 |
 */
 
+/**
+ * Utilizamos faker para generar datos aleatorios.
+ */
 $factory->define(App\User::class, function (Faker $faker) {
 
     $image = 'https://picsum.photos/150/150/?random';

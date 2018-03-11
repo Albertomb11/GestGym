@@ -7,7 +7,7 @@ use Illuminate\Foundation\Http\FormRequest;
 class CreateMonitoresRequest extends FormRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
+     * Autorizamos la validacion
      *
      * @return bool
      */
@@ -17,7 +17,7 @@ class CreateMonitoresRequest extends FormRequest
     }
 
     /**
-     * Get the validation rules that apply to the request.
+     * Especificamos las reglas de validacion
      *
      * @return array
      */
@@ -34,6 +34,11 @@ class CreateMonitoresRequest extends FormRequest
         ];
     }
 
+    /**
+     * Especificamos los mensajes para las reglas de validacion
+     *
+     * @return array
+     */
     public function messages()
     {
         // Se espeficican los mensajes de validación para las reglas definidas

@@ -14,10 +14,19 @@ class Sala extends Model
     //Con $guarded se indican los elementos que no queremos que se modifiquen
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
+    /**
+     * Le decimos que es una relacion 1 a n.
+     * @return \Illuminate\Database\Query\Builder|static
+     */
     public function gimnasios(){
         return $this->belongsTo(Gimnasio::class)->latest();
     }
 
+    /**
+     * Recogemos los atributos de la imagen y le decimos donde guardarla
+     * @param $imagen
+     * @return mixed
+     */
     public function getImageAttribute($imagen)
     {
         if( starts_with($imagen, "https://")){

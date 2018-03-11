@@ -2,6 +2,9 @@
 
 use Faker\Generator as Faker;
 
+/**
+ * Utilizamos faker para generar datos aleatorios.
+ */
 $factory->define(Model::class, function (Faker $faker) {
 
     $dia_semana = $faker->dayOfWeek;

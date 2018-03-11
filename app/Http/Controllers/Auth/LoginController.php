@@ -30,6 +30,11 @@ class LoginController extends Controller
      */
     protected $redirectTo = '/';
 
+    /**
+     * En esta funcion lo que hacemos es enviar una notificacion al usuario que hemos asignado como $admin cuando alguien se loguea en el sistema.
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     protected function authenticated()
     {
         $user = Auth::user();

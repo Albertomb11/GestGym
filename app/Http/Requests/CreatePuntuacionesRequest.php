@@ -7,7 +7,7 @@ use Illuminate\Foundation\Http\FormRequest;
 class CreatePuntuacionesRequest extends FormRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
+     * Autorizamos la validacion
      *
      * @return bool
      */
@@ -17,7 +17,7 @@ class CreatePuntuacionesRequest extends FormRequest
     }
 
     /**
-     * Get the validation rules that apply to the request.
+     * Especificamos las reglas de validacion
      *
      * @return array
      */
@@ -30,6 +30,11 @@ class CreatePuntuacionesRequest extends FormRequest
         ];
     }
 
+    /**
+     * Especificamos los mensajes de las reglas de validacion
+     *
+     * @return array
+     */
     public function message(){
         // Se espeficican los mensajes de validación para las reglas definidas
         // en el método rules de esta clase.

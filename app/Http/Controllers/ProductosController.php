@@ -11,6 +11,13 @@ use Illuminate\Support\Facades\Storage;
 
 class ProductosController extends Controller
 {
+    /**
+     * Mostramos la pagina inicial de la entidad productos y le pasamos los parametros necesarios.
+     *
+     * @param $username
+     * @param $nombre
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function show($username, $nombre){
         $user = User::where('username', $username)->first();
 
@@ -25,6 +32,12 @@ class ProductosController extends Controller
         ]);
     }
 
+    /**
+     * Mostramos la pagina de creacion de un producto.
+     *
+     * @param User $username
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function create(User $username){
 
         return view('productos.create',[
@@ -32,6 +45,14 @@ class ProductosController extends Controller
         ]);
     }
 
+    /**
+     * Recogemos los datos enviados por post y lo procesamos para guardarlos en la base de datos.
+     *
+     * @param CreateProductosRequest $request
+     * @param $username
+     * @param $nombre
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function store(CreateProductosRequest $request, $username, $nombre){
         $user = User::where('username', $username)->first();
         $gimnasio = Gimnasio::where('nombre', $nombre)->first();
@@ -55,6 +76,14 @@ class ProductosController extends Controller
         return redirect("$user->username/gimnasios/$gimnasio->nombre/productos");
     }
 
+    /**
+     * Mostramos la pagina de edicion de un producto
+     *
+     * @param $username
+     * @param $nombre
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function edit($username, $nombre, $id){
         $user = User::where('username', $username)->first();
 
@@ -69,6 +98,15 @@ class ProductosController extends Controller
         ]);
     }
 
+    /**
+     * Recogemos los datos enviados por post para procesalor y actualizarlos en la base de datos.
+     *
+     * @param CreateProductosRequest $request
+     * @param $username
+     * @param $nombre
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function update(CreateProductosRequest $request, $username, $nombre, $id){
         $user = User::where('username', $username)->first();
 
@@ -101,6 +139,12 @@ class ProductosController extends Controller
         return redirect("$user->username/gimnasios/$gimnasio->nombre/productos");
     }
 
+    /**
+     * Recogemos el id de la entidad para borrarlo con el metodo softDelete.
+     *
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function destroy($id){
         Producto::where('id', $id)->delete();
 

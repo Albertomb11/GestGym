@@ -12,6 +12,13 @@ use Illuminate\Support\Facades\Storage;
 
 class MonitoresController extends Controller
 {
+    /**
+     * Mostramos la pagina de inicio de los monitores, le pasamos los parametros necesarios.
+     *
+     * @param $username
+     * @param $nombre
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function show($username, $nombre){
         $user = User::where('username', $username)->first();
 
@@ -26,6 +33,12 @@ class MonitoresController extends Controller
         ]);
     }
 
+    /**
+     * Mostramos la pagina de creacion de un monitor.
+     *
+     * @param User $username
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function create(User $username){
 
         return view('monitores.create', [
@@ -33,6 +46,14 @@ class MonitoresController extends Controller
         ]);
     }
 
+    /**
+     * Recogemos los datos enviados por post para procesarlo y guardarlos en la base de datos.
+     *
+     * @param CreateMonitoresRequest $request
+     * @param $username
+     * @param $nombre
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function store(CreateMonitoresRequest $request, $username, $nombre){
         $user = User::where('username', $username)->first();
         $gimnasio = Gimnasio::where('nombre', $nombre)->first();
@@ -53,11 +74,20 @@ class MonitoresController extends Controller
             'email' => $request->input('email')
         ]);
 
+        // Con el metodo attach hacemos la relacion n a n que tenemos asiganada en sus modelos y se guardara en la tabla pivot.
         $gimnasio->monitores()->attach($monitor);
 
         return redirect("$user->username/gimnasios/$gimnasio->nombre/monitores");
     }
 
+    /**
+     * Mostramos la pagina de edicion de un monitor.
+     *
+     * @param $username
+     * @param $nombre
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function edit($username, $nombre, $id){
         $user = User::where('username', $username)->first();
 
@@ -72,6 +102,15 @@ class MonitoresController extends Controller
         ]);
     }
 
+    /**
+     * Recogemos los datos enviados por post para procesarlo y actualizarlo en la base de datos.
+     *
+     * @param CreateMonitoresRequest $request
+     * @param $username
+     * @param $nombre
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function update(CreateMonitoresRequest $request, $username, $nombre, $id){
         $user = User::where('username', $username)->first();
 
@@ -104,6 +143,12 @@ class MonitoresController extends Controller
         return redirect("$user->username/gimnasios/$gimnasio->nombre/monitores");
     }
 
+    /**
+     * Recogemos el id de la entidad y lo borramos con el metodo softDelete.
+     *
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function destroy($id){
         Monitore::where('id', $id)->delete();
 

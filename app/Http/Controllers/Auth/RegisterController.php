@@ -71,7 +71,12 @@ class RegisterController extends Controller
         ]);
     }
 
-    // Validacion por Ajax
+    /**
+     * En este metodo pasamos los parametros para validar el formulario de registro asincronamente.
+     *
+     * @param CreateUserAjaxFormRequest $request
+     * @return array
+     */
     protected function validacionRegisterAjax(CreateUserAjaxFormRequest $request){
         return array();
     }

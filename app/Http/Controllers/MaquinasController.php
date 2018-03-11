@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Storage;
 class MaquinasController extends Controller
 {
     /**
-     * Display the specified resource.
+     * En este metodo mostramos la página inicial de la entidad maquina, pasandole los parametros necesarios.
      *
      * @param  \App\Maquina  $maquinas
      * @return \Illuminate\Http\Response
@@ -33,7 +33,7 @@ class MaquinasController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * En este metodo mostramos la pagina de creacion de una maquina.
      *
      * @return \Illuminate\Http\Response
      */
@@ -45,7 +45,7 @@ class MaquinasController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * En este metodo recogemos los datos enviados por post y lo procesamos para guardarlos en la base de datos.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -69,13 +69,14 @@ class MaquinasController extends Controller
             'descripcion' => $request->input('descripcion')
         ]);
 
+        // Con el metodo attach hacemos la relacion n a n que tenemos asiganada en sus modelos y se guardara en la tabla pivot.
         $gimnasio->maquinas()->attach($maquina);
 
         return redirect("$user->username/gimnasios/$gimnasio->nombre/maquinas");
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * En este metodo mostramos la pagina de edicion de una maquina.
      *
      * @param  \App\Maquina  $maquinas
      * @return \Illuminate\Http\Response
@@ -96,7 +97,7 @@ class MaquinasController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Recogemos los datos enviados por post y lo procesamos para actualizarlo en la base de datos.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Maquina  $maquinas
@@ -133,6 +134,12 @@ class MaquinasController extends Controller
         return redirect("$user->username/gimnasios/$gimnasio->nombre/maquinas");
     }
 
+    /**
+     * Recogemos el id de la entidad para borrarlo con el metodo softDelete.
+     *
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function destroy($id){
         Maquina::where('id', $id)->delete();
 

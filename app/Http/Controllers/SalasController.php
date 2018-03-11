@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Storage;
 class SalasController extends Controller
 {
     /**
-     * Display the specified resource.
+     * Mostramos la pagina de inincio de la entidad salas.
      *
      * @param  \App\Sala  $salas
      * @return \Illuminate\Http\Response
@@ -33,7 +33,7 @@ class SalasController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Mostramos la pagina de creacion de una sala.
      *
      * @return \Illuminate\Http\Response
      */
@@ -45,7 +45,7 @@ class SalasController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Recogemos los datos enviados por post y lo procesamos para guardarlos en la base de datos.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -72,7 +72,7 @@ class SalasController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Mostramos la pagina de creacion de una sala.
      *
      * @param  \App\Sala  $salas
      * @return \Illuminate\Http\Response
@@ -92,7 +92,7 @@ class SalasController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Recogemos los datos enviados por post para procesalor y actualizarlos en la base de datos.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Sala  $salas
@@ -127,6 +127,12 @@ class SalasController extends Controller
         return redirect("$user->username/gimnasios/$gimnasio->nombre/salas");
     }
 
+    /**
+     * Recogemos el id para borrarlo con el metodo softDelete.
+     *
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function destroy($id){
         Sala::where('id', $id)->delete();
 

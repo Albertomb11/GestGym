@@ -7,11 +7,21 @@ use Illuminate\Foundation\Http\FormRequest;
 class CreateGimnasioRequest extends FormRequest
 {
 
+    /**
+     * Autorizamos la validacion
+     *
+     * @return bool
+     */
     public function authorize()
     {
         return true;
     }
 
+    /**
+     * Especificamos las reglas de validacion
+     *
+     * @return array
+     */
     public function rules()
     {
         // Aquí se especifican las reglas de validación para este Requests
@@ -25,6 +35,11 @@ class CreateGimnasioRequest extends FormRequest
         ];
     }
 
+    /**
+     * Especificamos los mensajes para las reglas de validacion
+     *
+     * @return array
+     */
     public function messages()
     {
         // Se espeficican los mensajes de validación para las reglas definidas

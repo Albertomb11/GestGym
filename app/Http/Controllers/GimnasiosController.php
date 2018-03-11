@@ -16,6 +16,12 @@ use Illuminate\Support\Facades\View;
 class GimnasiosController extends Controller
 {
 
+    /**
+     * En este metodo mostramos la pagina principal de la entidad gimnasios y le pasamos los parametros necesarios.
+     *
+     * @param $username
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function show($username){
         $user = User::where('username', $username)->first();
 
@@ -27,6 +33,12 @@ class GimnasiosController extends Controller
         ]);
     }
 
+    /**
+     * En este metodo mostramos la página de creación de un gimnasio.
+     *
+     * @param User $username
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function create(User $username){
 
         return view('gimnasios.create',[
@@ -34,6 +46,12 @@ class GimnasiosController extends Controller
         ]);
     }
 
+    /**
+     * En este metodo recogemos los datos pasados por post y lo procesamos para guardarlos en la base de datos.
+     *
+     * @param CreateGimnasioRequest $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function store(CreateGimnasioRequest $request){
         $user = Auth::user();
 
@@ -57,6 +75,13 @@ class GimnasiosController extends Controller
         return redirect("$user->username/gimnasios");
     }
 
+    /**
+     * En este metodo mostramos la vista de un gimnasio en cuestion para poder gestionarlo.
+     *
+     * @param $username
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function gestion($username, $id){
         $user = User::where('username', $username)->first();
 
@@ -68,6 +93,12 @@ class GimnasiosController extends Controller
         ]);
     }
 
+    /**
+     * En este metodo mostramos todos los gimnasios de la base de datos para los usuarios no logueados en el sistema.
+     *
+     * @param Gimnasio $gimnasios
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function publico(Gimnasio $gimnasios){
         $gimnasios = Gimnasio::orderBy('created_at', 'desc')->paginate(3);
 
@@ -76,6 +107,11 @@ class GimnasiosController extends Controller
         ]);
     }
 
+    /**
+     * En este metodo lo que se hace es mostrar los gimnasios con una paginacion determinada
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function mostrarGimnasios(){
         if (request()->ajax()){
             $gimnasios = Gimnasio::orderBy('created_at', 'desc')->paginate(3);
@@ -85,10 +121,23 @@ class GimnasiosController extends Controller
         }
     }
 
+    /**
+     * En este metodo le pasamos los parametros para validar el formulario de crear un gimnasio asincronamente.
+     *
+     * @param CreateGimnasioAjaxFormRequest $request
+     * @return array
+     */
     public function validacionCreateGimnasiosAjax(CreateGimnasioAjaxFormRequest $request){
         return array();
     }
 
+    /**
+     * En este metodo mostramos la pagina de edición de un gimnasio, pasandole los parametros necesarios
+     *
+     * @param $username
+     * @param $nombre
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function edit($username, $nombre){
         $user = User::where('username', $username)->first();
 
@@ -100,6 +149,14 @@ class GimnasiosController extends Controller
         ]);
     }
 
+    /**
+     * En este metodo recogemos los datos enviados por post y lo procesamos para actualizarlos en la base de datos.
+     *
+     * @param CreateGimnasioRequest $request
+     * @param $username
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function update(CreateGimnasioRequest $request,$username, $id){
         $user = User::where('username', $username)->first();
 
@@ -131,6 +188,12 @@ class GimnasiosController extends Controller
         return redirect("$user->username/gimnasios/$gimnasio->nombre");
     }
 
+    /**
+     * En este metodo recogemos el id de la entidad para borrarla con el metodo softDelete.
+     *
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function destroy($id){
         Gimnasio::where('id', $id)->delete();
 

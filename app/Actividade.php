@@ -15,10 +15,21 @@ class Actividade extends Model
     //Con $guarded se indican los elementos que no queremos que se modifiquen
     protected $guarded = ['id', 'created_at', 'updated_at'];
 
+    /**
+     * Le decimos que es una relacion n a n.
+     *
+     * @return \Illuminate\Database\Query\Builder|static
+     */
     public function gimnasios(){
         return $this->belongsToMany(Gimnasio::class)->latest();
     }
 
+    /**
+     * Recogemos los atributos de la imagen y donde se guardara.
+     *
+     * @param $imagen
+     * @return mixed
+     */
     public function getImageAttribute($imagen)
     {
         if( starts_with($imagen, "https://")){

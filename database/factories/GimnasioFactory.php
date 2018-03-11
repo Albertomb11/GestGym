@@ -4,6 +4,9 @@
 use Faker\Generator as Faker;
 use Carbon\Carbon;
 
+/**
+ * Utilizamos faker para generar datos aleatorios.
+ */
 $factory->define(App\Gimnasio::class, function (Faker $faker) {
 
     $imagen = 'https://picsum.photos/150/150/?random';

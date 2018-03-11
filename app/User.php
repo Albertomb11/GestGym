@@ -32,10 +32,19 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    /**
+     * Le decimos que es una relacion 1 a n.
+     * @return \Illuminate\Database\Query\Builder|static
+     */
     public function gimnasios(){
         return $this->hasMany(Gimnasio::class)->latest();
     }
 
+    /**
+     * Recogemos los atributo de la imagen y le decimos donde guardarla.
+     * @param $imagen
+     * @return mixed
+     */
     public function getImageAttribute($imagen)
     {
         if( starts_with($imagen, "https://")){

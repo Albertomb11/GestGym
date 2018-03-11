@@ -12,14 +12,26 @@ class Horario extends Model
 
     protected $guarded = ['id', 'hora', 'created_at', 'updated_at'];
 
+    /**
+     * Le decimos que es una relacion 1 a n.
+     * @return \Illuminate\Database\Query\Builder|static
+     */
     public function gimnasios(){
         return $this->belongsTo(Gimnasio::class)->latest();
     }
 
+    /**
+     * Le decimos que es una relacion n a n.
+     * @return \Illuminate\Database\Query\Builder|static
+     */
     public function actividades(){
         return $this->belongsToMany(Actividade::class)->latest();
     }
 
+    /**
+     * Le decimos que es una relacion n a n.
+     * @return \Illuminate\Database\Query\Builder|static
+     */
     public function monitores(){
         return $this->belongsToMany(Monitore::class)->latest();
     }

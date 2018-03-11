@@ -10,6 +10,12 @@ use Illuminate\Http\Request;
 
 class PuntuacionesController extends Controller
 {
+    /**
+     * Mostramos la pagina inicial de las puntuaciones, le pasamos los parametros necesarios.
+     *
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function show($id){
         $monitores = Monitore::where('nombre', $id)->first();
 
@@ -21,6 +27,13 @@ class PuntuacionesController extends Controller
         ]);
     }
 
+    /**
+     * Mostramos la pagina de creacion de una puntuacion
+     *
+     * @param Monitore $monitores
+     * @param Gimnasio $gimnasio
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function create(Monitore $monitores, Gimnasio $gimnasio){
 
         return view('puntuaciones.create', [
@@ -29,6 +42,13 @@ class PuntuacionesController extends Controller
         ]);
     }
 
+    /**
+     * Recogemos los datos enviados por post y lo procesamos para guardarlos en la base de datos.
+     *
+     * @param CreatePuntuacionesRequest $request
+     * @param $nombre
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function store(CreatePuntuacionesRequest $request, $nombre){
         $monitore = Monitore::where('nombre', $nombre)->first();
         

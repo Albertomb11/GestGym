@@ -11,6 +11,12 @@ use Illuminate\Support\Facades\Storage;
 class UserController extends Controller
 {
 
+    /**
+     * Mostramos la pagina de perfil del usuario.
+     *
+     * @param $username
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function perfil($username){
         $user = User::where('username',$username)->first();
 
@@ -21,7 +27,8 @@ class UserController extends Controller
     }
 
     /**
-     * Funcion que muestra el formulario para actualizar los datos del usuario
+     * Funcion que muestra el formulario para actualizar los datos del usuario.
+     *
      * @param $name
      * @return $this
      */
@@ -31,7 +38,13 @@ class UserController extends Controller
         return view('user.edit')->with('username', $username);
     }
 
-
+    /**
+     * Recogemos los datos enviados por post para procesalos y actualizarlos en la base de datos.
+     *
+     * @param CreateUserRequest $request
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function update(CreateUserRequest $request, $id){
         $user = User::find($id);
 
@@ -61,11 +74,22 @@ class UserController extends Controller
         return redirect()->back();
     }
 
-    // Validacion Ajax
+    /**
+     * Pasamos los parametros para validar el formulario de actualizar el perfil del usuario
+     *
+     * @param UpdatePerfilAjaxFormRequest $request
+     * @return array
+     */
     protected function validacionUpdatePerfilAjax(UpdatePerfilAjaxFormRequest $request){
         return array();
     }
 
+    /**
+     * Recogemos el id del usuario para borrarlo con el metodo softDelete.
+     *
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function destroy($id){
         User::where('id', $id)->delete();
 

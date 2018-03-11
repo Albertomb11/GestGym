@@ -3,6 +3,9 @@
 use Carbon\Carbon;
 use Faker\Generator as Faker;
 
+/**
+ * Utilizamos faker para generar datos aleatorios.
+ */
 $factory->define(App\Puntuacione::class, function (Faker $faker) {
 
     $estrellas = $faker->numberBetween(0, 6);

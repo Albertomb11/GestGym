@@ -15,7 +15,7 @@ class UserLoggedIn extends Notification
     private $userLoggedIn;
 
     /**
-     * Create a new notification instance.
+     * Creamos una nueva instancia de una notificacion
      *
      * @return void
      */
@@ -25,7 +25,7 @@ class UserLoggedIn extends Notification
     }
 
     /**
-     * Get the notification's delivery channels.
+     * Obtenemos los canales por donde enviamos las notificaciones.
      *
      * @param  mixed  $notifiable
      * @return array
@@ -36,7 +36,7 @@ class UserLoggedIn extends Notification
     }
 
     /**
-     * Get the mail representation of the notification.
+     * Obtenemos la representacion del email de notificacion.
      *
      * @param  mixed  $notifiable
      * @return \Illuminate\Notifications\Messages\MailMessage
@@ -53,7 +53,7 @@ class UserLoggedIn extends Notification
     }
 
     /**
-     * Get the array representation of the notification.
+     * Obtenemos la representacion del array de la notificaion
      *
      * @param  mixed  $notifiable
      * @return array
