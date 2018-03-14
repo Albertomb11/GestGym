@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Gimnasio;
+use App\Http\Requests\CreateMonitorAjaxFormRequest;
 use App\Http\Requests\CreateMonitoresRequest;
 use App\Monitore;
 use App\Puntuacione;
@@ -153,5 +154,15 @@ class MonitoresController extends Controller
         Monitore::where('id', $id)->delete();
 
         return redirect('/');
+    }
+
+    /**
+     * En este metodo le pasamos los parametros para validar el formulario de crear un monitor asincronamente.
+     *
+     * @param CreateMonitorAjaxFormRequest $request
+     * @return array
+     */
+    public function validacionCreateMonitoresAjax(CreateMonitorAjaxFormRequest $request){
+        return array();
     }
 }

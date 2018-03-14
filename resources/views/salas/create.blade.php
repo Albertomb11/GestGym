@@ -2,61 +2,64 @@
 
 @section('content')
 <div class="row">
-    <div class="col-md-2">
+    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xl-2">
         @include('navbar')
     </div>
+    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xl-2"></div>
 
-    <div class="col-md-8">
-        <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">
-                <h1 class="page-header title text-center" style="color: #fff;">Crear Sala</h1>
+    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+        <div class="card">
+            <div class="card-header">
+                <strong>Crear Sala</strong>
             </div>
-        </div>
+            <div class="card-body">
+                <form id="formularioCrearSala" class="form-control" action="" method="post" enctype="multipart/form-data">
+                    {{ csrf_field() }}
 
-        <div class="panel-body">
-            <form class="form-control" action="" method="post" enctype="multipart/form-data">
-                {{ csrf_field() }}
+                    <div class="row">
 
-                <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group{{ $errors->has('nombre') ? ' has-error' : '' }}">
+                                <label for="nombre" class="control-label">Nombre</label>
 
-                    <div class="col-md-6">
-                        <div class="form-group{{ $errors->has('nombre') ? ' has-error' : '' }}">
-                            <label for="nombre" class="col-md-4 control-label"><h2>Nombre</h2></label>
+                                <input id="nombre" type="text" class="form-control" name="nombre" value="{{ old('nombre') }}">
 
-                            <input id="nombre" type="text" class="form-control" name="nombre" value="{{ old('nombre') }}">
-
-                            @if ($errors->has('nombre'))
-                                <span class="help-block alert-danger">
+                                @if ($errors->has('nombre'))
+                                    <span class="help-block alert-danger">
                                     <strong>{{ $errors->first('nombre') }}</strong>
                                             </span>
-                            @endif
+                                @endif
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="col-md-6">
-                        <div class="form-group{{ $errors->has('equipamiento') ? ' has-error' : '' }}">
-                            <label for="equipamiento" class="col-md-4 control-label"><h2>Equipamiento</h2></label>
+                        <div class="col-md-6">
+                            <div class="form-group{{ $errors->has('equipamiento') ? ' has-error' : '' }}">
+                                <label for="equipamiento" class="control-label">Equipamiento</label>
 
-                            <input id="equipamiento" type="text" class="form-control" name="equipamiento">
+                                <input id="equipamiento" type="text" class="form-control" name="equipamiento">
 
-                            @if ($errors->has('equipamiento'))
-                                <span class="help-block alert-danger">
+                                @if ($errors->has('equipamiento'))
+                                    <span class="help-block alert-danger">
                                     <strong>{{ $errors->first('equipamiento') }}</strong>
                                 </span>
-                            @endif
+                                @endif
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="form-group row">
-                    <label for="image" class="button col-lg-4 col-form-label text-lg-right">Añadir Imagen</label>
-                    <input type="file" id="image" name="image" class="show-for-sr">
-                </div>
+                    <div class="form-group row">
+                        <label for="image" class="button col-lg-4 col-form-label text-lg-right">Añadir Imagen</label>
+                        <input type="file" id="image" name="image" class="show-for-sr">
+                    </div>
 
-                <button type="submit" class="btn btn-primary btn-lg btn-block">Añadir</button>
-            </form>
+                    <button id="botonCrearSala" type="submit" class="btn btn-primary btn-lg btn-block" data-toggle="tooltip" data-placement="top" title="Añadir Sala">Añadir</button>
+                </form>
+            </div>
         </div>
     </div>
 </div>
 @endsection
 
+@push('scripts')
+    <script src="{{ asset('js/formularioCrearSalaAsincrono.js') }}"></script>
+@endpush

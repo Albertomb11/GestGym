@@ -93,6 +93,7 @@ class GimnasiosController extends Controller
         ]);
     }
 
+
     /**
      * En este metodo mostramos todos los gimnasios de la base de datos para los usuarios no logueados en el sistema.
      *

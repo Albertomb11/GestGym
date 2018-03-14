@@ -84,9 +84,11 @@
 @endif
 
 @if(Auth::user())
-<div class="row justify-content-md-center mt-5">
+<div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xl-2">
 @include('navbar')
 </div>
+
+// Añadir pagina home
 @endif
 
 @endsection

@@ -33,13 +33,18 @@
                 <strong>Descripcion: </strong>{{$gimnasios['descripcion']}}
                 <hr>
 
-                <div class="container">
+                <div class="row">
+                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4">
                     <a href="/{{ $user->username }}/gimnasios/{{ $gimnasios->nombre }}/edit" class="btn btn-primary">Editar</a>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4">
                     <form action="{{route('gimnasio.delete',array('id' => $gimnasios['id']))}}" method="post">
                         {{ csrf_field() }}
                         {{ method_field('DELETE') }}
                         <button type="submit" class="btn btn-danger">Borrar</button>
                     </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -50,6 +55,6 @@
 @endsection
 
 @push('scripts')
-
+    <script src="{{ asset('js/formularioCrearGimnasioAsincrono.js') }}"></script>
 @endpush
 

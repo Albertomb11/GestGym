@@ -8,7 +8,7 @@
 
     <div class="col-md-8">
 
-        @forelse($productos->chunk(4) as $chunk)
+        @forelse($productos->chunk(3) as $chunk)
             <div class="row course-set courses__row event d-flex justify-content-around">
                 @foreach($chunk as $producto)
                     <div class="card" style="width: 20rem; margin-top: 20px">
@@ -20,13 +20,18 @@
                             <strong>Caracteristicas: </strong>{{$producto['caracteristicas']}}
                             <hr>
 
-                            <div class="container">
-                                <a href="/{{ $user->username }}/gimnasios/{{ $gimnasio->nombre }}/productos/{{ $producto->id }}/edit" class="btn btn-primary">Editar</a>
-                                <form action="{{route('$producto.delete',array('id' => $producto['id']))}}" method="post">
+                            <div class="row">
+                                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                <a href="/{{ $user->username }}/gimnasios/{{ $gimnasio->nombre }}/productos/{{ $producto->id }}/edit" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Editar Producto">Editar</a>
+                                </div>
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                <form action="{{route('producto.delete',array('id' => $producto['id']))}}" method="post">
                                     {{ csrf_field() }}
                                     {{ method_field('DELETE') }}
-                                    <button type="submit" class="btn btn-danger">Borrar</button>
+                                    <button type="submit" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Borrar producto">Borrar</button>
                                 </form>
+                                </div>
                             </div>
                         </div>
                         <div class="card-footer">
@@ -50,14 +55,14 @@
         </div>
 
         <button class="btn btn-success w-75" type="button">
-            <a class="nav-link disabled" href="/{{ $user->username }}/gimnasios/{{ $gimnasio->nombre }}/productos/create">
+            <a class="nav-link disabled" href="/{{ $user->username }}/gimnasios/{{ $gimnasio->nombre }}/productos/create" data-toggle="tooltip" data-placement="top" title="Añadir producto">
                 <span class="button-group-addon" ><img src="http://simpleicon.com/wp-content/uploads/account.svg" width="30" height="30" alt=""></span>
                 Añadir Producto
             </a>
         </button>
         <hr>
         <button class="btn-lg btn-success w-75" type="button">
-            <a class="nav-link disabled" href="/{{ $user->username }}/gimnasios/{{ $gimnasio->nombre }}">
+            <a class="nav-link disabled" href="/{{ $user->username }}/gimnasios/{{ $gimnasio->nombre }}" data-toggle="tooltip" data-placement="top" title="Volver a {{ $gimnasio->nombre }}">
                 Volver a {{ $gimnasio->nombre }}
             </a>
         </button>

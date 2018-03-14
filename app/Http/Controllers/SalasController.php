@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Gimnasio;
+use App\Http\Requests\CreateSalaAjaxFormRequest;
 use App\Http\Requests\CreateSalasRequest;
 use App\Sala;
 use App\User;
@@ -137,5 +138,15 @@ class SalasController extends Controller
         Sala::where('id', $id)->delete();
 
         return redirect('/');
+    }
+
+    /**
+     * En este metodo le pasamos los parametros para validar el formulario de crear una sala asincronamente.
+     *
+     * @param CreateSalaAjaxFormRequest $request
+     * @return array
+     */
+    public function validacionCreateSalaAjax(CreateSalaAjaxFormRequest $request){
+        return array();
     }
 }

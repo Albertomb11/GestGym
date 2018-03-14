@@ -28,8 +28,8 @@ class CreateGimnasioRequest extends FormRequest
         return [
             'nombre' => 'required|string|max:99999999999',
             'direccion' => 'required|string|max:99999999999',
-            'horario_apertura' => 'required|time',
-            'horario_cierre' => 'required|time',
+            'horario_apertura' => 'required',
+            'horario_cierre' => 'required',
             'cuotas' => 'required|string|max:99999999999',
             'descripcion' => 'string|max:99999999999',
         ];
@@ -52,9 +52,7 @@ class CreateGimnasioRequest extends FormRequest
             'direccion.string' => 'La direccion debe de ser una cadena de caracteres.',
             'direccion.max' => 'El maximo de caracteres es 99999999999',
             'horario_apertura.required' => 'Este campo es obligatorio.',
-            'horario_apertura.time' => 'El horario de apertura debe de ser tipo time',
             'horario_cierre.required' => 'Este campo es obligatorio.',
-            'horario_cierre.time' => 'El horario de cierre debe de ser de tipo time',
             'cuotas.required' => 'Este campo es obligatorio.',
             'cuotas.string' => 'Las cuotas deben de ser una cadena de caracteres.',
             'cuotas.max' => 'El maximo de caracteres es 99999999999',

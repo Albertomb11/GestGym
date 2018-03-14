@@ -38,9 +38,9 @@ class LoginController extends Controller
     protected function authenticated()
     {
         $user = Auth::user();
-        $admin = User::find(1);
-
-        $admin->notify(new UserLoggedIn($user));
+//        $admin = User::find(1);
+//
+//        $admin->notify(new UserLoggedIn($user));
 
         return redirect("{$user->username}/gimnasios");
     }

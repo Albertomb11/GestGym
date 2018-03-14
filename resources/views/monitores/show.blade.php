@@ -24,16 +24,21 @@
                     <hr>
                     <strong>Direccion: </strong>{{$monitor['direccion']}}
                     <hr>
-                    <strong><a class="btn btn-secondary" href="/monitor/{{ $monitor->nombre }}/puntuaciones">Puntuacion</a></strong>
-                    <hr>
 
-                    <div class="container">
-                        <a href="/{{ $user->username }}/gimnasios/{{ $gimnasio->nombre }}/monitores/{{ $monitor->id }}/edit" class="btn btn-primary">Editar</a>
+                    <div class="row">
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                            <a class="btn btn-secondary" href="/monitor/{{ $monitor->nombre }}/puntuaciones" data-toggle="tooltip" data-placement="top" title="Mostrar Puntuacion">Puntuacion</a>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                        <a href="/{{ $user->username }}/gimnasios/{{ $gimnasio->nombre }}/monitores/{{ $monitor->id }}/edit" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Editar Monitor">Editar</a>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4">
                         <form action="{{route('monitor.delete',array('id' => $monitor  ['id']))}}" method="post">
                             {{ csrf_field() }}
                             {{ method_field('DELETE') }}
-                            <button type="submit" class="btn btn-danger">Borrar</button>
+                            <button type="submit" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Borrar Monitor">Borrar</button>
                         </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -53,14 +58,14 @@
         </div>
 
         <button class="btn btn-success w-75" type="button">
-            <a class="nav-link disabled" href="/{{ $user->username }}/gimnasios/{{ $gimnasio->nombre }}/monitores/create">
+            <a class="nav-link disabled" href="/{{ $user->username }}/gimnasios/{{ $gimnasio->nombre }}/monitores/create" data-toggle="tooltip" data-placement="top" title="Añadir Monitor">
                 <span class="button-group-addon" ><img src="http://simpleicon.com/wp-content/uploads/account.svg" width="30" height="30" alt=""></span>
                 Añadir Monitor
             </a>
         </button>
         <hr>
         <button class="btn-lg btn-success w-75" type="button">
-            <a class="nav-link disabled" href="/{{ $user->username }}/gimnasios/{{ $gimnasio->nombre }}">
+            <a class="nav-link disabled" href="/{{ $user->username }}/gimnasios/{{ $gimnasio->nombre }}" data-toggle="tooltip" data-placement="top" title="Volver a {{ $gimnasio->nombre }}">
                 Volver a {{ $gimnasio->nombre }}
             </a>
         </button>

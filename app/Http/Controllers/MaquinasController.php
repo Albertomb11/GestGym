@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Gimnasio;
+use App\Http\Requests\CreateMaquinaAjaxFormRequest;
 use App\Http\Requests\CreateMaquinasRequest;
 use App\Maquina;
 use App\User;
@@ -144,5 +145,15 @@ class MaquinasController extends Controller
         Maquina::where('id', $id)->delete();
 
         return redirect('/');
+    }
+
+    /**
+     * En este metodo le pasamos los parametros para validar el formulario de crear una maquina asincronamente.
+     *
+     * @param CreateMaquinaAjaxFormRequest $request
+     * @return array
+     */
+    public function validacionCreateMaquinaAjax(CreateMaquinaAjaxFormRequest $request){
+        return array();
     }
 }

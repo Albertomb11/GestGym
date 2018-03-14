@@ -7,6 +7,7 @@ use App\Http\Requests\CreatePuntuacionesRequest;
 use App\Monitore;
 use App\Puntuacione;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class PuntuacionesController extends Controller
 {

@@ -14,7 +14,7 @@
         </div>
     </div>
 
-    <form id="formularioActualizarGimnasio" role="form" action="/{{ $user->username }}/gimnasios/{{ $gimnasio->id }}/edit" method="post" enctype="multipart/form-data">
+    <form id="formularioCrearGimnasio" role="form" action="/{{ $user->username }}/gimnasios/{{ $gimnasio->id }}/edit" method="post" enctype="multipart/form-data">
         {{ csrf_field() }}
         {{ method_field('PUT') }}
 
@@ -114,7 +114,7 @@
 
         <div class="form-group row">
     <div class="col-lg-6 offset-lg-4">
-<button id="botonActualizarGimnasio" type="submit" class="btn btn-primary btn-lg btn-block">Actualizar</button>
+<button id="botonCrearGimnasio" type="submit" class="btn btn-primary btn-lg btn-block">Actualizar</button>
     </div>
 </div>
 
@@ -126,5 +126,6 @@
 @endsection
 
 @push('scripts')
-    {{--<script src="{{ asset('js/formularioCrearGimnasioAsincrono.js') }}"></script>--}}
+    // Reutilizo la misma funcion que utilizo para crear un Gimnasio
+    <script src="{{ asset('js/formularioCrearGimnasioAsincrono.js') }}"></script>
 @endpush

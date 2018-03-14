@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Gimnasio;
+use App\Http\Requests\CreateProductoAjaxFormRequest;
 use App\Http\Requests\CreateProductosRequest;
 use App\Producto;
 use App\User;
@@ -149,5 +150,15 @@ class ProductosController extends Controller
         Producto::where('id', $id)->delete();
 
         return redirect('/');
+    }
+
+    /**
+     * En este metodo le pasamos los parametros para validar el formulario de crear un producto asincronamente.
+     *
+     * @param CreateProductoAjaxFormRequest $request
+     * @return array
+     */
+    public function validacionCreateProductoAjax(CreateProductoAjaxFormRequest $request){
+        return array();
     }
 }

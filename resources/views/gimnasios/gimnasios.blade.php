@@ -4,7 +4,7 @@
             <div id="draggable" class="contenedor">
                 <div class="contenedor_tarjeta">
                     @if(Auth::user())
-                        <a href="/{{ $user->username }}/gimnasios/{{ $gimnasio->nombre }}">
+                        <a href="/{{ $user->username }}/gimnasios/{{ $gimnasio->nombre }}" data-toggle="tooltip" data-placement="top" title="Informacion Del Gimnasio">
                             @endif
                             <figure>
                                 <img src="{{ $gimnasio['imagen'] }}" class="frontal" alt="imagen de {{$gimnasio['nombre']}}">

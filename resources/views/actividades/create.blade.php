@@ -6,23 +6,23 @@
         @include('navbar')
     </div>
 
-    <div class="col-md-8">
+    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xl-2"></div>
 
-        <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">
-                <h1 class="page-header title text-center" style="color: #fff">Crear Actividad</h1>
+    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+        <div class="card">
+            <div class="card-header">
+                <strong>Crear Actividad</strong>
             </div>
-        </div>
 
-        <div class="panel-body">
-            <form class="form-control" action="" method="post" enctype="multipart/form-data">
+        <div class="card-body">
+            <form id="formularioCrearActividad" class="form-control" action="" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
 
                 <div class="row">
 
                     <div class="col-md-6">
                         <div class="form-group{{ $errors->has('nombre') ? ' has-error' : '' }}">
-                            <label for="nombre" class="col-md-4 control-label"><h2>Nombre</h2></label>
+                            <label for="nombre" class="control-label"><h2>Nombre</h2></label>
 
                             <input id="nombre" type="text" class="form-control" name="nombre">
 
@@ -36,7 +36,7 @@
 
                     <div class="col-md-6">
                         <div class="form-group{{ $errors->has('duracion') ? ' has-error' : '' }}">
-                            <label for="duracion" class="col-md-4 control-label"><h2>Duracion</h2></label>
+                            <label for="duracion" class="control-label"><h2>Duracion</h2></label>
 
                             <input id="duracion" type="number" class="form-control" name="duracion">
 
@@ -52,7 +52,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group{{ $errors->has('intensidad') ? ' has-error' : '' }}">
-                            <label for="intensidad" class="col-md-4 control-label"><h2>Intensidad</h2></label>
+                            <label for="intensidad" class="control-label"><h2>Intensidad</h2></label>
 
                             <select id="intensidad" type="text" class="form-control" name="intensidad">
                                 <option selected>Baja</option>
@@ -70,7 +70,7 @@
 
                     <div class="col-md-6">
                         <div class="form-group{{ $errors->has('objetivos') ? ' has-error' : '' }}">
-                            <label for="objetivos" class="col-md-4 control-label"><h2>Objetivos</h2></label>
+                            <label for="objetivos" class="control-label"><h2>Objetivos</h2></label>
 
                             <input id="objetivos" type="text" class="form-control" name="objetivos" >
 
@@ -88,7 +88,7 @@
 
                     <div class="col-md-6">
                         <div class="form-group{{ $errors->has('descripcion') ? ' has-error' : '' }}">
-                            <label for="descripcion" class="col-md-4 control-label"><h3>Descripción</h3></label>
+                            <label for="descripcion" class="control-label"><h3>Descripción</h3></label>
 
                             <input id="descripcion" type="text" class="form-control" name="descripcion" >
 
@@ -107,10 +107,14 @@
                     <input type="file" id="image" name="image" class="show-for-sr">
                 </div>
 
-                <button type="submit" class="btn btn-primary btn-lg btn-block">Añadir</button>
+                <button id="botonCrearActividad" type="submit" class="btn btn-primary btn-lg btn-block" data-toggle="tooltip" data-placement="top" title="Añadir">Añadir</button>
             </form>
         </div>
-
+    </div>
     </div>
 </div>
 @endsection
+
+@push('scripts')
+    <script src="{{ asset('js/formularioCrearActividadAsincrono.js') }}"></script>
+@endpush

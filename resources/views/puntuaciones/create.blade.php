@@ -2,11 +2,13 @@
 
 @section('content')
 <div class="row">
-    <div class="col-md-2">
+    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xl-2">
         @include('navbar')
     </div>
 
-<div class="col-md-10">
+    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xl-2"></div>
+
+<div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xl-4">
     <form class="form-control" action="" method="post">
         {{ csrf_field() }}
 
@@ -32,7 +34,7 @@
         <div class="form-group{{ $errors->has('comentario') ? ' has-error' : '' }}">
             <label for="comentario" class="col-md-4 control-label"><h2>Comentario</h2></label>
 
-            <input id="comentario" type="text" class="form-control" name="comentario">
+            <textarea id="comentario" type="text" class="form-control" name="comentario"></textarea>
 
             @if ($errors->has('comentario'))
                 <span class="help-block alert-danger">
@@ -45,6 +47,7 @@
 
     </form>
 </div>
+    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xl-4"></div>
 
 </div>
 @endsection

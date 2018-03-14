@@ -14,7 +14,7 @@
             </div>
         </div>
 
-    @include('gimnasios.gimnasios')
+        @include('gimnasios.gimnasios')
 
     </div>
 
@@ -27,7 +27,7 @@
         </div>
 
         <button class="btn btn-success" type="button">
-            <a class="nav-link disabled" href="{{route('gimnasios.form', array('username' => Auth::user()->username))}}">
+            <a class="nav-link disabled" href="{{route('gimnasios.form', array('username' => Auth::user()->username))}}" data-toggle="tooltip" data-placement="top" title="Añadir Gimnasio">
                 <span class="button-group-addon" ><img src="https://image.flaticon.com/icons/svg/34/34907.svg" width="30" height="30" alt=""></span>
                 Añadir Gimnasio
             </a>

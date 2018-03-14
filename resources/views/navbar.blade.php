@@ -6,7 +6,7 @@
 
             <div class="text-center" style="padding-top: 2%">
                 <button class="btn-lg w-100" type="button">
-                    <a class="nav-link disabled" href="/">
+                    <a class="nav-link disabled" href="/" data-toggle="tooltip" data-placement="top" title="Inicio">
                         <span class="button-group-addon" ><img src="http://simpleicon.com/wp-content/uploads/home-7.png" width="30" height="30" alt=""></span>
                         Inicio
                     </a>
@@ -15,7 +15,7 @@
 
             <div class="text-center" style="padding-top: 2%">
                 <button class="btn-lg w-100" type="button">
-                    <a class="nav-link disabled" href="{{route('user.perfil', array('user' => Auth::user()->username))}}">
+                    <a class="nav-link disabled" href="{{route('user.perfil', array('user' => Auth::user()->username))}}" data-toggle="tooltip" data-placement="top" title="Perfil">
                         <span class="button-group-addon" ><img src="http://simpleicon.com/wp-content/uploads/account.svg" width="30" height="30" alt=""></span>
                         Perfil
                     </a>
@@ -24,17 +24,17 @@
 
             <div class="text-center" style="padding-top: 2%">
                 <button class="btn-lg w-100" type="button">
-                    <a class="nav-link disabled" href="{{route('gimnasios.show', array('user' => Auth::user()->username))}}">
+                    <a class="nav-link disabled" href="{{route('gimnasios.show', array('user' => Auth::user()->username))}}" data-toggle="tooltip" data-placement="top" title="Gimnasios">
                         <span class="button-group-addon" ><img src="https://image.flaticon.com/icons/svg/34/34907.svg" width="30" height="30" alt=""></span>
                         Gimnasios
                     </a>
                 </button>
             </div>
             <div class="dropdown-divider"></div>
-                <a class="nav-link" href="/contacto">Contacto</a>
+                <a class="nav-link" href="/contacto" data-toggle="tooltip" data-placement="top" title="Pagina Contacto">Contacto</a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST">
                 {{ csrf_field() }}
-                <button class="btn btn-link" type="submit">Salir</button>
+                <button class="btn btn-link" type="submit" data-toggle="tooltip" data-placement="top" title="Salir">Salir</button>
             </form>
         </nav>
     </div>

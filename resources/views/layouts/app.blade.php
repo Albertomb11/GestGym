@@ -16,8 +16,6 @@
     <link href="{{ asset('css/login.css') }}" rel="stylesheet">
     <link href="{{ asset('css/register.css') }}" rel="stylesheet">
     <link href="{{ asset('css/cartasGimnasios.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/perfil.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/updatePerfil.css') }}" rel="stylesheet">
 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 

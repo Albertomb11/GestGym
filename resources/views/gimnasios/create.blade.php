@@ -6,19 +6,19 @@
         @include('navbar')
     </div>
 
-    <div class="col-md-10 container" style="background: linear-gradient(to top right, #3366ff 0%, #ccccff 100%);border-radius: 10%; margin-top: 30px">
-        <div class="col-md-10" style="color: #fff">
-        <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">
-                <h1 class="page-header title text-center" style="color: #fff">Añadir Gimnasio</h1>
-            </div>
-        </div>
+    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xl-2"></div>
 
+    <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-xs-6">
+        <div class="card">
+            <div class="card-header">
+                <strong>Añadir Gimnasio</strong>
+            </div>
+        <div class="card-body">
         <form id="formularioCrearGimnasio" role="form" action="{{ route('gimnasios.create', array('user' => Auth::user()->username)) }}" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
 
             <div class="form-group row{{ $errors->has('nombre') ? ' has-error' : '' }}">
-                <label for="nombre" class="col-lg-4 col-form-label text-lg-right"><h2>Nombre</h2></label>
+                <label for="nombre" class="control-label">Nombre</label>
 
                 <div class="col-lg-6">
                     <input id="nombre" type="text" class="form-control{{ $errors->has('nombre') ? ' is-invalid' : '' }}" name="nombre" value="{{ old('nombre') }}">
@@ -33,7 +33,7 @@
             </div>
 
             <div class="form-group row{{ $errors->has('direccion') ? ' has-error' : '' }}">
-                <label for="direccion" class="col-lg-4 col-form-label text-lg-right"><h2>Dirección</h2></label>
+                <label for="direccion" class="control-label">Dirección</label>
 
                 <div class="col-lg-6">
                     <input id="direccion" type="text" class="form-control{{ $errors->has('direccion') ? ' is-invalid' : '' }}" name="direccion" value="{{ old('direccion') }}" >
@@ -48,7 +48,7 @@
             </div>
 
             <div class="form-group row{{ $errors->has('horario_apertura') ? ' has-error' : '' }}">
-                <label for="horario_apertura" class="col-lg-4 col-form-label text-lg-right"><h2>Horario de Apertura</h2></label>
+                <label for="horario_apertura" class="control-label">Horario de Apertura</label>
 
                 <div class="col-lg-6">
                     <input id="horario_apertura" type="time" class="form-control{{ $errors->has('horario_apertura') ? ' is-invalid' : '' }}" name="horario_apertura" value="{{ old('horario_apertura') }}">
@@ -63,7 +63,7 @@
             </div>
 
             <div class="form-group row{{ $errors->has('horario_cierre') ? ' has-error' : '' }}">
-                <label for="horario_cierre" class="col-lg-4 col-form-label text-lg-right"><h2>Horario de cierre</h2></label>
+                <label for="horario_cierre" class="control-label">Horario de cierre</label>
 
                 <div class="col-lg-6">
                     <input id="horario_cierre" type="time" class="form-control{{ $errors->has('horario_cierre') ? ' is-invalid' : '' }}" name="horario_cierre" value="{{ old('horario_cierre') }}">
@@ -78,7 +78,7 @@
             </div>
 
             <div class="form-group row{{ $errors->has('cuotas') ? ' has-error' : '' }}">
-        <label for="cuotas" class="col-lg-4 col-form-label text-lg-right"><h2>Cuotas</h2></label>
+        <label for="cuotas" class="control-label">Cuotas</label>
 
             <div class="col-lg-6">
             <input id="cuotas" type="number" class="form-control{{ $errors->has('cuotas') ? ' is-invalid' : '' }}" name="cuotas" value="{{ old('cuotas') }}">
@@ -93,7 +93,7 @@
         </div>
 
             <div class="form-group row{{ $errors->has('descripcion') ? ' has-error' : '' }}">
-        <label for="descripcion" class="col-lg-4 col-form-label text-lg-right"><h2>Descripcion</h2></label>
+        <label for="descripcion" class="control-label">Descripcion</label>
 
         <div class="col-lg-6">
             <input id="descripcion" type="text" class="form-control{{ $errors->has('descripcion') ? ' is-invalid' : '' }}" name="descripcion" value="{{ old('descripcion') }}">
@@ -114,13 +114,13 @@
 
             <div class="form-group row">
         <div class="col-lg-6 offset-lg-4">
-    <button id="botonCrearGimnasio" type="submit" class="btn btn-primary btn-lg btn-block">Añadir</button>
+    <button id="botonCrearGimnasio" type="submit" class="btn btn-primary btn-lg btn-block" data-toggle="tooltip" title="Añadir Gimnasio">Añadir</button>
         </div>
     </div>
 
         </form>
-    </div>
-
+        </div>
+        </div>
     </div>
 
 </div>

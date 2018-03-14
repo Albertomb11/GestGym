@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Actividade;
 use App\Gimnasio;
+use App\Http\Requests\CreateActividadAjaxFormRequest;
 use App\Http\Requests\CreateActividadesRequest;
 use App\User;
 use Illuminate\Http\Request;
@@ -151,5 +152,15 @@ class ActividadesController extends Controller
         Actividade::where('id', $id)->delete();
 
         return redirect('/');
+    }
+
+    /**
+     * En este metodo le pasamos los parametros para validar el formulario de crear una actividad asincronamente.
+     *
+     * @param CreateActividadAjaxFormRequest $request
+     * @return array
+     */
+    public function validacionCreateActividadAjax(CreateActividadAjaxFormRequest $request){
+        return array();
     }
 }

@@ -34,6 +34,11 @@ Route::get('/mostrarGimnasios', 'GimnasiosController@mostrarGimnasios')->name('m
 Route::post('/register/validate', 'Auth\RegisterController@validacionRegisterAjax');
 Route::post('/updatePerfil/validate', 'UserController@validacionUpdatePerfilAjax');
 Route::post('/createGimnasios/validate', 'GimnasiosController@validacionCreateGimnasiosAjax');
+Route::post('/createMonitor/validate', 'MonitoresController@validacionCreateMonitoresAjax');
+Route::post('/createActividad/validate', 'ActividadesController@validacionCreateActividadAjax');
+Route::post('/createMaquina/validate', 'MaquinasController@validacionCreateMaquinaAjax');
+Route::post('/createProducto/validate', 'ProductosController@validacionCreateProductoAjax');
+Route::post('/createSala/validate', 'SalasController@validacionCreateSalaAjax');
 
 /*
 |--------------------------------------------------------------------------

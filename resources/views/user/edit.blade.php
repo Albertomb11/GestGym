@@ -1,5 +1,9 @@
-<div class="perfil-box">
-
+<div class="card">
+<div class="card-header">
+    <strong>
+        Actualizar Perfil
+    </strong>
+</div>
 <form id="formEditarPerfil" role="form" action="{{ route('user.update', array('id' => Auth::user()->id))}}" method="post" enctype="multipart/form-data">
         {{ csrf_field() }}
         {{ method_field('PUT') }}
@@ -128,11 +132,13 @@
         <input type="file" id="image" name="image" class="show-for-sr">
     </div>
 
-    <div class="form-group row">
-        <div class="col-lg-6 offset-lg-4">
-            <button type="submit" id="botonFormularioEditarPerfil" class="btn btn-primary">
-                Actualizar
-            </button>
+    <div class="card-footer">
+        <div class="form-group row">
+            <div class="col-lg-6 offset-lg-4">
+                <button type="submit" id="botonFormularioEditarPerfil" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Actualizar Perfil">
+                    Actualizar
+                </button>
+            </div>
         </div>
     </div>
     </form>

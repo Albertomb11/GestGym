@@ -2,11 +2,11 @@
 
 @section('content')
 <div class="row">
-    <div class="col-md-2">
+    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2">
         @include('navbar')
     </div>
 
-    <div class="col-md-8">
+    <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xs-8">
 
         @forelse($salas->chunk(3) as $chunk)
             <div class="row course-set courses__row event d-flex justify-content-around">
@@ -16,13 +16,18 @@
                         <div class="card-body">
                             <h5 class="card-title"><strong>{{$sala['nombre']}}</strong></h5>
 
-                            <div class="container">
-                                <a href="/{{ $user->username }}/gimnasios/{{ $gimnasio->nombre }}/salas/{{ $sala->id }}/edit" class="btn btn-primary">Editar</a>
-                                <form action="{{route('$sala.delete',array('id' => $sala['id']))}}" method="post">
+                            <div class="row">
+                                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                <a href="/{{ $user->username }}/gimnasios/{{ $gimnasio->nombre }}/salas/{{ $sala->id }}/edit" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Editar Sala">Editar</a>
+                                </div>
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                <form action="{{route('sala.delete',array('id' => $sala['id']))}}" method="post">
                                     {{ csrf_field() }}
                                     {{ method_field('DELETE') }}
-                                    <button type="submit" class="btn btn-danger">Borrar</button>
+                                    <button type="submit" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Borrar Sala">Borrar</button>
                                 </form>
+                                </div>
                             </div>
                         </div>
                         <div class="card-footer">
@@ -46,14 +51,14 @@
         </div>
 
         <button class="btn btn-success w-75" type="button">
-            <a class="nav-link disabled" href="/{{ $user->username }}/gimnasios/{{ $gimnasio->nombre }}/salas/create">
+            <a class="nav-link disabled" href="/{{ $user->username }}/gimnasios/{{ $gimnasio->nombre }}/salas/create" data-toggle="tooltip" data-placement="top" title="Añadir Sala">
                 <span class="button-group-addon" ><img src="http://simpleicon.com/wp-content/uploads/account.svg" width="30" height="30" alt=""></span>
                 Añadir Sala
             </a>
         </button>
         <hr>
         <button class="btn-lg btn-success w-75" type="button">
-            <a class="nav-link disabled" href="/{{ $user->username }}/gimnasios/{{ $gimnasio->nombre }}">
+            <a class="nav-link disabled" href="/{{ $user->username }}/gimnasios/{{ $gimnasio->nombre }}" data-toggle="tooltip" data-placement="top" title="Volver a {{$gimnasio->nombre}}">
                 Volver a {{ $gimnasio->nombre }}
             </a>
         </button>
