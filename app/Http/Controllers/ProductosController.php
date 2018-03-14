@@ -149,7 +149,7 @@ class ProductosController extends Controller
     public function destroy($id){
         Producto::where('id', $id)->delete();
 
-        return redirect('/');
+        return redirect()->back();
     }
 
     /**

@@ -33,11 +33,29 @@
                         <a href="/{{ $user->username }}/gimnasios/{{ $gimnasio->nombre }}/monitores/{{ $monitor->id }}/edit" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Editar Monitor">Editar</a>
                         </div>
                         <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                        <form action="{{route('monitor.delete',array('id' => $monitor  ['id']))}}" method="post">
-                            {{ csrf_field() }}
-                            {{ method_field('DELETE') }}
-                            <button type="submit" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Borrar Monitor">Borrar</button>
-                        </form>
+                            <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#deleteMonitor{{ $monitor->id }}">Borrar</button>
+
+                            <div class="modal fade" id="deleteMonitor{{ $monitor->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header bg-secondary d-flex justify-content-center">
+
+                                            <h4 class="modal-title  text-center">Estas seguro de eliminar: {{$monitor->nombre}}?</h4>
+
+                                        </div>
+                                        <div class="modal-body d-flex justify-content-between">
+                                            <button type="button" class=" btn btn-success bg-success" data-dismiss="modal">
+                                                NO
+                                            </button>
+                                            <form action="{{route('monitor.delete',array('id' => $monitor->id))}}" method="post">
+                                                {{ csrf_field() }}
+                                                {{ method_field('DELETE') }}
+                                                <button type="submit"  class="btn btn-danger">YES</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -151,7 +151,7 @@ class ActividadesController extends Controller
     public function destroy($id){
         Actividade::where('id', $id)->delete();
 
-        return redirect('/');
+        return redirect()->back();
     }
 
     /**

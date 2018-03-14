@@ -31,6 +31,7 @@
                                             </span>
                             @endif
                         </div>
+                        @include('layouts.spinner')
                     </div>
 
                     <div class="col-md-6">
@@ -45,6 +46,7 @@
                                 </span>
                             @endif
                         </div>
+                        @include('layouts.spinner')
                     </div>
                 </div>
 

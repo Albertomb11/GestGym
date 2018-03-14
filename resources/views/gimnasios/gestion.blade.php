@@ -39,17 +39,35 @@
                     <a href="/{{ $user->username }}/gimnasios/{{ $gimnasios->nombre }}/edit" class="btn btn-primary">Editar</a>
                     </div>
                     <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                    <form action="{{route('gimnasio.delete',array('id' => $gimnasios['id']))}}" method="post">
-                        {{ csrf_field() }}
-                        {{ method_field('DELETE') }}
-                        <button type="submit" class="btn btn-danger">Borrar</button>
-                    </form>
+                        <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#deleteGimnasio">Borrar</button>
                     </div>
                 </div>
             </div>
         </div>
         </div>
 
+    </div>
+</div>
+
+<div class="modal fade" id="deleteGimnasio" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-secondary d-flex justify-content-center">
+
+                <h4 class="modal-title  text-center">Estas seguro de eliminar: {{$gimnasios->nombre}}?</h4>
+
+            </div>
+            <div class="modal-body d-flex justify-content-between">
+                <button type="button" class=" btn btn-success bg-success" data-dismiss="modal">
+                    NO
+                </button>
+                <form action="{{route('gimnasio.delete',array('id' => $gimnasios->id))}}" method="post">
+                    {{ csrf_field() }}
+                    {{ method_field('DELETE') }}
+                    <button type="submit"  class="btn btn-danger">YES</button>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
 @endsection

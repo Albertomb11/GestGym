@@ -33,6 +33,7 @@
                                             </span>
                             @endif
                         </div>
+                        @include('layouts.spinner')
                     </div>
 
                     <div class="col-md-6">
@@ -47,6 +48,7 @@
                                 </span>
                             @endif
                         </div>
+                        @include('layouts.spinner')
                     </div>
                 </div>
 
@@ -63,6 +65,7 @@
                                 </span>
                             @endif
                         </div>
+                        @include('layouts.spinner')
                     </div>
 
                     <div class="col-md-6">
@@ -77,6 +80,7 @@
                                 </span>
                             @endif
                         </div>
+                        @include('layouts.spinner')
                     </div>
 
                 </div>
@@ -92,6 +96,7 @@
                                 </span>
                     @endif
                 </div>
+                @include('layouts.spinner')
 
                 <div class="form-group row">
                     <label for="image" class="button col-lg-4 col-form-label text-lg-right">Añadir Imagen</label>

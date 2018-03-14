@@ -2,6 +2,7 @@
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
     "/js/paginacionAsincrona.js": "/js/paginacionAsincrona.js",
+    "/js/mostrarPuntuaciones.js": "/js/mostrarPuntuaciones.js",
     "/js/formularioRegisterAsincrona.js": "/js/formularioRegisterAsincrona.js",
     "/js/formularioEditarPerfilAsincrono.js": "/js/formularioEditarPerfilAsincrono.js",
     "/js/formularioCrearSalaAsincrono.js": "/js/formularioCrearSalaAsincrono.js",

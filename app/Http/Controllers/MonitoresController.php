@@ -153,7 +153,7 @@ class MonitoresController extends Controller
     public function destroy($id){
         Monitore::where('id', $id)->delete();
 
-        return redirect('/');
+        return redirect()->back();
     }
 
     /**

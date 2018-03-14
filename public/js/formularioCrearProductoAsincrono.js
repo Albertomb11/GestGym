@@ -138,8 +138,8 @@ function validateTarget(target) {
             case "sabor":
                 gestionarErrores(target, response.data.sabor);
                 break;
-            case "caracteres":
-                gestionarErrores(target, response.data.caracteres);
+            case "caracteristicas":
+                gestionarErrores(target, response.data.caracteristicas);
                 break;
         }
     }).catch(function (error) {
@@ -148,7 +148,7 @@ function validateTarget(target) {
 }
 
 $(function () {
-    $("#nombre,#precio,#stock,#sabor,#caracteres").on('change', function (e) {
+    $("#nombre,#precio,#stock,#sabor,#caracteristicas").on('change', function (e) {
         validateTarget(e.target);
     });
 
@@ -160,7 +160,7 @@ $(function () {
         formData.append('precio', $("#precio").val());
         formData.append('stock', $("#stock").val());
         formData.append('sabor', $("#sabor").val());
-        formData.append('caracteres', $("#caracteres").val());
+        formData.append('caracteristicas', $("#caracteristicas").val());
 
         axios.post('/createProducto/validate', formData).then(function (response) {
             if (gestionarErrores("#nombre", response.data.nombre)) {
@@ -179,7 +179,7 @@ $(function () {
                 enviarFormulario = false;
             }
 
-            if (gestionarErrores("#caracteres", response.data.caracteres)) {
+            if (gestionarErrores("#caracteristicas", response.data.caracteristicas)) {
                 enviarFormulario = false;
             }
 

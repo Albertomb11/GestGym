@@ -22,11 +22,30 @@
                                 <a href="/{{ $user->username }}/gimnasios/{{ $gimnasio->nombre }}/salas/{{ $sala->id }}/edit" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Editar Sala">Editar</a>
                                 </div>
                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                <form action="{{route('sala.delete',array('id' => $sala['id']))}}" method="post">
-                                    {{ csrf_field() }}
-                                    {{ method_field('DELETE') }}
-                                    <button type="submit" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Borrar Sala">Borrar</button>
-                                </form>
+                                    <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#deleteSala{{ $sala->id }}">Borrar</button>
+
+                                    <div class="modal fade" id="deleteSala{{ $sala->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header bg-secondary d-flex justify-content-center">
+
+                                                    <h4 class="modal-title  text-center">Estas seguro de eliminar: {{$sala->nombre}}?</h4>
+
+                                                </div>
+                                                <div class="modal-body d-flex justify-content-between">
+                                                    <button type="button" class=" btn btn-success bg-success" data-dismiss="modal">
+                                                        NO
+                                                    </button>
+                                                    <form action="{{route('sala.delete',array('id' => $sala->id))}}" method="post">
+                                                        {{ csrf_field() }}
+                                                        {{ method_field('DELETE') }}
+                                                        <button type="submit"  class="btn btn-danger">YES</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>

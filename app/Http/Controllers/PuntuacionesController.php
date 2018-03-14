@@ -6,6 +6,7 @@ use App\Gimnasio;
 use App\Http\Requests\CreatePuntuacionesRequest;
 use App\Monitore;
 use App\Puntuacione;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -61,4 +62,5 @@ class PuntuacionesController extends Controller
 
         return redirect("monitor/$monitore->nombre/puntuaciones");
     }
+
 }

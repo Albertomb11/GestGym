@@ -198,6 +198,6 @@ class GimnasiosController extends Controller
     public function destroy($id){
         Gimnasio::where('id', $id)->delete();
 
-        return redirect('/');
+        return redirect(Auth::user()->username.'/gimnasios');
     }
 }

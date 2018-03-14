@@ -137,7 +137,7 @@ class SalasController extends Controller
     public function destroy($id){
         Sala::where('id', $id)->delete();
 
-        return redirect('/');
+        return redirect()->back();
     }
 
     /**

@@ -5,7 +5,7 @@
 <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xl-2">
     @include('navbar')
 </div>
-<div class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xl-8">
+<div id="mostrarPuntuaciones" class="col-xl-8 col-lg-8 col-md-8 col-sm-8 col-xl-8">
 
     <h1 style="color: #fff;">{{ $monitores->nombre }}</h1>
 
@@ -27,9 +27,8 @@
     @empty
         <h1 class="text-center" style="color: #fff; margin-top: 50px">No hay Puntuaciones añadidas todavia</h1>
     @endforelse
-
-
 </div>
+
     <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2 col-xl-2">
         <button class="btn btn-success" type="button">
             <a class="nav-link disabled" href="/monitor/{{ $monitores->nombre }}/puntuaciones/create" data-toggle="tooltip" data-placement="top" title="Añadir Puntuación">
@@ -40,3 +39,4 @@
     </div>
 </div>
 @endsection
+
